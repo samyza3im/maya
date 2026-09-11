@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pour mon amour ❤️</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: Georgia, serif;
+    background: linear-gradient(135deg, #160b12, #3b1725, #12080d);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.container {
+    width: 92%;
+    max-width: 500px;
+    text-align: center;
+}
+
+h1 {
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    color: #f5c9d7;
+    font-size: 17px;
+    margin-bottom: 35px;
+}
+
+/* BOÎTE */
+
+.box-area {
+    position: relative;
+    height: 230px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.box {
+    position: relative;
+    width: 190px;
+    height: 130px;
+    background: #9e2948;
+    border-radius: 8px;
+    box-shadow: 0 20px 40px rgba(0,0,0,.5);
+}
+
+.box::before {
+    content: "";
+    position: absolute;
+    width: 32px;
+    height: 130px;
+    background: #e9b4c3;
+    left: 79px;
+}
+
+.lid {
+    position: absolute;
+    width: 215px;
+    height: 45px;
+    background: #b93659;
+    left: -12px;
+    top: -35px;
+    border-radius: 8px;
+    transition: 1.2s ease;
+    transform-origin: left bottom;
+}
+
+.lid::before {
+    content: "";
+    position: absolute;
+    width: 32px;
+    height: 45px;
+    background: #e9b4c3;
+    left: 91px;
+}
+
+.box.open .lid {
+    transform: rotate(-25deg) translate(-35px, -70px);
+}
+
+/* CLÉ */
+
+.key {
+    position: absolute;
+    font-size: 48px;
+    cursor: pointer;
+    right: -5px;
+    top: 5px;
+    animation: float 2s infinite ease-in-out;
+    transition: .4s;
+}
+
+.key:hover {
+    transform: scale(1.15);
+}
+
+@keyframes float {
+    0%,100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+/* PASSWORD */
+
+.password-box {
+    display: none;
+    margin-top: 20px;
+}
+
+input {
+    width: 100%;
+    padding: 15px;
+    border-radius: 12px;
+    border: none;
+    outline: none;
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+    color: #333;
+}
+
+button {
+    margin-top: 12px;
+    padding: 13px 30px;
+    border: none;
+    border-radius: 25px;
+    background: #d94b70;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.error {
+    color: #ff9db5;
+    margin-top: 10px;
+    display: none;
+}
+
+/* MESSAGE */
+
+.message {
+    display: none;
+    max-height: 75vh;
+    overflow-y: auto;
+    padding: 25px;
+    background: rgba(255,255,255,.08);
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 10px 40px rgba(0,0,0,.4);
+    animation: appear 1.5s ease;
+}
+
+.message h2 {
+    color: #ffb6c9;
+    margin-top: 0;
+}
+
+.message p {
+    font-size: 17px;
+    line-height: 1.8;
+}
+
+.final {
+    color: #ffb6c9;
+    font-size: 20px !important;
+    margin-top: 25px;
+}
+
+@keyframes appear {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* COEURS */
+
+.heart {
+    position: fixed;
+    bottom: -20px;
+    animation: heart 6s linear infinite;
+    opacity: .7;
+}
+
+@keyframes heart {
+    0% {
+        transform: translateY(0);
+        opacity: 0;
+    }
+    20% {
+        opacity: .8;
+    }
+    100% {
+        transform: translateY(-110vh);
+        opacity: 0;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container" id="main">
+
+    <h1>Une petite surprise pour toi ❤️</h1>
+
+    <div class="subtitle">
+        J'ai préparé quelque chose de spécial pour ton anniversaire...
+    </div>
+
+    <div class="box-area">
+
+        <div class="box" id="giftBox">
+            <div class="lid"></div>
+        </div>
+
+        <div class="key" onclick="showPassword()">🔑</div>
+
+    </div>
+
+    <div class="password-box" id="passwordBox">
+
+        <p>Cette clé a besoin d'un code ❤️</p>
+
+        <input
+            type="password"
+            id="password"
+            placeholder="Entre le code"
+            inputmode="numeric"
+        >
+
+        <button onclick="openGift()">Ouvrir la boîte</button>
+
+        <div class="error" id="error">
+            Hmm... ce n'est pas le bon code ❤️
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- MESSAGE -->
+
+<div class="container message" id="message">
+
+    <h2>Joyeux anniversaire mon amour ❤️🎂</h2>
+
+    <p>
+        Aujourd’hui est une journée très spéciale, parce que c’est le jour
+        où une personne très importante pour moi est née.
+        Je veux profiter de cette occasion pour te dire à quel point tu comptes pour moi. ❤️
+    </p>
+
+    <p>
+        Je te souhaite beaucoup de bonheur, de santé, de réussite et surtout
+        beaucoup de beaux moments dans ta vie.
+        J’espère que cette nouvelle année t’apportera tout ce que tu souhaites
+        et que tes rêves vont petit à petit devenir réalité.
+    </p>
+
+    <p>
+        Depuis que tu es dans ma vie, beaucoup de choses sont devenues plus belles.
+        J’aime parler avec toi, rire avec toi, passer du temps avec toi
+        et partager mes pensées avec toi.
+        Tu as une place très spéciale dans mon cœur et je ne veux jamais la perdre. ❤️
+    </p>
+
+    <p>
+        Je sais qu’aujourd’hui tu n’es pas encore ma femme,
+        mais dans mon cœur, j’espère vraiment qu’un jour tu le seras.
+        Je veux qu’un jour on puisse construire notre vie ensemble,
+        réaliser nos rêves et rester toujours l’un pour l’autre. 🥹❤️
+    </p>
+
+    <p>
+        Je rêve de notre futur, de notre maison, de nos voyages,
+        de nos petits moments ensemble et de toutes les choses
+        qu’on pourra découvrir à deux.
+    </p>
+
+    <p>
+        Je veux être à tes côtés dans les bons moments,
+        mais aussi dans les moments difficiles,
+        pour te soutenir et ne jamais te laisser seule.
+    </p>
+
+    <p>
+        Je ne sais pas exactement ce que l’avenir nous réserve,
+        mais je sais une chose :
+        si Dieu le veut, j’aimerais que mon avenir soit avec toi. ❤️
+    </p>
+
+    <p>
+        Alors aujourd’hui, profite de ta journée, souris beaucoup
+        et sois heureuse. Tu mérites vraiment tout le bonheur du monde.
+    </p>
+
+    <p>
+        Encore une fois, joyeux anniversaire mon amour. ❤️🎂
+        J’espère que ce ne sera pas le dernier anniversaire que je fêterai
+        à tes côtés, mais le premier d’une très longue histoire ensemble.
+    </p>
+
+    <p class="final">
+        Je t’aime beaucoup, ma future femme. ❤️😘
+    </p>
+
+</div>
+
+
+<script>
+
+function showPassword() {
+    document.getElementById("passwordBox").style.display = "block";
+    document.getElementById("password").focus();
+}
+
+function openGift() {
+
+    const password = document.getElementById("password").value;
+    const error = document.getElementById("error");
+
+    if (password === "11091999") {
+
+        document.getElementById("giftBox").classList.add("open");
+
+        setTimeout(() => {
+
+            document.getElementById("main").style.display = "none";
+            document.getElementById("message").style.display = "block";
+
+        }, 1500);
+
+    } else {
+
+        error.style.display = "block";
+
+    }
+}
+
+
+/* COEURS */
+
+function createHeart() {
+
+    const heart = document.createElement("div");
+
+    heart.className = "heart";
+    heart.innerHTML = "❤️";
+
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = (12 + Math.random() * 20) + "px";
+    heart.style.animationDuration = (4 + Math.random() * 5) + "s";
+
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+        heart.remove();
+    }, 9000);
+}
+
+setInterval(createHeart, 800);
+
+</script>
+
+</body>
+</html>
