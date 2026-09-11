@@ -3,208 +3,398 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pour toi</title>
+
+<title>Pour mon amour ❤️</title>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500&display=swap');
 
 * {
     box-sizing: border-box;
 }
 
-:root {
-    --bg: #070609;
-    --rose: #e6a5bd;
-    --rose-light: #f5d8e3;
-    --text: #f4edf0;
-    --muted: #aa9ca3;
-}
-
-html,
 body {
     margin: 0;
-    width: 100%;
-    min-height: 100%;
-}
-
-body {
     min-height: 100vh;
-    background: var(--bg);
-    color: var(--text);
-    font-family: "Inter", sans-serif;
-    overflow-x: hidden;
-}
-
-/* =====================================================
-   BACKGROUND
-===================================================== */
-
-.background {
-    position: fixed;
-    inset: 0;
-    overflow: hidden;
-    pointer-events: none;
-    z-index: 0;
-}
-
-.noise {
-    position: absolute;
-    inset: -50%;
-    opacity: .035;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.7'/%3E%3C/svg%3E");
-    transform: rotate(10deg);
-}
-
-.orb {
-    position: absolute;
-    border-radius: 50%;
-    filter: blur(70px);
-    opacity: .35;
-}
-
-.orb.one {
-    width: 380px;
-    height: 380px;
-    background: #7c294d;
-    top: -130px;
-    left: -120px;
-    animation: driftOne 12s ease-in-out infinite alternate;
-}
-
-.orb.two {
-    width: 320px;
-    height: 320px;
-    background: #432a63;
-    right: -120px;
-    bottom: -80px;
-    animation: driftTwo 15s ease-in-out infinite alternate;
-}
-
-.orb.three {
-    width: 220px;
-    height: 220px;
-    background: #a83d68;
-    left: 45%;
-    top: 35%;
-    opacity: .12;
-    filter: blur(90px);
-    animation: driftThree 10s ease-in-out infinite alternate;
-}
-
-.blob {
-    position: absolute;
-    width: 500px;
-    height: 500px;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    border: 1px solid rgba(255,255,255,.025);
-    border-radius: 48% 52% 63% 37% / 41% 44% 56% 59%;
-    animation: morph 18s ease-in-out infinite;
-}
-
-.blob.two {
-    width: 700px;
-    height: 700px;
-    animation-duration: 25s;
-    animation-direction: reverse;
-    opacity: .4;
-}
-
-@keyframes driftOne {
-    to {
-        transform: translate(100px, 80px) scale(1.2);
-    }
-}
-
-@keyframes driftTwo {
-    to {
-        transform: translate(-80px, -100px) scale(1.15);
-    }
-}
-
-@keyframes driftThree {
-    to {
-        transform: translate(80px, -60px) scale(1.4);
-    }
-}
-
-@keyframes morph {
-    0% {
-        border-radius: 48% 52% 63% 37% / 41% 44% 56% 59%;
-        transform: translate(-50%, -50%) rotate(0deg);
-    }
-
-    50% {
-        border-radius: 62% 38% 42% 58% / 52% 62% 38% 48%;
-        transform: translate(-50%, -50%) rotate(120deg);
-    }
-
-    100% {
-        border-radius: 38% 62% 57% 43% / 63% 39% 61% 37%;
-        transform: translate(-50%, -50%) rotate(240deg);
-    }
-}
-
-/* =====================================================
-   MAIN
-===================================================== */
-
-.page {
-    position: relative;
-    z-index: 2;
-    min-height: 100vh;
+    font-family: Georgia, serif;
+    background:
+        radial-gradient(circle at center, #5c1d35 0%, #260e1b 45%, #090508 100%);
+    color: white;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 40px 20px;
+    overflow: hidden;
 }
 
+/* =========================
+   CONTAINER
+========================= */
+
 .container {
-    width: 100%;
-    max-width: 720px;
+    width: 92%;
+    max-width: 500px;
     text-align: center;
 }
 
-/* =====================================================
-   INTRO
-===================================================== */
-
-.intro {
-    animation: introIn 1.5s cubic-bezier(.2,.8,.2,1);
-}
-
-.eyebrow {
-    font-size: 10px;
-    letter-spacing: 5px;
-    text-transform: uppercase;
-    color: var(--rose);
-    margin-bottom: 22px;
-    opacity: .8;
-}
-
 h1 {
-    margin: 0;
-    font-family: "Cormorant Garamond", serif;
-    font-size: clamp(46px, 10vw, 76px);
-    font-weight: 400;
-    letter-spacing: -2px;
-    line-height: .95;
+    font-size: 30px;
+    margin-bottom: 10px;
+    text-shadow: 0 0 20px rgba(255,100,150,.4);
 }
 
 .subtitle {
-    max-width: 430px;
-    margin: 24px auto 0;
-    color: var(--muted);
-    font-size: 13px;
-    line-height: 1.8;
-    font-weight: 300;
+    color: #f5c9d7;
+    font-size: 17px;
+    margin-bottom: 35px;
 }
 
-@keyframes introIn {
+/* =========================
+   COFFRE
+========================= */
+
+.box-area {
+    position: relative;
+    height: 300px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    perspective: 900px;
+}
+
+.box {
+    position: relative;
+
+    width: 190px;
+    height: 130px;
+
+    background: linear-gradient(
+        145deg,
+        #c43b60,
+        #7e1736
+    );
+
+    border-radius: 8px;
+
+    box-shadow:
+        0 25px 50px rgba(0,0,0,.7),
+        0 0 35px rgba(255,60,120,.15);
+
+    transform-style: preserve-3d;
+
+    transition: .8s;
+}
+
+.box::before {
+    content: "";
+
+    position: absolute;
+
+    width: 32px;
+    height: 130px;
+
+    background: linear-gradient(
+        90deg,
+        #ffd2df,
+        #e9a6bb,
+        #ffd2df
+    );
+
+    left: 79px;
+
+    z-index: 2;
+}
+
+/* serrure */
+
+.box::after {
+    content: "🔒";
+
+    position: absolute;
+
+    left: 50%;
+    top: 45%;
+
+    transform: translate(-50%, -50%);
+
+    font-size: 28px;
+
+    z-index: 5;
+
+    filter: drop-shadow(0 0 8px rgba(255,255,255,.5));
+
+    transition: .5s;
+}
+
+/* =========================
+   COUVERCLE
+========================= */
+
+.lid {
+
+    position: absolute;
+
+    width: 215px;
+    height: 45px;
+
+    background: linear-gradient(
+        145deg,
+        #d7476b,
+        #8d1d3d
+    );
+
+    left: -12px;
+    top: -35px;
+
+    border-radius: 8px;
+
+    transition:
+        transform 1.5s cubic-bezier(.2,.8,.2,1),
+        box-shadow .5s;
+
+    transform-origin: left bottom;
+
+    z-index: 4;
+
+    box-shadow:
+        0 10px 20px rgba(0,0,0,.4);
+}
+
+.lid::before {
+
+    content: "";
+
+    position: absolute;
+
+    width: 32px;
+    height: 45px;
+
+    background: #e9b4c3;
+
+    left: 91px;
+}
+
+/* coffre ouvert */
+
+.box.open .lid {
+
+    transform:
+        rotate(-28deg)
+        translate(-35px,-75px);
+
+    box-shadow:
+        0 0 30px rgba(255,150,200,.4);
+}
+
+.box.open::after {
+
+    content: "✨";
+
+    font-size: 30px;
+
+    animation: lockGlow 1s infinite alternate;
+}
+
+@keyframes lockGlow {
+
+    from {
+        filter: drop-shadow(0 0 2px white);
+    }
+
+    to {
+        filter: drop-shadow(0 0 18px #fff);
+    }
+}
+
+/* =========================
+   CLÉ
+========================= */
+
+.key {
+
+    position: absolute;
+
+    font-size: 52px;
+
+    cursor: pointer;
+
+    right: 5px;
+    top: 10px;
+
+    z-index: 20;
+
+    animation: float 2s infinite ease-in-out;
+
+    transition:
+        right 1.3s cubic-bezier(.2,.8,.2,1),
+        top 1.3s cubic-bezier(.2,.8,.2,1),
+        transform 1.3s cubic-bezier(.2,.8,.2,1),
+        opacity .5s;
+
+    filter:
+        drop-shadow(0 0 10px rgba(255,220,100,.5));
+}
+
+/* mouvement vers le coffre */
+
+.key.go-to-lock {
+
+    animation: none;
+
+    right: calc(50% - 25px);
+    top: 125px;
+
+    transform:
+        rotate(-20deg)
+        scale(.75);
+
+}
+
+/* tourne dans la serrure */
+
+.key.turn-key {
+
+    animation: turnKey 1.3s ease forwards;
+}
+
+@keyframes turnKey {
+
+    0% {
+        transform:
+            rotate(-20deg)
+            scale(.75);
+    }
+
+    35% {
+        transform:
+            rotate(20deg)
+            scale(.75);
+    }
+
+    65% {
+        transform:
+            rotate(80deg)
+            scale(.75);
+    }
+
+    100% {
+        transform:
+            rotate(0deg)
+            scale(.75);
+        opacity: 0;
+    }
+}
+
+/* =========================
+   CLÉ CASSÉE
+========================= */
+
+.key.broken {
+
+    animation:
+        shakeKey .15s infinite,
+        breakKey .8s forwards;
+
+}
+
+@keyframes shakeKey {
+
+    0% {
+        transform: rotate(-8deg);
+    }
+
+    50% {
+        transform: rotate(8deg);
+    }
+
+    100% {
+        transform: rotate(-8deg);
+    }
+}
+
+@keyframes breakKey {
+
+    0% {
+        opacity: 1;
+        filter: drop-shadow(0 0 10px red);
+    }
+
+    50% {
+        transform:
+            scale(1.3)
+            rotate(25deg);
+    }
+
+    100% {
+        transform:
+            translateY(70px)
+            rotate(120deg)
+            scale(.2);
+
+        opacity: 0;
+    }
+}
+
+/* =========================
+   ÉTINCELLES
+========================= */
+
+.spark {
+
+    position: absolute;
+
+    width: 6px;
+    height: 6px;
+
+    background: white;
+
+    border-radius: 50%;
+
+    pointer-events: none;
+
+    animation: spark .8s forwards;
+
+    box-shadow:
+        0 0 10px white,
+        0 0 20px #ff7aa5;
+}
+
+@keyframes spark {
+
+    0% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    100% {
+        opacity: 0;
+        transform:
+            translate(
+                calc((var(--x)) * 1px),
+                calc((var(--y)) * 1px)
+            )
+            scale(0);
+    }
+}
+
+/* =========================
+   PASSWORD
+========================= */
+
+.password-box {
+
+    display: none;
+
+    margin-top: 10px;
+
+    animation: passwordAppear .8s ease;
+}
+
+@keyframes passwordAppear {
+
     from {
         opacity: 0;
-        transform: translateY(30px);
+        transform: translateY(20px);
     }
 
     to {
@@ -213,637 +403,182 @@ h1 {
     }
 }
 
-/* =====================================================
-   CHEST AREA
-===================================================== */
+.password-box p {
 
-.chest-area {
-    position: relative;
-    width: 100%;
-    height: 330px;
-    margin-top: 20px;
-    perspective: 1000px;
-}
-
-/* halo derrière */
-
-.chest-halo {
-    position: absolute;
-    width: 240px;
-    height: 150px;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -40%);
-    background: radial-gradient(
-        ellipse,
-        rgba(218,126,160,.23),
-        transparent 70%
-    );
-    filter: blur(20px);
-    animation: haloPulse 4s ease-in-out infinite;
-}
-
-@keyframes haloPulse {
-    0%,100% {
-        transform: translate(-50%, -40%) scale(.9);
-        opacity: .5;
-    }
-
-    50% {
-        transform: translate(-50%, -40%) scale(1.15);
-        opacity: .9;
-    }
-}
-
-/* =====================================================
-   CHEST
-===================================================== */
-
-.chest {
-    position: absolute;
-    width: 230px;
-    height: 145px;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -35%);
-    transform-style: preserve-3d;
-    transition: transform 1s cubic-bezier(.2,.8,.2,1);
-}
-
-.chest-body {
-    position: absolute;
-    width: 230px;
-    height: 125px;
-    bottom: 0;
-    left: 0;
-
-    background:
-        linear-gradient(
-            145deg,
-            #171319,
-            #0d0a0e
-        );
-
-    border: 1px solid rgba(255,255,255,.1);
-    border-radius: 7px;
-
-    box-shadow:
-        0 35px 60px rgba(0,0,0,.65),
-        inset 0 1px rgba(255,255,255,.06);
-}
-
-.chest-body::after {
-    content: "";
-    position: absolute;
-    inset: 1px;
-    border-radius: 6px;
-    border-top: 1px solid rgba(231,165,190,.15);
-}
-
-/* couvercle */
-
-.chest-lid {
-    position: absolute;
-    width: 238px;
-    height: 52px;
-    left: -4px;
-    top: 0;
-
-    background:
-        linear-gradient(
-            145deg,
-            #211820,
-            #0c090d
-        );
-
-    border: 1px solid rgba(255,255,255,.12);
-    border-radius: 7px;
-
-    transform-origin: left bottom;
-
-    transition:
-        transform 1.5s cubic-bezier(.16,.84,.25,1),
-        box-shadow 1s;
-
-    z-index: 4;
-}
-
-.chest-lid::after {
-    content: "";
-    position: absolute;
-    inset: 8px;
-    border: 1px solid rgba(231,165,190,.07);
-    border-radius: 4px;
-}
-
-/* bande centrale */
-
-.chest-band {
-    position: absolute;
-    width: 34px;
-    height: 125px;
-    left: 98px;
-    bottom: 0;
-
-    background:
-        linear-gradient(
-            90deg,
-            #4c2636,
-            #b36b88,
-            #4c2636
-        );
-
-    opacity: .75;
-    z-index: 3;
-}
-
-/* serrure */
-
-.lock {
-    position: absolute;
-    width: 24px;
-    height: 30px;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -20%);
-    border: 2px solid #dba1b8;
-    border-radius: 5px;
-    z-index: 8;
-
-    box-shadow:
-        0 0 18px rgba(218,126,160,.2);
-
-    transition: .7s;
-}
-
-.lock::before {
-    content: "";
-    position: absolute;
-    width: 12px;
-    height: 12px;
-    left: 4px;
-    top: -12px;
-    border: 2px solid #dba1b8;
-    border-bottom: none;
-    border-radius: 8px 8px 0 0;
-}
-
-.lock::after {
-    content: "";
-    position: absolute;
-    width: 4px;
-    height: 8px;
-    background: #dba1b8;
-    left: 8px;
-    top: 9px;
-    border-radius: 2px;
-}
-
-.chest.open .chest-lid {
-    transform: rotate(-32deg) translate(-28px,-55px);
-    box-shadow:
-        0 0 40px rgba(218,126,160,.18);
-}
-
-.chest.open .lock {
-    opacity: 0;
-    transform: translate(-50%, -20%) scale(1.5);
-}
-
-/* =====================================================
-   KEY
-===================================================== */
-
-.key {
-    position: absolute;
-    width: 115px;
-    height: 115px;
-    right: 5%;
-    top: 18%;
-
-    cursor: pointer;
-    z-index: 20;
-
-    transition:
-        right 1.4s cubic-bezier(.16,.84,.25,1),
-        top 1.4s cubic-bezier(.16,.84,.25,1),
-        transform 1.4s cubic-bezier(.16,.84,.25,1),
-        opacity .6s;
-
-    animation: keyFloat 4s ease-in-out infinite;
-}
-
-.key-ring {
-    position: absolute;
-    width: 42px;
-    height: 42px;
-    border: 5px solid #d7a7b9;
-    border-radius: 50%;
-    left: 8px;
-    top: 37px;
-
-    box-shadow:
-        0 0 20px rgba(218,126,160,.2),
-        inset 0 0 8px rgba(255,255,255,.15);
-}
-
-.key-ring::after {
-    content: "";
-    position: absolute;
-    width: 20px;
-    height: 20px;
-    border: 2px solid #8d6575;
-    border-radius: 50%;
-    left: 6px;
-    top: 6px;
-}
-
-.key-shaft {
-    position: absolute;
-    width: 58px;
-    height: 8px;
-    background:
-        linear-gradient(
-            180deg,
-            #f1d4df,
-            #a46f83
-        );
-    left: 43px;
-    top: 54px;
-    border-radius: 4px;
-
-    box-shadow:
-        0 3px 8px rgba(0,0,0,.5);
-}
-
-.key-tooth-one {
-    position: absolute;
-    width: 8px;
-    height: 19px;
-    background: #bc8b9d;
-    left: 72px;
-    top: 58px;
-}
-
-.key-tooth-two {
-    position: absolute;
-    width: 8px;
-    height: 13px;
-    background: #bc8b9d;
-    left: 88px;
-    top: 58px;
-}
-
-@keyframes keyFloat {
-    0%,100% {
-        transform: translateY(0) rotate(5deg);
-    }
-
-    50% {
-        transform: translateY(-13px) rotate(-5deg);
-    }
-}
-
-/* clé vers serrure */
-
-.key.insert {
-    animation: none;
-    right: calc(50% - 30px);
-    top: 47%;
-    transform: rotate(0deg) scale(.7);
-}
-
-/* rotation */
-
-.key.turn {
-    animation: keyTurn 1.1s ease forwards;
-}
-
-@keyframes keyTurn {
-    0% {
-        transform: rotate(0deg) scale(.7);
-    }
-
-    35% {
-        transform: rotate(90deg) scale(.7);
-    }
-
-    65% {
-        transform: rotate(90deg) scale(.7);
-    }
-
-    100% {
-        transform: rotate(180deg) scale(.7);
-        opacity: 0;
-    }
-}
-
-/* cassure */
-
-.key.break {
-    animation: keyBreak .8s ease forwards;
-}
-
-@keyframes keyBreak {
-    0% {
-        transform: scale(.7) rotate(0);
-    }
-
-    20% {
-        transform: scale(.85) rotate(-15deg);
-    }
-
-    35% {
-        transform: scale(.85) rotate(15deg);
-    }
-
-    100% {
-        transform:
-            translateY(100px)
-            rotate(70deg)
-            scale(.1);
-        opacity: 0;
-        filter: blur(2px);
-    }
-}
-
-/* =====================================================
-   PASSWORD
-===================================================== */
-
-.password {
-    width: 100%;
-    max-width: 390px;
-    margin: -5px auto 0;
-    opacity: 0;
-    transform: translateY(15px);
-    pointer-events: none;
-    transition: .8s;
-}
-
-.password.visible {
-    opacity: 1;
-    transform: translateY(0);
-    pointer-events: auto;
-}
-
-.password-label {
-    color: var(--muted);
-    font-size: 11px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    margin-bottom: 14px;
-}
-
-.input-wrapper {
-    display: flex;
-    gap: 8px;
+    color: #ffd7e2;
 }
 
 input {
-    flex: 1;
-    min-width: 0;
 
-    height: 52px;
-    padding: 0 18px;
+    width: 100%;
 
-    background: rgba(255,255,255,.055);
-    border: 1px solid rgba(255,255,255,.1);
-    border-radius: 10px;
+    padding: 15px;
 
-    color: white;
+    border-radius: 12px;
+
+    border: 1px solid rgba(255,255,255,.2);
+
     outline: none;
 
     text-align: center;
-    font-family: "Inter", sans-serif;
-    font-size: 15px;
 
-    backdrop-filter: blur(15px);
+    font-size: 18px;
 
-    transition: .3s;
-}
+    background: rgba(255,255,255,.95);
 
-input:focus {
-    border-color: rgba(231,165,190,.55);
+    color: #333;
+
     box-shadow:
-        0 0 25px rgba(218,126,160,.08);
+        0 10px 30px rgba(0,0,0,.3);
 }
 
 button {
-    height: 52px;
-    padding: 0 22px;
 
-    border: 1px solid rgba(255,255,255,.12);
-    border-radius: 10px;
+    margin-top: 12px;
+
+    padding: 13px 30px;
+
+    border: none;
+
+    border-radius: 25px;
 
     background:
         linear-gradient(
             135deg,
-            rgba(221,145,173,.9),
-            rgba(137,65,92,.9)
+            #e94d78,
+            #a91f49
         );
 
     color: white;
 
-    font-family: "Inter", sans-serif;
-    font-size: 12px;
-    letter-spacing: .5px;
+    font-size: 16px;
 
     cursor: pointer;
+
+    box-shadow:
+        0 8px 20px rgba(200,30,80,.3);
 
     transition: .3s;
 }
 
 button:hover {
-    transform: translateY(-2px);
-    box-shadow:
-        0 10px 30px rgba(190,90,125,.2);
+
+    transform: scale(1.05);
+
 }
+
+/* =========================
+   ERREUR
+========================= */
 
 .error {
-    height: 25px;
+
+    color: #ff9db5;
+
     margin-top: 10px;
 
-    color: #c98a9e;
+    display: none;
 
-    font-size: 12px;
-
-    opacity: 0;
-    transition: .3s;
+    animation:
+        errorAppear .4s ease,
+        errorShake .4s ease;
 }
 
-.error.show {
-    opacity: 1;
-    animation: shake .35s ease;
-}
+@keyframes errorAppear {
 
-@keyframes shake {
-    25% {
-        transform: translateX(-7px);
-    }
-
-    50% {
-        transform: translateX(7px);
-    }
-
-    75% {
-        transform: translateX(-4px);
-    }
-}
-
-/* =====================================================
-   PARTICLES
-===================================================== */
-
-.particle {
-    position: fixed;
-    width: 2px;
-    height: 2px;
-    background: rgba(255,220,230,.7);
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 1;
-
-    animation: particleMove linear forwards;
-}
-
-@keyframes particleMove {
     from {
-        transform: translateY(0);
         opacity: 0;
-    }
-
-    20% {
-        opacity: .8;
     }
 
     to {
-        transform: translateY(-100vh);
-        opacity: 0;
+        opacity: 1;
     }
 }
 
-/* =====================================================
-   FLASH
-===================================================== */
+@keyframes errorShake {
 
-.flash {
-    position: fixed;
-    inset: 0;
-    background:
-        radial-gradient(
-            circle at center,
-            rgba(255,230,240,.9),
-            rgba(215,120,155,.25) 30%,
-            transparent 65%
-        );
-
-    opacity: 0;
-    pointer-events: none;
-    z-index: 100;
-
-    animation: flash .9s ease;
-}
-
-@keyframes flash {
-    0% {
-        opacity: 0;
+    0%,100% {
+        transform: translateX(0);
     }
 
     25% {
-        opacity: .8;
+        transform: translateX(-8px);
     }
 
-    100% {
-        opacity: 0;
+    75% {
+        transform: translateX(8px);
     }
 }
 
-/* =====================================================
+/* =========================
    MESSAGE
-===================================================== */
+========================= */
 
-.message-page {
+.message {
+
     display: none;
-    min-height: 100vh;
-    position: relative;
-    z-index: 5;
-    padding: 70px 20px;
-}
 
-.message-card {
-    max-width: 680px;
-    margin: auto;
+    max-height: 80vh;
 
-    padding: clamp(30px, 7vw, 65px);
+    overflow-y: auto;
+
+    padding: 25px;
 
     background:
-        linear-gradient(
-            145deg,
-            rgba(255,255,255,.065),
-            rgba(255,255,255,.025)
-        );
+        rgba(255,255,255,.08);
 
-    border: 1px solid rgba(255,255,255,.09);
-    border-radius: 24px;
+    border:
+        1px solid rgba(255,255,255,.1);
 
-    backdrop-filter: blur(25px);
+    border-radius: 20px;
+
+    backdrop-filter: blur(15px);
 
     box-shadow:
-        0 40px 100px rgba(0,0,0,.55);
+        0 10px 50px rgba(0,0,0,.5);
 
-    animation: messageReveal 1.8s cubic-bezier(.16,.84,.25,1);
+    animation:
+        appear 1.5s ease;
 }
 
-.message-top {
-    text-align: center;
-    margin-bottom: 45px;
+.message h2 {
+
+    color: #ffb6c9;
+
+    margin-top: 0;
+
+    text-shadow:
+        0 0 15px rgba(255,120,160,.5);
 }
 
-.message-small {
-    color: var(--rose);
-    font-size: 9px;
-    letter-spacing: 5px;
-    text-transform: uppercase;
-    margin-bottom: 18px;
-}
+.message p {
 
-.message-title {
-    font-family: "Cormorant Garamond", serif;
-    font-size: clamp(42px, 9vw, 64px);
-    font-weight: 400;
-    line-height: 1;
-    margin: 0;
-}
+    font-size: 17px;
 
-.message-card p {
-    color: #d8cfd3;
-    font-size: 15px;
-    line-height: 2;
-    font-weight: 300;
-    margin: 0 0 25px;
+    line-height: 1.8;
+
+    color: #fff5f8;
 }
 
 .final {
-    margin-top: 45px !important;
-    padding-top: 30px;
-    border-top: 1px solid rgba(255,255,255,.08);
 
-    color: var(--rose-light) !important;
+    color: #ffb6c9;
 
-    font-family: "Cormorant Garamond", serif;
-    font-size: 28px !important;
-    line-height: 1.3 !important;
-    text-align: center;
+    font-size: 20px !important;
+
+    margin-top: 25px;
+
+    text-shadow:
+        0 0 15px rgba(255,100,150,.5);
 }
 
-@keyframes messageReveal {
+@keyframes appear {
+
     from {
         opacity: 0;
         transform:
-            translateY(50px)
-            scale(.96);
-        filter: blur(10px);
+            translateY(40px)
+            scale(.95);
     }
 
     to {
@@ -851,61 +586,91 @@ button:hover {
         transform:
             translateY(0)
             scale(1);
-        filter: blur(0);
     }
 }
 
-/* =====================================================
-   RESPONSIVE
-===================================================== */
+/* =========================
+   FLASH OUVERTURE
+========================= */
 
-@media (max-width: 600px) {
+.magic-flash {
 
-    .page {
-        padding: 35px 18px;
-        align-items: flex-start;
-        padding-top: 70px;
+    position: fixed;
+
+    inset: 0;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255,220,240,.9),
+            rgba(255,80,150,.3),
+            transparent 65%
+        );
+
+    pointer-events: none;
+
+    opacity: 0;
+
+    z-index: 100;
+
+    animation: flash 1.5s ease;
+}
+
+@keyframes flash {
+
+    0% {
+        opacity: 0;
     }
 
-    .chest-area {
-        height: 320px;
+    25% {
+        opacity: .8;
     }
 
-    .chest {
-        transform: translate(-50%, -30%) scale(.85);
+    100% {
+        opacity: 0;
+    }
+}
+
+/* =========================
+   COEURS
+========================= */
+
+.heart {
+
+    position: fixed;
+
+    bottom: -20px;
+
+    animation:
+        heart 6s linear infinite;
+
+    opacity: .7;
+
+    pointer-events: none;
+}
+
+@keyframes heart {
+
+    0% {
+
+        transform:
+            translateY(0)
+            rotate(0deg);
+
+        opacity: 0;
     }
 
-    .key {
-        right: -2px;
-        top: 20%;
-        transform: scale(.8);
+    20% {
+        opacity: .8;
     }
 
-    .key.insert {
-        right: calc(50% - 27px);
-        top: 45%;
-        transform: scale(.6);
-    }
+    100% {
 
-    .input-wrapper {
-        flex-direction: column;
-    }
+        transform:
+            translateY(-110vh)
+            rotate(25deg);
 
-    button {
-        width: 100%;
-    }
-
-    .message-page {
-        padding: 30px 14px;
-    }
-
-    .message-card {
-        padding: 32px 22px;
-    }
-
-    .message-card p {
-        font-size: 14px;
-        line-height: 1.9;
+        opacity: 0;
     }
 }
 
@@ -914,27 +679,7 @@ button:hover {
 
 <body>
 
-<!-- =====================================================
-     BACKGROUND
-===================================================== -->
-
-<div class="background">
-
-    <div class="orb one"></div>
-    <div class="orb two"></div>
-    <div class="orb three"></div>
-
-    <div class="blob"></div>
-    <div class="blob two"></div>
-
-    <div class="noise"></div>
-
-</div>
-
-
-<!-- =====================================================
-     AUDIO
-===================================================== -->
+<!-- MUSIQUE -->
 
 <audio
     id="music"
@@ -943,428 +688,448 @@ button:hover {
 </audio>
 
 
-<!-- =====================================================
-     INTRO
-===================================================== -->
+<!-- ÉCRAN PRINCIPAL -->
 
-<main class="page" id="mainPage">
+<div class="container" id="main">
 
-    <div class="container intro">
+    <h1>
+        Une petite surprise pour toi ❤️
+    </h1>
 
-        <div class="eyebrow">
-            Une surprise
-        </div>
-
-        <h1>
-            Pour toi.
-        </h1>
-
-        <p class="subtitle">
-            J'ai gardé quelque chose pour toi.
-            Mais certaines choses ne s'ouvrent
-            qu'avec la bonne clé.
-        </p>
+    <div class="subtitle">
+        J'ai préparé quelque chose de spécial
+        pour ton anniversaire...
+    </div>
 
 
-        <!-- COFFRE -->
+    <div class="box-area" id="boxArea">
 
-        <div class="chest-area" id="chestArea">
+        <div class="box" id="giftBox">
 
-            <div class="chest-halo"></div>
-
-            <div class="chest" id="chest">
-
-                <div class="chest-body"></div>
-
-                <div class="chest-band"></div>
-
-                <div class="chest-lid"></div>
-
-                <div class="lock"></div>
-
-            </div>
-
-
-            <!-- CLÉ -->
-
-            <div
-                class="key"
-                id="key"
-                onclick="showPassword()">
-
-                <div class="key-ring"></div>
-                <div class="key-shaft"></div>
-                <div class="key-tooth-one"></div>
-                <div class="key-tooth-two"></div>
-
-            </div>
+            <div class="lid"></div>
 
         </div>
 
-
-        <!-- PASSWORD -->
 
         <div
-            class="password"
-            id="passwordBox">
+            class="key"
+            id="key"
+            onclick="showPassword()">
 
-            <div class="password-label">
-                Le code est nécessaire
-            </div>
-
-            <div class="input-wrapper">
-
-                <input
-                    type="password"
-                    id="password"
-                    placeholder="Entrer le code"
-                    inputmode="numeric"
-                    autocomplete="off">
-
-                <button onclick="openGift()">
-                    Ouvrir
-                </button>
-
-            </div>
-
-            <div
-                class="error"
-                id="error">
-
-                Ce n'est pas le bon code.
-
-            </div>
+            🔑
 
         </div>
 
     </div>
 
-</main>
 
+    <!-- PASSWORD -->
 
-<!-- =====================================================
-     MESSAGE
-===================================================== -->
+    <div
+        class="password-box"
+        id="passwordBox">
 
-<section
-    class="message-page"
-    id="messagePage">
+        <p>
+            🔐 La clé attend son code ❤️
+        </p>
 
-    <div class="message-card">
+        <input
+            type="password"
+            id="password"
+            placeholder="Entre le code"
+            inputmode="numeric"
+        >
 
-        <div class="message-top">
+        <button onclick="openGift()">
+            🔓 Ouvrir la boîte
+        </button>
 
-            <div class="message-small">
-                Pour toi
-            </div>
+        <div
+            class="error"
+            id="error">
 
-            <h2 class="message-title">
-                Joyeux anniversaire
-            </h2>
+            💔 Hmm... ce n'est pas le bon code ❤️
 
         </div>
 
-
-        <p>
-            Aujourd’hui est une journée très spéciale,
-            parce que c’est le jour où une personne très
-            importante pour moi est née.
-            Je veux profiter de cette occasion pour te dire
-            à quel point tu comptes pour moi.
-        </p>
-
-        <p>
-            Je te souhaite beaucoup de bonheur, de santé,
-            de réussite et surtout beaucoup de beaux moments
-            dans ta vie.
-            J’espère que cette nouvelle année t’apportera
-            tout ce que tu souhaites et que tes rêves vont
-            petit à petit devenir réalité.
-        </p>
-
-        <p>
-            Depuis que tu es dans ma vie, beaucoup de choses
-            sont devenues plus belles.
-            J’aime parler avec toi, rire avec toi,
-            passer du temps avec toi et partager mes pensées
-            avec toi.
-            Tu as une place très spéciale dans mon cœur
-            et je ne veux jamais la perdre.
-        </p>
-
-        <p>
-            Je sais qu’aujourd’hui tu n’es pas encore ma femme,
-            mais dans mon cœur, j’espère vraiment qu’un jour
-            tu le seras.
-            Je veux qu’un jour on puisse construire notre vie
-            ensemble, réaliser nos rêves et rester toujours
-            l’un pour l’autre.
-        </p>
-
-        <p>
-            Je rêve de notre futur, de notre maison,
-            de nos voyages, de nos petits moments ensemble
-            et de toutes les choses qu’on pourra découvrir
-            à deux.
-        </p>
-
-        <p>
-            Je veux être à tes côtés dans les bons moments,
-            mais aussi dans les moments difficiles,
-            pour te soutenir et ne jamais te laisser seule.
-        </p>
-
-        <p>
-            Je ne sais pas exactement ce que l’avenir nous
-            réserve, mais je sais une chose :
-            si Dieu le veut, j’aimerais que mon avenir soit
-            avec toi.
-        </p>
-
-        <p>
-            Alors aujourd’hui, profite de ta journée,
-            souris beaucoup et sois heureuse.
-            Tu mérites vraiment tout le bonheur du monde.
-        </p>
-
-        <p>
-            Encore une fois, joyeux anniversaire mon amour.
-            J’espère que ce ne sera pas le dernier anniversaire
-            que je fêterai à tes côtés, mais le premier d’une
-            très longue histoire ensemble.
-        </p>
-
-        <p class="final">
-            Je t’aime beaucoup, mayochhhh mon coeur.
-        </p>
-
     </div>
 
-</section>
+</div>
+
+
+<!-- MESSAGE -->
+
+<div
+    class="container message"
+    id="message">
+
+    <h2>
+        Joyeux anniversaire mon amour ❤️🎂
+    </h2>
+
+    <p>
+        Aujourd’hui est une journée très spéciale,
+        parce que c’est le jour où une personne très
+        importante pour moi est née.
+        Je veux profiter de cette occasion pour te dire
+        à quel point tu comptes pour moi. ❤️
+    </p>
+
+    <p>
+        Je te souhaite beaucoup de bonheur, de santé,
+        de réussite et surtout beaucoup de beaux moments
+        dans ta vie.
+        J’espère que cette nouvelle année t’apportera
+        tout ce que tu souhaites et que tes rêves vont
+        petit à petit devenir réalité.
+    </p>
+
+    <p>
+        Depuis que tu es dans ma vie, beaucoup de choses
+        sont devenues plus belles.
+        J’aime parler avec toi, rire avec toi,
+        passer du temps avec toi et partager mes pensées
+        avec toi.
+        Tu as une place très spéciale dans mon cœur
+        et je ne veux jamais la perdre. ❤️
+    </p>
+
+    <p>
+        Je sais qu’aujourd’hui tu n’es pas encore ma femme,
+        mais dans mon cœur, j’espère vraiment qu’un jour
+        tu le seras.
+        Je veux qu’un jour on puisse construire notre vie
+        ensemble, réaliser nos rêves et rester toujours
+        l’un pour l’autre. 🥹❤️
+    </p>
+
+    <p>
+        Je rêve de notre futur, de notre maison,
+        de nos voyages, de nos petits moments ensemble
+        et de toutes les choses qu’on pourra découvrir
+        à deux.
+    </p>
+
+    <p>
+        Je veux être à tes côtés dans les bons moments,
+        mais aussi dans les moments difficiles,
+        pour te soutenir et ne jamais te laisser seule.
+    </p>
+
+    <p>
+        Je ne sais pas exactement ce que l’avenir nous
+        réserve, mais je sais une chose :
+        si Dieu le veut, j’aimerais que mon avenir soit
+        avec toi. ❤️
+    </p>
+
+    <p>
+        Alors aujourd’hui, profite de ta journée,
+        souris beaucoup et sois heureuse.
+        Tu mérites vraiment tout le bonheur du monde.
+    </p>
+
+    <p>
+        Encore une fois, joyeux anniversaire mon amour. ❤️🎂
+        J’espère que ce ne sera pas le dernier anniversaire
+        que je fêterai à tes côtés, mais le premier d’une
+        très longue histoire ensemble.
+    </p>
+
+    <p class="final">
+        Je t’aime beaucoup, ma future femme. ❤️😘
+    </p>
+
+</div>
 
 
 <script>
 
-/* =====================================================
-   ELEMENTS
-===================================================== */
+/* =========================
+   ÉLÉMENTS
+========================= */
 
 const key = document.getElementById("key");
-const chest = document.getElementById("chest");
+const box = document.getElementById("giftBox");
 const passwordBox = document.getElementById("passwordBox");
 const passwordInput = document.getElementById("password");
 const error = document.getElementById("error");
 const music = document.getElementById("music");
 
-let keyUsed = false;
 
-
-/* =====================================================
-   CLIQUE SUR LA CLÉ
-===================================================== */
+/* =========================
+   CLIQUER SUR LA CLÉ
+========================= */
 
 function showPassword() {
 
-    if (keyUsed) return;
+    /* empêcher de recliquer */
 
-    keyUsed = true;
+    if (
+        key.classList.contains("go-to-lock") ||
+        key.classList.contains("turn-key") ||
+        key.classList.contains("broken")
+    ) {
+        return;
+    }
 
-    /* La clé se dirige vers le coffre */
 
-    key.classList.add("insert");
+    /* clé → coffre */
 
-    /* Afficher le code */
+    key.classList.add("go-to-lock");
+
+
+    /* apparition du mot de passe */
 
     setTimeout(() => {
 
-        passwordBox.classList.add("visible");
+        passwordBox.style.display = "block";
 
         passwordInput.focus();
 
-    }, 900);
-
-}
-
-
-/* =====================================================
-   OUVERTURE
-===================================================== */
-
-function openGift() {
-
-    const code = passwordInput.value.trim();
-
-
-    /* ==========================================
-       BON CODE
-    ========================================== */
-
-    if (code === "11091999") {
-
-        error.classList.remove("show");
-
-        /* La clé tourne */
-
-        key.classList.add("turn");
-
-
-        createParticles(25);
-
-
-        setTimeout(() => {
-
-            chest.classList.add("open");
-
-            createFlash();
-
-            /* Musique */
-
-            music.volume = .8;
-
-            music.play().catch(() => {
-                console.log("Lecture audio bloquée par le navigateur.");
-            });
-
-        }, 700);
-
-
-        /* Message */
-
-        setTimeout(() => {
-
-            document.getElementById("mainPage").style.display = "none";
-
-            document.getElementById("messagePage").style.display = "block";
-
-            window.scrollTo({
-                top: 0,
-                behavior: "smooth"
-            });
-
-        }, 2400);
-
-    }
-
-
-    /* ==========================================
-       MAUVAIS CODE
-    ========================================== */
-
-    else {
-
-        error.classList.remove("show");
-
-        /* reset animation */
-
-        void key.offsetWidth;
-
-        key.classList.add("break");
-
-        error.classList.add("show");
-
-        createParticles(12);
-
-
-        setTimeout(() => {
-
-            key.classList.remove("break");
-
-            key.classList.remove("insert");
-
-            keyUsed = false;
-
-        }, 1300);
-
-    }
-
-}
-
-
-/* =====================================================
-   FLASH
-===================================================== */
-
-function createFlash() {
-
-    const flash =
-        document.createElement("div");
-
-    flash.className = "flash";
-
-    document.body.appendChild(flash);
-
-    setTimeout(() => {
-        flash.remove();
     }, 1000);
 
 }
 
 
-/* =====================================================
-   PARTICULES
-===================================================== */
+/* =========================
+   OUVRIR LE COFFRE
+========================= */
 
-function createParticles(amount) {
+function openGift() {
 
-    for (let i = 0; i < amount; i++) {
+    const password =
+        passwordInput.value.trim();
 
-        const particle =
-            document.createElement("div");
 
-        particle.className = "particle";
+    /* =====================
+       BON CODE
+    ===================== */
 
-        particle.style.left =
-            Math.random() * 100 + "vw";
+    if (password === "11091999") {
 
-        particle.style.top =
-            (50 + Math.random() * 30) + "vh";
+        error.style.display = "none";
 
-        particle.style.animationDuration =
-            (3 + Math.random() * 5) + "s";
 
-        particle.style.width =
-            (1 + Math.random() * 3) + "px";
+        /* clé tourne */
 
-        particle.style.height =
-            particle.style.width;
+        key.classList.remove("go-to-lock");
 
-        document.body.appendChild(particle);
+        key.classList.add("turn-key");
+
+
+        /* petites étincelles */
+
+        createSparks();
+
 
         setTimeout(() => {
-            particle.remove();
-        }, 8000);
+
+            /* coffre s'ouvre */
+
+            box.classList.add("open");
+
+
+            /* flash */
+
+            const flash =
+                document.createElement("div");
+
+            flash.className =
+                "magic-flash";
+
+            document.body.appendChild(flash);
+
+
+            setTimeout(() => {
+                flash.remove();
+            }, 1500);
+
+
+            /* musique */
+
+            music.volume = 0.8;
+
+            music.play().catch(() => {
+
+                console.log(
+                    "La lecture automatique a été bloquée."
+                );
+
+            });
+
+
+        }, 700);
+
+
+        /* afficher message */
+
+        setTimeout(() => {
+
+            document.getElementById("main")
+                .style.display = "none";
+
+            document.getElementById("message")
+                .style.display = "block";
+
+        }, 2300);
+
+    }
+
+
+    /* =====================
+       MAUVAIS CODE
+    ===================== */
+
+    else {
+
+        error.style.display = "none";
+
+
+        /* clé se casse */
+
+        key.classList.add("broken");
+
+
+        createSparks();
+
+
+        setTimeout(() => {
+
+            error.style.display = "block";
+
+        }, 700);
+
+
+        /* permettre une nouvelle tentative */
+
+        setTimeout(() => {
+
+            key.classList.remove("broken");
+
+            key.classList.remove("go-to-lock");
+
+            key.style.right = "5px";
+            key.style.top = "10px";
+
+        }, 1800);
 
     }
 
 }
 
 
-/* =====================================================
-   PARTICULES CONTINUES
-===================================================== */
+/* =========================
+   ÉTINCELLES
+========================= */
 
-setInterval(() => {
+function createSparks() {
 
-    if (
-        document.getElementById("mainPage")
-            .style.display !== "none"
+    const area =
+        document.getElementById("boxArea");
+
+
+    for (
+        let i = 0;
+        i < 15;
+        i++
     ) {
-        createParticles(1);
+
+        const spark =
+            document.createElement("div");
+
+        spark.className =
+            "spark";
+
+
+        spark.style.left =
+            "50%";
+
+        spark.style.top =
+            "50%";
+
+
+        spark.style.setProperty(
+            "--x",
+            (Math.random() * 160 - 80)
+        );
+
+        spark.style.setProperty(
+            "--y",
+            (Math.random() * 160 - 80)
+        );
+
+
+        area.appendChild(spark);
+
+
+        setTimeout(() => {
+
+            spark.remove();
+
+        }, 900);
+
     }
 
-}, 700);
+}
 
 
-/* =====================================================
-   ENTER
-===================================================== */
+/* =========================
+   COEURS
+========================= */
+
+function createHeart() {
+
+    const heart =
+        document.createElement("div");
+
+
+    heart.className =
+        "heart";
+
+    heart.innerHTML =
+        "❤️";
+
+
+    heart.style.left =
+        Math.random() * 100 + "vw";
+
+
+    heart.style.fontSize =
+        (12 + Math.random() * 20) + "px";
+
+
+    heart.style.animationDuration =
+        (4 + Math.random() * 5) + "s";
+
+
+    document.body.appendChild(heart);
+
+
+    setTimeout(() => {
+
+        heart.remove();
+
+    }, 9000);
+
+}
+
+
+setInterval(createHeart, 800);
+
+
+/* =========================
+   ENTER = OUVRIR
+========================= */
 
 passwordInput.addEventListener(
     "keydown",
     function(event) {
 
         if (event.key === "Enter") {
+
             openGift();
+
         }
 
     }
