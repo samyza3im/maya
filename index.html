@@ -8,818 +8,1114 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 
 <style>
-
 *{
-    box-sizing:border-box;
     margin:0;
     padding:0;
+    box-sizing:border-box;
 }
 
-html{
-    scroll-behavior:smooth;
+:root{
+    --bg:#030305;
+    --soft:#b9a7ad;
+    --white:#f7f3f4;
+    --gold:#c8a875;
+    --wine:#68182f;
+    --wine2:#a72c52;
+}
+
+html,body{
+    width:100%;
+    min-height:100%;
 }
 
 body{
-    min-height:100vh;
-    background:
-        radial-gradient(circle at 20% 20%, rgba(120,20,60,.18), transparent 35%),
-        radial-gradient(circle at 80% 80%, rgba(70,40,100,.15), transparent 35%),
-        #050509;
-    color:#fff;
-    font-family:Inter, sans-serif;
+    background:#030305;
+    color:var(--white);
+    font-family:Inter,sans-serif;
     overflow-x:hidden;
 }
 
-
-/* =========================
+/* =========================================================
    BACKGROUND
-========================= */
+========================================================= */
+
+.noise{
+    position:fixed;
+    inset:0;
+    z-index:100;
+    pointer-events:none;
+    opacity:.045;
+    background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.7'/%3E%3C/svg%3E");
+}
 
 .background{
     position:fixed;
     inset:0;
     overflow:hidden;
     pointer-events:none;
-    z-index:0;
 }
 
-.glow{
+.orb{
     position:absolute;
-    width:400px;
-    height:400px;
     border-radius:50%;
     filter:blur(100px);
-    opacity:.15;
-    animation:floatGlow 12s ease-in-out infinite alternate;
+    opacity:.18;
+    animation:orbFloat 15s ease-in-out infinite alternate;
 }
 
-.glow.one{
-    background:#9d174d;
-    top:-150px;
-    left:-120px;
+.orb1{
+    width:450px;
+    height:450px;
+    background:#64172f;
+    left:-200px;
+    top:-180px;
 }
 
-.glow.two{
-    background:#4c1d95;
-    bottom:-180px;
-    right:-100px;
+.orb2{
+    width:500px;
+    height:500px;
+    background:#32134d;
+    right:-250px;
+    bottom:-250px;
     animation-delay:3s;
 }
 
-@keyframes floatGlow{
+.orb3{
+    width:250px;
+    height:250px;
+    background:#8d3150;
+    left:50%;
+    top:45%;
+    transform:translate(-50%,-50%);
+    opacity:.08;
+}
 
+@keyframes orbFloat{
     from{
         transform:translate(0,0) scale(1);
     }
-
     to{
-        transform:translate(80px,50px) scale(1.2);
+        transform:translate(80px,60px) scale(1.18);
     }
-
 }
 
+/* =========================================================
+   INTRO
+========================================================= */
 
-/* =========================
-   MAIN
-========================= */
-
-main{
+#app{
+    min-height:100vh;
     position:relative;
-    z-index:2;
-    width:min(900px,94%);
-    min-height:700px;
-    margin:30px auto;
-    border:1px solid rgba(255,255,255,.10);
-    border-radius:35px;
-
-    background:
-        linear-gradient(
-            145deg,
-            rgba(255,255,255,.055),
-            rgba(255,255,255,.015)
-        );
-
-    backdrop-filter:blur(25px);
-
-    box-shadow:
-        0 40px 120px rgba(0,0,0,.65),
-        inset 0 1px rgba(255,255,255,.05);
-
     display:flex;
     align-items:center;
     justify-content:center;
-
-    padding:60px 30px;
-
-    overflow:hidden;
+    padding:30px;
 }
 
+.scene{
+    width:min(1100px,100%);
+    min-height:720px;
+    position:relative;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow:hidden;
 
-/* =========================
-   INTRO
-========================= */
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:38px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,.055),
+            rgba(255,255,255,.012)
+        );
+
+    box-shadow:
+        0 60px 150px rgba(0,0,0,.7),
+        inset 0 1px rgba(255,255,255,.07);
+
+    backdrop-filter:blur(30px);
+}
+
+.scene:before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:
+        linear-gradient(
+            115deg,
+            transparent 20%,
+            rgba(255,255,255,.025) 45%,
+            transparent 70%
+        );
+    pointer-events:none;
+}
 
 .intro{
     width:100%;
     text-align:center;
-    transition:1s ease;
+    position:relative;
+    z-index:5;
+    transition:1.2s cubic-bezier(.22,.8,.2,1);
 }
 
-.small-title{
-    font-size:11px;
-    letter-spacing:7px;
+.eyebrow{
+    font-size:10px;
+    letter-spacing:9px;
     color:#777;
-    margin-bottom:25px;
+    margin-bottom:30px;
+    text-transform:uppercase;
 }
 
-h1{
+.title{
     font-family:"Cormorant Garamond",serif;
-    font-size:clamp(55px,10vw,100px);
-    font-weight:500;
-    line-height:.85;
-    margin-bottom:25px;
+    font-size:clamp(65px,10vw,125px);
+    font-weight:300;
+    line-height:.78;
+    letter-spacing:-3px;
+}
+
+.title span{
+    display:block;
+    background:linear-gradient(
+        120deg,
+        #fff,
+        #aaa,
+        #fff
+    );
+    background-size:200%;
+    -webkit-background-clip:text;
+    color:transparent;
+    animation:titleShimmer 7s linear infinite;
+}
+
+@keyframes titleShimmer{
+    to{
+        background-position:200%;
+    }
 }
 
 .subtitle{
-    color:#999;
+    margin:35px auto 0;
+    max-width:520px;
+    color:#777;
     font-family:"Cormorant Garamond",serif;
-    font-size:25px;
-    line-height:1.5;
-    max-width:650px;
-    margin:0 auto;
+    font-size:22px;
+    line-height:1.6;
 }
 
+/* =========================================================
+   3D CHEST
+========================================================= */
 
-/* =========================
-   BOX
-========================= */
-
-.box-wrapper{
-    margin:70px auto 50px;
-    width:220px;
-    height:170px;
-    perspective:900px;
+.chest-area{
+    width:310px;
+    height:270px;
+    margin:65px auto 35px;
+    perspective:1100px;
     cursor:pointer;
-}
-
-.box{
-    width:210px;
-    height:135px;
     position:relative;
-    margin:auto;
-    transform-style:preserve-3d;
-    transition:1s cubic-bezier(.2,.8,.2,1);
 }
 
-.box-body{
+.chest-glow{
     position:absolute;
+    width:240px;
+    height:100px;
+    left:50%;
+    bottom:0;
+    transform:translateX(-50%);
+    background:#8d2144;
+    filter:blur(55px);
+    opacity:.16;
+    transition:1s;
+}
+
+.chest-area:hover .chest-glow{
+    opacity:.3;
+    transform:translateX(-50%) scale(1.2);
+}
+
+.chest{
+    width:250px;
+    height:160px;
+    position:absolute;
+    left:50%;
+    bottom:25px;
+    transform:translateX(-50%);
+    transform-style:preserve-3d;
+}
+
+.chest-body{
+    position:absolute;
+    width:250px;
+    height:125px;
     bottom:0;
     left:0;
-    width:210px;
-    height:105px;
-
-    border-radius:8px;
+    border-radius:8px 8px 15px 15px;
 
     background:
         linear-gradient(
             145deg,
-            #421324,
-            #1c0810
+            #351019,
+            #12060b
         );
 
-    border:1px solid #78445a;
+    border:1px solid #633044;
 
     box-shadow:
-        0 25px 50px rgba(0,0,0,.6);
+        0 35px 60px rgba(0,0,0,.75),
+        inset 0 0 35px rgba(255,255,255,.025);
 }
 
-.box-lid{
+.chest-body:after{
+    content:"";
     position:absolute;
-    top:0;
-    left:-6px;
+    inset:12px;
+    border:1px solid rgba(190,150,165,.12);
+    border-radius:4px;
+}
 
-    width:222px;
-    height:42px;
+.chest-lid{
+    position:absolute;
+    width:260px;
+    height:55px;
+    left:-5px;
+    top:-2px;
 
-    border-radius:8px;
+    border-radius:12px 12px 5px 5px;
 
     background:
         linear-gradient(
             145deg,
-            #5b172e,
-            #260b16
+            #55152a,
+            #1b070e
         );
 
-    border:1px solid #9b526f;
+    border:1px solid #82435a;
 
     transform-origin:left bottom;
 
     transition:
-        transform 1.2s cubic-bezier(.2,.8,.2,1);
+        transform 1.4s cubic-bezier(.15,.8,.15,1),
+        box-shadow 1s;
 }
 
-.ribbon-vertical{
+.chest-lid:after{
+    content:"";
+    position:absolute;
+    inset:9px;
+    border:1px solid rgba(220,180,190,.13);
+    border-radius:6px;
+}
+
+.ribbon{
     position:absolute;
     left:50%;
+    top:0;
     transform:translateX(-50%);
-    bottom:0;
-
-    width:30px;
-    height:105px;
-
-    background:rgba(190,130,150,.12);
-
-    border-left:1px solid rgba(220,170,190,.2);
-    border-right:1px solid rgba(220,170,190,.2);
+    width:27px;
+    height:125px;
+    background:
+        linear-gradient(
+            90deg,
+            rgba(180,120,140,.06),
+            rgba(230,180,200,.15),
+            rgba(180,120,140,.06)
+        );
+    border-left:1px solid rgba(220,180,200,.14);
+    border-right:1px solid rgba(220,180,200,.14);
 }
 
 .lock{
     position:absolute;
-
+    z-index:5;
+    width:43px;
+    height:48px;
     left:50%;
-    top:48px;
-
+    top:60px;
     transform:translateX(-50%);
-
-    width:42px;
-    height:42px;
-
-    border:2px solid #cba36d;
-
-    border-radius:7px;
-
-    background:#291018;
-
-    box-shadow:0 0 20px rgba(203,163,109,.15);
-
-    transition:.7s;
+    border:1px solid #c7a873;
+    border-radius:6px;
+    background:#211016;
+    box-shadow:
+        0 0 25px rgba(200,168,115,.13);
+    transition:.8s;
 }
 
 .lock:before{
     content:"";
-
     position:absolute;
-
-    width:20px;
-    height:18px;
-
-    border:2px solid #cba36d;
+    width:21px;
+    height:20px;
+    border:2px solid #c7a873;
     border-bottom:0;
-
-    border-radius:12px 12px 0 0;
-
+    border-radius:15px 15px 0 0;
     left:50%;
-    top:-17px;
-
+    top:-19px;
     transform:translateX(-50%);
 }
 
-.box-wrapper.open .box-lid{
-    transform:
-        rotateX(-115deg)
-        translateY(-18px);
+.lock:after{
+    content:"";
+    position:absolute;
+    width:5px;
+    height:10px;
+    border-radius:4px;
+    background:#c7a873;
+    left:50%;
+    top:20px;
+    transform:translateX(-50%);
 }
 
-.box-wrapper.open .lock{
+.chest-area.open .chest-lid{
+    transform:
+        rotateX(-118deg)
+        translateY(-12px);
+
+    box-shadow:
+        0 -10px 50px rgba(160,30,75,.3);
+}
+
+.chest-area.open .lock{
+    opacity:0;
     transform:
         translateX(-50%)
-        scale(.2)
-        rotate(25deg);
-
-    opacity:0;
+        scale(.1)
+        rotate(40deg);
 }
 
-
-/* =========================
+/* =========================================================
    QUESTION
-========================= */
+========================================================= */
 
 .question{
     opacity:0;
-    transform:translateY(30px);
+    transform:translateY(35px) scale(.96);
     pointer-events:none;
-
     transition:
-        opacity 1s ease,
-        transform 1s ease;
+        1s cubic-bezier(.2,.8,.2,1);
 }
 
-.question.show{
+.question.visible{
     opacity:1;
     transform:none;
     pointer-events:auto;
 }
 
-.question-title{
-    font-family:"Cormorant Garamond",serif;
-    font-size:38px;
-    margin-bottom:25px;
+.question-label{
+    color:#777;
+    font-size:10px;
+    letter-spacing:6px;
+    margin-bottom:20px;
 }
 
-.buttons{
+.question h2{
+    font-family:"Cormorant Garamond",serif;
+    font-size:clamp(34px,5vw,52px);
+    font-weight:400;
+    margin-bottom:30px;
+}
+
+/* =========================================================
+   PREMIUM CHOICE CARDS
+========================================================= */
+
+.choices{
     display:flex;
     justify-content:center;
-    gap:15px;
+    gap:18px;
     flex-wrap:wrap;
 }
 
 .choice{
+    width:280px;
+    height:105px;
     position:relative;
+    overflow:hidden;
+    cursor:pointer;
 
-    padding:16px 28px;
-
-    border-radius:999px;
-
-    border:1px solid rgba(255,255,255,.16);
-
-    background:rgba(255,255,255,.035);
+    border:1px solid rgba(255,255,255,.12);
+    border-radius:20px;
 
     color:white;
 
-    font-family:Inter,sans-serif;
-    font-size:15px;
-
-    cursor:pointer;
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,.06),
+            rgba(255,255,255,.015)
+        );
 
     transition:
-        transform .3s,
-        background .3s,
-        border .3s,
-        box-shadow .3s;
+        transform .5s cubic-bezier(.2,.8,.2,1),
+        border-color .5s,
+        box-shadow .5s;
+}
+
+.choice:before{
+    content:"";
+    position:absolute;
+    width:180px;
+    height:180px;
+    border-radius:50%;
+    left:-100px;
+    top:-100px;
+    filter:blur(45px);
+    opacity:0;
+    transition:.7s;
 }
 
 .choice:hover{
-    transform:translateY(-4px);
-
-    background:rgba(255,255,255,.08);
-
-    border-color:rgba(255,255,255,.35);
+    transform:translateY(-8px) scale(1.025);
 }
 
-.love-button:hover{
-    box-shadow:0 10px 40px rgba(180,30,90,.25);
+.choice:hover:before{
+    opacity:.5;
 }
 
-.friend-button:hover{
-    box-shadow:0 10px 40px rgba(140,140,160,.15);
+.choice.love:hover{
+    border-color:rgba(180,45,90,.5);
+    box-shadow:0 25px 60px rgba(100,10,40,.3);
 }
 
+.choice.love:before{
+    background:#a72250;
+}
 
-/* =========================
-   HEART ANIMATION
-========================= */
+.choice.friends:hover{
+    border-color:rgba(180,180,190,.35);
+    box-shadow:0 25px 60px rgba(80,80,100,.2);
+}
 
-.heart-scene{
+.choice.friends:before{
+    background:#888899;
+}
+
+.choice-content{
+    position:relative;
+    z-index:2;
+    height:100%;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 25px;
+    text-align:left;
+}
+
+.choice-number{
+    font-size:10px;
+    letter-spacing:3px;
+    color:#666;
+}
+
+.choice-text{
+    flex:1;
+    margin-left:18px;
+}
+
+.choice-text strong{
+    display:block;
+    font-family:"Cormorant Garamond",serif;
+    font-size:25px;
+    font-weight:500;
+}
+
+.choice-text span{
+    display:block;
+    color:#666;
+    font-size:10px;
+    letter-spacing:1px;
+    margin-top:5px;
+}
+
+.arrow{
+    font-size:20px;
+    color:#777;
+    transition:.5s;
+}
+
+.choice:hover .arrow{
+    transform:translateX(5px);
+    color:white;
+}
+
+/* =========================================================
+   TRANSITION SCREENS
+========================================================= */
+
+.transition{
     position:fixed;
     inset:0;
-
-    z-index:20;
-
+    z-index:50;
     display:flex;
     align-items:center;
     justify-content:center;
 
     background:
         radial-gradient(
-            circle,
-            rgba(90,10,45,.35),
-            rgba(0,0,0,.95)
+            circle at center,
+            rgba(80,8,38,.4),
+            #010103 65%
         );
 
     opacity:0;
     visibility:hidden;
-
-    transition:.5s;
+    transition:.8s;
 }
 
-.heart-scene.active{
+.transition.active{
     opacity:1;
     visibility:visible;
 }
 
-.heart{
-    width:110px;
-    height:110px;
+/* HEART */
 
+.heart-container{
     position:relative;
+    width:180px;
+    height:180px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
 
+.heart{
+    width:100px;
+    height:100px;
+    position:relative;
+    background:#9b1e4a;
     transform:rotate(-45deg) scale(0);
-
-    background:#8f1745;
-
     box-shadow:
-        0 0 50px rgba(180,30,90,.7),
-        0 0 120px rgba(180,30,90,.3);
-
-    animation:none;
+        0 0 45px #8d1944,
+        0 0 120px rgba(150,20,70,.6);
 }
 
 .heart:before,
 .heart:after{
     content:"";
-
     position:absolute;
-
-    width:110px;
-    height:110px;
-
-    background:#8f1745;
-
+    width:100px;
+    height:100px;
+    background:#9b1e4a;
     border-radius:50%;
 }
 
 .heart:before{
-    top:-55px;
+    top:-50px;
     left:0;
 }
 
 .heart:after{
-    left:55px;
     top:0;
+    left:50px;
 }
 
-.heart-scene.active .heart{
+.transition.love.active .heart{
     animation:
-        heartAppear 1.5s cubic-bezier(.2,.9,.2,1) forwards,
-        heartbeat 1.4s 1.5s ease-in-out infinite;
+        heartIn 1.4s cubic-bezier(.15,.9,.2,1) forwards,
+        heartbeat 1.4s 1.4s ease-in-out infinite;
 }
 
-@keyframes heartAppear{
-
+@keyframes heartIn{
     0%{
         transform:rotate(-45deg) scale(0);
     }
 
-    60%{
+    65%{
         transform:rotate(-45deg) scale(1.35);
     }
 
     100%{
         transform:rotate(-45deg) scale(1);
     }
-
 }
 
 @keyframes heartbeat{
-
     0%,100%{
         transform:rotate(-45deg) scale(1);
     }
 
     50%{
-        transform:rotate(-45deg) scale(1.12);
+        transform:rotate(-45deg) scale(1.13);
     }
-
 }
 
+/* FRIENDS */
 
-/* =========================
-   FRIEND ANIMATION
-========================= */
-
-.friend-scene{
-    position:fixed;
-    inset:0;
-
-    z-index:20;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    background:
-        radial-gradient(
-            circle,
-            rgba(70,70,90,.18),
-            rgba(0,0,0,.96)
-        );
-
-    opacity:0;
-    visibility:hidden;
-
-    transition:.5s;
-}
-
-.friend-scene.active{
-    opacity:1;
-    visibility:visible;
-}
-
-.friend-symbol{
+.friend-container{
     position:relative;
-
-    width:170px;
-    height:100px;
+    width:250px;
+    height:180px;
 }
 
-.person{
+.friend-person{
     position:absolute;
-
-    width:55px;
-    height:55px;
-
-    border:3px solid #d4d4d4;
-
+    top:20px;
+    width:60px;
+    height:60px;
+    border:2px solid #ddd;
     border-radius:50%;
-
-    top:0;
-
     opacity:0;
-
-    transform:translateY(40px);
 }
 
-.person:after{
+.friend-person:after{
     content:"";
-
     position:absolute;
-
-    width:70px;
-    height:45px;
-
-    border:3px solid #d4d4d4;
-
-    border-bottom:0;
-
-    border-radius:40px 40px 0 0;
-
-    top:55px;
+    width:80px;
+    height:55px;
     left:50%;
+    top:58px;
+    transform:translateX(-50%);
+    border:2px solid #ddd;
+    border-bottom:0;
+    border-radius:50px 50px 0 0;
+}
 
+.friend-person.a{
+    left:25px;
+}
+
+.friend-person.b{
+    right:25px;
+}
+
+.friend-line{
+    position:absolute;
+    left:50%;
+    top:95px;
+    width:0;
+    height:2px;
+    background:#aaa;
     transform:translateX(-50%);
 }
 
-.person.left{
-    left:10px;
-}
-
-.person.right{
-    right:10px;
-}
-
-.friend-scene.active .person{
+.transition.friends.active .friend-person{
     animation:
-        personAppear .9s forwards,
-        personFloat 3s 1s ease-in-out infinite;
+        friendIn 1s forwards,
+        friendFloat 3s 1s ease-in-out infinite;
 }
 
-.friend-scene.active .person.right{
+.transition.friends.active .friend-person.b{
     animation-delay:.25s,1.25s;
 }
 
-@keyframes personAppear{
+.transition.friends.active .friend-line{
+    animation:lineIn 1s 1s forwards;
+}
+
+@keyframes friendIn{
+    from{
+        opacity:0;
+        transform:translateY(35px);
+    }
 
     to{
         opacity:1;
         transform:translateY(0);
     }
-
 }
 
-@keyframes personFloat{
-
+@keyframes friendFloat{
     0%,100%{
-        transform:translateY(0);
+        margin-top:0;
     }
 
     50%{
-        transform:translateY(-7px);
+        margin-top:-7px;
     }
-
 }
 
+@keyframes lineIn{
+    to{
+        width:100px;
+    }
+}
 
-/* =========================
-   MESSAGE
-========================= */
+/* =========================================================
+   FINAL LETTER
+========================================================= */
 
-.final-message{
-    position:absolute;
+.letter-screen{
+    position:fixed;
+    inset:0;
+    z-index:40;
 
-    width:min(700px,90%);
+    display:flex;
+    align-items:center;
+    justify-content:center;
 
-    text-align:center;
+    padding:25px;
+
+    background:
+        radial-gradient(
+            circle at 50% 20%,
+            rgba(90,20,50,.18),
+            transparent 45%
+        ),
+        #030305;
 
     opacity:0;
-    transform:translateY(40px);
-
-    pointer-events:none;
+    visibility:hidden;
+    transform:scale(1.04);
 
     transition:
-        opacity 1s ease,
-        transform 1s ease;
+        opacity 1.4s,
+        transform 1.4s;
 }
 
-.final-message.show{
+.letter-screen.show{
     opacity:1;
-    transform:none;
-    pointer-events:auto;
+    visibility:visible;
+    transform:scale(1);
 }
 
-.final-label{
-    font-size:11px;
-    letter-spacing:7px;
+.letter{
+    width:min(850px,100%);
+    max-height:90vh;
+    overflow:auto;
+
+    padding:65px clamp(25px,7vw,85px);
+
+    border:1px solid rgba(255,255,255,.09);
+    border-radius:30px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.055),
+            rgba(255,255,255,.012)
+        );
+
+    box-shadow:
+        0 50px 140px rgba(0,0,0,.8),
+        inset 0 1px rgba(255,255,255,.06);
+
+    backdrop-filter:blur(30px);
+
+    text-align:center;
+}
+
+.letter::-webkit-scrollbar{
+    width:3px;
+}
+
+.letter::-webkit-scrollbar-thumb{
+    background:#333;
+}
+
+.letter-top{
+    font-size:9px;
+    letter-spacing:8px;
+    color:#666;
+    margin-bottom:25px;
+}
+
+.letter h2{
+    font-family:"Cormorant Garamond",serif;
+    font-size:clamp(55px,8vw,90px);
+    font-weight:300;
+    line-height:.9;
+    margin-bottom:40px;
+}
+
+.love-letter h2{
+    background:linear-gradient(120deg,#fff,#b43862,#fff);
+    -webkit-background-clip:text;
+    color:transparent;
+    background-size:200%;
+    animation:titleShimmer 8s linear infinite;
+}
+
+.friend-letter h2{
+    color:#eee;
+}
+
+.letter-line{
+    width:60px;
+    height:1px;
+    background:#555;
+    margin:0 auto 40px;
+}
+
+.letter p{
+    font-family:"Cormorant Garamond",serif;
+    font-size:clamp(21px,3vw,27px);
+    line-height:1.75;
+    color:#c5c1c3;
+    font-weight:400;
+}
+
+.letter p span{
+    display:block;
+    opacity:0;
+    transform:translateY(20px);
+}
+
+.letter-screen.show .letter p span{
+    animation:letterLine 1s forwards;
+}
+
+.letter-screen.show .letter p span:nth-child(1){animation-delay:.4s}
+.letter-screen.show .letter p span:nth-child(2){animation-delay:.8s}
+.letter-screen.show .letter p span:nth-child(3){animation-delay:1.2s}
+.letter-screen.show .letter p span:nth-child(4){animation-delay:1.6s}
+.letter-screen.show .letter p span:nth-child(5){animation-delay:2s}
+.letter-screen.show .letter p span:nth-child(6){animation-delay:2.4s}
+.letter-screen.show .letter p span:nth-child(7){animation-delay:2.8s}
+
+@keyframes letterLine{
+    to{
+        opacity:1;
+        transform:none;
+    }
+}
+
+.signature{
+    margin-top:45px;
     color:#777;
-
-    margin-bottom:25px;
-}
-
-.final-message h2{
     font-family:"Cormorant Garamond",serif;
-
-    font-size:clamp(45px,8vw,75px);
-
-    font-weight:500;
-
-    margin-bottom:25px;
+    font-size:25px;
+    opacity:0;
+    animation:signatureIn 1s 3.3s forwards;
 }
 
-.final-message p{
-    font-family:"Cormorant Garamond",serif;
-
-    font-size:clamp(22px,3vw,28px);
-
-    line-height:1.7;
-
-    color:#d0d0d0;
+@keyframes signatureIn{
+    to{
+        opacity:1;
+    }
 }
 
-
-/* =========================
+/* =========================================================
    PARTICLES
-========================= */
+========================================================= */
 
 .particle{
     position:fixed;
-
-    width:3px;
-    height:3px;
-
+    width:2px;
+    height:2px;
     border-radius:50%;
-
     background:white;
-
     opacity:.25;
-
     pointer-events:none;
-
     z-index:1;
-
-    animation:particleMove linear infinite;
+    animation:particleUp linear infinite;
 }
 
-@keyframes particleMove{
-
+@keyframes particleUp{
     from{
-        transform:translateY(100vh);
+        transform:translateY(110vh);
     }
 
     to{
-        transform:translateY(-20vh);
+        transform:translateY(-10vh);
     }
-
 }
 
-
-/* =========================
+/* =========================================================
    MOBILE
-========================= */
+========================================================= */
 
-@media(max-width:600px){
+@media(max-width:700px){
 
-    main{
-        min-height:680px;
-        padding:45px 20px;
+    #app{
+        padding:12px;
+    }
+
+    .scene{
+        min-height:calc(100vh - 24px);
+        border-radius:28px;
+    }
+
+    .title{
+        font-size:68px;
     }
 
     .subtitle{
-        font-size:21px;
+        font-size:20px;
+        padding:0 15px;
     }
 
-    .box-wrapper{
+    .chest-area{
         margin-top:55px;
-        margin-bottom:45px;
     }
 
-    .question-title{
-        font-size:32px;
-    }
-
-    .buttons{
+    .choices{
         flex-direction:column;
         align-items:center;
     }
 
     .choice{
-        width:100%;
-        max-width:300px;
+        width:min(310px,90vw);
     }
 
-    .final-message p{
+    .letter{
+        max-height:92vh;
+        padding:50px 25px;
+    }
+
+    .letter p{
         font-size:21px;
+        line-height:1.7;
     }
-
 }
-
 </style>
 </head>
 
-
 <body>
 
+<div class="noise"></div>
 
 <div class="background">
-    <div class="glow one"></div>
-    <div class="glow two"></div>
+    <div class="orb orb1"></div>
+    <div class="orb orb2"></div>
+    <div class="orb orb3"></div>
 </div>
 
+<main id="app">
 
-<main id="main">
+<section class="scene">
 
+<div class="intro" id="intro">
 
-    <!-- INTRO -->
+    <div class="eyebrow">
+        MAYA & SAMY
+    </div>
 
-    <section class="intro" id="intro">
+    <div class="title">
+        <span>Une</span>
+        <span>dernière</span>
+        <span>question.</span>
+    </div>
 
-        <div class="small-title">
-            MAYA & SAMY
+    <div class="subtitle">
+        Certaines choses ne se disent pas facilement.
+        Alors j'ai préféré te laisser découvrir les mots.
+    </div>
+
+    <div class="chest-area" id="chest">
+
+        <div class="chest-glow"></div>
+
+        <div class="chest">
+
+            <div class="chest-body">
+                <div class="ribbon"></div>
+            </div>
+
+            <div class="chest-lid"></div>
+
+            <div class="lock"></div>
+
         </div>
 
-        <h1>
-            Une dernière<br>
-            question.
-        </h1>
+    </div>
 
-        <p class="subtitle">
-            Il y a quelque chose que je veux te laisser choisir.
-        </p>
+    <div class="question" id="question">
 
+        <div class="question-label">
+            À TOI DE CHOISIR
+        </div>
 
-        <div
-            class="box-wrapper"
-            id="box"
-            aria-label="Ouvrir la boîte"
-        >
+        <h2>
+            Qu'est-ce que tu veux pour nous ?
+        </h2>
 
-            <div class="box">
+        <div class="choices">
 
-                <div class="box-body">
+            <button class="choice love" id="love">
 
-                    <div class="ribbon-vertical"></div>
+                <div class="choice-content">
+
+                    <div class="choice-number">
+                        01
+                    </div>
+
+                    <div class="choice-text">
+                        <strong>Continuer ensemble</strong>
+                        <span>comme amoureux</span>
+                    </div>
+
+                    <div class="arrow">
+                        →
+                    </div>
 
                 </div>
 
-                <div class="box-lid"></div>
+            </button>
 
-                <div class="lock"></div>
+            <button class="choice friends" id="friends">
 
-            </div>
+                <div class="choice-content">
 
-        </div>
+                    <div class="choice-number">
+                        02
+                    </div>
 
+                    <div class="choice-text">
+                        <strong>Rester proches</strong>
+                        <span>comme amis</span>
+                    </div>
 
-        <div class="question" id="question">
+                    <div class="arrow">
+                        →
+                    </div>
 
-            <div class="question-title">
-                Qu'est-ce que tu veux pour nous ?
-            </div>
+                </div>
 
-            <div class="buttons">
-
-                <button
-                    class="choice love-button"
-                    id="love"
-                >
-                    Continuer comme amoureux
-                </button>
-
-
-                <button
-                    class="choice friend-button"
-                    id="friends"
-                >
-                    Rester amis
-                </button>
-
-            </div>
+            </button>
 
         </div>
 
-    </section>
+    </div>
+
+</div>
+
+</section>
+
+</main>
 
 
-    <!-- MESSAGE AMOUREUX -->
+<!-- LOVE TRANSITION -->
 
-    <section
-        class="final-message"
-        id="loveMessage"
-    >
+<div class="transition love" id="loveTransition">
 
-        <div class="final-label">
+    <div class="heart-container">
+
+        <div class="heart"></div>
+
+    </div>
+
+</div>
+
+
+<!-- FRIEND TRANSITION -->
+
+<div class="transition friends" id="friendTransition">
+
+    <div class="friend-container">
+
+        <div class="friend-person a"></div>
+
+        <div class="friend-person b"></div>
+
+        <div class="friend-line"></div>
+
+    </div>
+
+</div>
+
+
+<!-- LOVE LETTER -->
+
+<div class="letter-screen" id="loveLetter">
+
+    <article class="letter love-letter">
+
+        <div class="letter-top">
             MAYA & SAMY
         </div>
 
@@ -827,41 +1123,70 @@ h1{
             Nous deux.
         </h2>
 
+        <div class="letter-line"></div>
+
         <p>
-            Je suis toujours avec toi, et malgré tout ce qu'on peut traverser,
-            il y a une chose que je garde au fond de moi.
-            Je t'aime et je tiens énormément à toi.
-            <br><br>
-            Il y a aussi certaines choses que j'ai du mal à accepter
-            et que je n'arrive pas toujours à expliquer avec les bons mots.
-            Je veux simplement être honnête avec toi :
-            je n'aime pas te voir exposée sur les réseaux sociaux comme ça.
-            Ce n'est pas parce que je veux te contrôler,
-            ni parce que mes sentiments ont changé.
-            C'est simplement quelque chose qui me fait mal
-            et que j'aimerais pouvoir te dire calmement.
-            <br><br>
-            Je veux qu'entre nous il y ait de la confiance,
-            du respect, de la compréhension et surtout de la sincérité.
-            Je veux pouvoir te parler de ce que je ressens
-            sans avoir peur de te perdre.
-            <br><br>
-            Je suis toujours là.
-            Je tiens toujours à toi.
-            Et malgré tout, mon choix reste de t'aimer.
+
+            <span>
+                Je veux que tu saches une chose avant tout :
+                je suis toujours avec toi.
+            </span>
+
+            <span>
+                Je tiens à toi plus que je ne réussis parfois
+                à le montrer avec mes mots.
+            </span>
+
+            <span>
+                Il y a cependant une chose que j'ai du mal à te dire.
+                Je n'aime pas te voir autant exposée sur les réseaux sociaux.
+            </span>
+
+            <span>
+                Ce n'est pas une envie de te contrôler,
+                ni une manière de te demander de changer qui tu es.
+                C'est simplement quelque chose qui me touche
+                et qui me fait parfois mal.
+            </span>
+
+            <span>
+                J'aimerais pouvoir te parler de tout cela
+                sans dispute, sans colère et sans peur.
+                Juste avec la sincérité de quelqu'un
+                qui tient énormément à toi.
+            </span>
+
+            <span>
+                Je veux entre nous de la confiance,
+                du respect, de la compréhension
+                et cette sensation de pouvoir tout se dire.
+            </span>
+
+            <span>
+                Je suis toujours là.
+                Je tiens toujours à toi.
+                Et malgré tout ce qu'on peut traverser,
+                mon affection pour toi est toujours là.
+            </span>
+
         </p>
 
-    </section>
+        <div class="signature">
+            Toujours avec toi.
+        </div>
+
+    </article>
+
+</div>
 
 
-    <!-- MESSAGE AMIS -->
+<!-- FRIEND LETTER -->
 
-    <section
-        class="final-message"
-        id="friendMessage"
-    >
+<div class="letter-screen" id="friendLetter">
 
-        <div class="final-label">
+    <article class="letter friend-letter">
+
+        <div class="letter-top">
             MAYA & SAMY
         </div>
 
@@ -869,73 +1194,70 @@ h1{
             Merci.
         </h2>
 
+        <div class="letter-line"></div>
+
         <p>
-            Merci pour tout ce qu'on a vécu ensemble.
-            Merci pour les moments, les conversations,
-            les souvenirs et tout ce que tu m'as apporté.
-            <br><br>
-            Si aujourd'hui on choisit de rester amis,
-            ne pense jamais que cela signifie que je vais disparaître
-            ou devenir quelqu'un d'autre avec toi.
-            <br><br>
-            Je suis toujours avec toi.
-            Rien ne changera dans le respect que j'ai pour toi,
-            dans l'affection que j'ai pour toi
-            et dans la place que tu as eue dans ma vie.
-            <br><br>
-            Je t'aime énormément et je te souhaite toujours le meilleur.
-            Tu peux rester toi-même avec moi.
-            Je serai toujours là pour toi,
-            simplement d'une autre manière.
+
+            <span>
+                Merci pour tout ce qu'on a vécu ensemble.
+                Merci pour les souvenirs, les conversations
+                et tous les moments qui resteront dans ma mémoire.
+            </span>
+
+            <span>
+                Si aujourd'hui nous choisissons de rester amis,
+                cela ne veut pas dire que je vais disparaître
+                ou devenir un étranger pour toi.
+            </span>
+
+            <span>
+                Je suis toujours avec toi.
+                Rien ne changera dans le respect,
+                l'affection et l'importance que tu as pour moi.
+            </span>
+
+            <span>
+                Je t'aime énormément et je veux toujours
+                te voir heureuse, avancer et réussir.
+            </span>
+
+            <span>
+                Tu pourras toujours compter sur moi.
+                Je resterai cette personne à qui tu peux parler,
+                rire, te confier et être toi-même.
+            </span>
+
+            <span>
+                Certaines histoires changent de forme,
+                mais cela ne veut pas dire
+                qu'elles deviennent sans importance.
+            </span>
+
+            <span>
+                Je serai toujours là pour toi,
+                simplement d'une autre manière.
+            </span>
+
         </p>
 
-    </section>
+        <div class="signature">
+            Toujours avec toi.
+        </div>
 
-
-</main>
-
-
-<!-- ANIMATION COEUR -->
-
-<div
-    class="heart-scene"
-    id="heartScene"
->
-
-    <div class="heart"></div>
-
-</div>
-
-
-<!-- ANIMATION AMIS -->
-
-<div
-    class="friend-scene"
-    id="friendScene"
->
-
-    <div class="friend-symbol">
-
-        <div class="person left"></div>
-
-        <div class="person right"></div>
-
-    </div>
+    </article>
 
 </div>
 
 
 <script>
 
+/* =========================================================
+   PARTICLES
+========================================================= */
 
-/* =========================
-   PARTICULES
-========================= */
+for(let i = 0; i < 45; i++){
 
-for(let i = 0; i < 35; i++){
-
-    const particle =
-        document.createElement("div");
+    const particle = document.createElement("div");
 
     particle.className = "particle";
 
@@ -943,25 +1265,24 @@ for(let i = 0; i < 35; i++){
         Math.random() * 100 + "%";
 
     particle.style.animationDuration =
-        (8 + Math.random() * 15) + "s";
+        (8 + Math.random() * 16) + "s";
 
     particle.style.animationDelay =
-        (-Math.random() * 15) + "s";
+        (-Math.random() * 18) + "s";
 
     particle.style.opacity =
-        .08 + Math.random() * .25;
+        .05 + Math.random() * .25;
 
     document.body.appendChild(particle);
-
 }
 
 
-/* =========================
+/* =========================================================
    ELEMENTS
-========================= */
+========================================================= */
 
-const box =
-    document.getElementById("box");
+const chest =
+    document.getElementById("chest");
 
 const question =
     document.getElementById("question");
@@ -975,42 +1296,42 @@ const love =
 const friends =
     document.getElementById("friends");
 
-const heartScene =
-    document.getElementById("heartScene");
+const loveTransition =
+    document.getElementById("loveTransition");
 
-const friendScene =
-    document.getElementById("friendScene");
+const friendTransition =
+    document.getElementById("friendTransition");
 
-const loveMessage =
-    document.getElementById("loveMessage");
+const loveLetter =
+    document.getElementById("loveLetter");
 
-const friendMessage =
-    document.getElementById("friendMessage");
+const friendLetter =
+    document.getElementById("friendLetter");
 
 
-/* =========================
-   OUVRIR LA BOITE
-========================= */
+/* =========================================================
+   OPEN CHEST
+========================================================= */
 
-box.addEventListener("click", () => {
+chest.addEventListener("click", () => {
 
-    if(box.classList.contains("open"))
+    if(chest.classList.contains("open"))
         return;
 
-    box.classList.add("open");
+    chest.classList.add("open");
 
     setTimeout(() => {
 
-        question.classList.add("show");
+        question.classList.add("visible");
 
-    }, 900);
+    }, 950);
 
 });
 
 
-/* =========================
-   AMOUREUX
-========================= */
+/* =========================================================
+   LOVE
+========================================================= */
 
 love.addEventListener("click", () => {
 
@@ -1018,30 +1339,32 @@ love.addEventListener("click", () => {
     friends.disabled = true;
 
     intro.style.opacity = "0";
+    intro.style.transform = "scale(.96)";
 
     setTimeout(() => {
 
-        intro.style.display = "none";
+        loveTransition.classList.add("active");
 
-        heartScene.classList.add("active");
-
-    }, 700);
-
+    }, 600);
 
     setTimeout(() => {
 
-        heartScene.classList.remove("active");
+        loveTransition.classList.remove("active");
 
-        loveMessage.classList.add("show");
+        setTimeout(() => {
 
-    }, 3300);
+            loveLetter.classList.add("show");
+
+        }, 500);
+
+    }, 3400);
 
 });
 
 
-/* =========================
-   AMIS
-========================= */
+/* =========================================================
+   FRIENDS
+========================================================= */
 
 friends.addEventListener("click", () => {
 
@@ -1049,26 +1372,71 @@ friends.addEventListener("click", () => {
     friends.disabled = true;
 
     intro.style.opacity = "0";
+    intro.style.transform = "scale(.96)";
 
     setTimeout(() => {
 
-        intro.style.display = "none";
+        friendTransition.classList.add("active");
 
-        friendScene.classList.add("active");
-
-    }, 700);
-
+    }, 600);
 
     setTimeout(() => {
 
-        friendScene.classList.remove("active");
+        friendTransition.classList.remove("active");
 
-        friendMessage.classList.add("show");
+        setTimeout(() => {
 
-    }, 3000);
+            friendLetter.classList.add("show");
+
+        }, 500);
+
+    }, 3200);
 
 });
 
+
+/* =========================================================
+   CURSOR LIGHT
+========================================================= */
+
+const light =
+    document.createElement("div");
+
+light.style.position = "fixed";
+light.style.width = "250px";
+light.style.height = "250px";
+light.style.borderRadius = "50%";
+light.style.pointerEvents = "none";
+light.style.zIndex = "1";
+light.style.background =
+    "radial-gradient(circle, rgba(255,255,255,.045), transparent 70%)";
+light.style.transform =
+    "translate(-50%,-50%)";
+
+document.body.appendChild(light);
+
+document.addEventListener("mousemove", e => {
+
+    light.style.left = e.clientX + "px";
+    light.style.top = e.clientY + "px";
+
+});
+
+
+/* =========================================================
+   TOUCH / MOBILE
+========================================================= */
+
+document.addEventListener("touchmove", e => {
+
+    const touch = e.touches[0];
+
+    if(!touch) return;
+
+    light.style.left = touch.clientX + "px";
+    light.style.top = touch.clientY + "px";
+
+},{passive:true});
 
 </script>
 
