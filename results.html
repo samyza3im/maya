@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Résultat privé</title>
+<style>
+body{margin:0;min-height:100vh;background:#07070b;color:#fff;font-family:Arial;display:grid;place-items:center;padding:20px}
+.card{width:min(600px,100%);padding:35px;border:1px solid #292933;border-radius:24px;background:#111118}h1{font-family:Georgia;font-size:45px}
+input{width:100%;padding:14px;margin:6px 0;background:#08080c;border:1px solid #333;color:white;border-radius:9px;box-sizing:border-box}
+button{padding:13px 20px;margin:8px 5px 8px 0;background:#22222c;color:white;border:1px solid #444;border-radius:9px}.result{margin-top:25px;padding:25px;background:#191922;border-radius:15px}.choice{font:42px Georgia;margin:12px 0}.err{color:#d88}
+</style></head><body><div class="card">
+<div id="login"><small>ESPACE PRIVÉ</small><h1>Sa décision</h1>
+<input id="email" type="email" placeholder="Ton email"><input id="password" type="password" placeholder="Mot de passe">
+<button onclick="login()">Se connecter</button><button onclick="signup()">Créer mon compte</button><p class="err" id="err"></p></div>
+<div id="dash" style="display:none"><small>ESPACE PRIVÉ</small><h1>Résultat</h1><div class="result"><div class="choice" id="choice"></div><div id="date"></div></div><button onclick="load()">Actualiser</button><button onclick="logout()">Déconnexion</button></div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script>
+const sb=supabase.createClient("https://qximvwamunvvjredtets.supabase.co","sb_publishable_qUPsfiHpq5-V0j-5QJY_sg_7VBe5T48");
+async function login(){const {error}=await sb.auth.signInWithPassword({email:email.value,password:password.value});if(error){err.textContent=error.message;return}show()}
+async function signup(){const {error}=await sb.auth.signUp({email:email.value,password:password.value});err.textContent=error?error.message:"Compte créé. Confirme ton email si demandé, puis connecte-toi."}
+function show(){login.style.display="none";dash.style.display="block";load()}
+async function load(){const {data,error}=await sb.from("relationship_choices").select("choice,created_at").eq("survey_id","maya-samy-choice").single();if(error){choice.textContent="Aucune réponse pour le moment.";date.textContent="";return}choice.textContent=data.choice==="love"?"نكمل كحبيبين":"نكمل كأصدقاء";date.textContent=new Date(data.created_at).toLocaleString("fr-FR")}
+async function logout(){await sb.auth.signOut();location.reload()}
+sb.auth.getSession().then(({data})=>{if(data.session)show()});
+</script></body></html>
