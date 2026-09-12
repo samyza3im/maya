@@ -4,478 +4,357 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Notre histoire — Maya & Samy</title>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <title>Maya & Samy</title>
 
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Inter:wght@400;500&display=swap');
+
     * {
-      margin: 0;
-      padding: 0;
       box-sizing: border-box;
     }
 
-    :root {
-      --bg: #08070a;
-      --text: #f8f4f0;
-      --muted: #aaa3a0;
-      --gold: #d8b27c;
-      --rose: #b86b78;
-      --glass: rgba(255, 255, 255, 0.055);
-      --border: rgba(255, 255, 255, 0.12);
-    }
-
     body {
+      margin: 0;
       min-height: 100vh;
-      background:
-        radial-gradient(circle at 50% 20%, rgba(184, 107, 120, 0.13), transparent 35%),
-        radial-gradient(circle at 20% 80%, rgba(216, 178, 124, 0.07), transparent 30%),
-        var(--bg);
-      color: var(--text);
+      background: #050509;
+      color: white;
       font-family: "Inter", sans-serif;
+      display: grid;
+      place-items: center;
+      padding: 20px;
+      text-align: center;
       overflow-x: hidden;
     }
 
-    canvas {
+    body::before {
+      content: "";
       position: fixed;
-      inset: 0;
-      width: 100%;
-      height: 100%;
+      inset: -30%;
+      background:
+        radial-gradient(
+          circle at 50% 35%,
+          rgba(155, 35, 72, 0.22),
+          transparent 32%
+        ),
+        radial-gradient(
+          circle at 20% 80%,
+          rgba(85, 30, 110, 0.16),
+          transparent 28%
+        );
+      animation: breathe 7s ease-in-out infinite alternate;
       pointer-events: none;
-      z-index: 0;
     }
 
-    .noise {
-      position: fixed;
-      inset: 0;
-      z-index: 1;
-      pointer-events: none;
-      opacity: 0.035;
-      background-image:
-        url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.8'/%3E%3C/svg%3E");
+    @keyframes breathe {
+      from {
+        transform: scale(1);
+      }
+
+      to {
+        transform: scale(1.12);
+        opacity: 0.8;
+      }
     }
 
-    .page {
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 30px;
+    main {
+      width: min(850px, 100%);
+      min-height: 620px;
+      border: 1px solid #292933;
+      border-radius: 30px;
+      background: rgba(15, 15, 22, 0.9);
+      display: grid;
+      place-items: center;
+      padding: 35px;
       position: relative;
       z-index: 2;
-    }
-
-    .card {
-      width: min(900px, 100%);
-      min-height: 650px;
-      position: relative;
-      padding: 55px;
-      border: 1px solid var(--border);
-      border-radius: 32px;
-      background: linear-gradient(
-        145deg,
-        rgba(255,255,255,0.075),
-        rgba(255,255,255,0.025)
-      );
-      backdrop-filter: blur(24px);
-      -webkit-backdrop-filter: blur(24px);
-      box-shadow:
-        0 40px 120px rgba(0,0,0,.6),
-        inset 0 1px 0 rgba(255,255,255,.08);
+      box-shadow: 0 30px 100px #000;
       overflow: hidden;
     }
 
-    .card::before {
+    main::after {
       content: "";
       position: absolute;
-      width: 400px;
-      height: 400px;
-      border-radius: 50%;
-      background: var(--rose);
-      filter: blur(140px);
-      opacity: .08;
-      top: -200px;
-      left: 50%;
-      transform: translateX(-50%);
+      inset: 0;
+      background: linear-gradient(
+        120deg,
+        transparent 35%,
+        rgba(255, 255, 255, 0.04),
+        transparent 65%
+      );
+      transform: translateX(-100%);
+      animation: shine 8s infinite;
       pointer-events: none;
     }
 
-    .content {
+    @keyframes shine {
+      55%,
+      100% {
+        transform: translateX(100%);
+      }
+    }
+
+    section {
+      width: 100%;
       position: relative;
       z-index: 3;
-      text-align: center;
     }
 
     .eyebrow {
-      color: var(--gold);
-      font-size: 11px;
-      letter-spacing: 4px;
+      letter-spacing: 0.3em;
+      color: #777;
+      font-size: 12px;
       text-transform: uppercase;
-      margin-bottom: 18px;
+    }
+
+    h1,
+    h2 {
+      font-family: "Cormorant Garamond", serif;
+      font-weight: 600;
     }
 
     h1 {
-      font-family: "Cormorant Garamond", serif;
-      font-size: clamp(55px, 9vw, 95px);
-      font-weight: 500;
-      line-height: .9;
-      margin-bottom: 25px;
+      font-size: clamp(55px, 10vw, 90px);
+      line-height: 0.85;
+      margin: 20px 0;
     }
 
-    .subtitle {
-      max-width: 600px;
+    h2 {
+      font-size: 70px;
+      margin: 10px 0 25px;
+    }
+
+    .intro-text {
+      max-width: 650px;
       margin: auto;
-      color: var(--muted);
-      font-size: 15px;
-      line-height: 1.9;
-      font-weight: 300;
+      color: #aaa;
+      line-height: 1.8;
+      font-family: "Cormorant Garamond", serif;
+      font-size: 25px;
     }
 
-    /* BOÎTE */
-
-    .box-area {
-      height: 280px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-top: 20px;
-      perspective: 1000px;
-    }
+    /* BOX */
 
     .box {
-      position: relative;
       width: 190px;
-      height: 145px;
+      height: 120px;
+      margin: 55px auto;
+      position: relative;
       cursor: pointer;
-      transform-style: preserve-3d;
-      transition: transform 1s cubic-bezier(.2,.8,.2,1);
-    }
-
-    .box:hover {
-      transform: translateY(-8px) scale(1.03);
+      perspective: 800px;
     }
 
     .box-body {
       position: absolute;
-      left: 0;
       bottom: 0;
-      width: 190px;
-      height: 120px;
-      border-radius: 12px 12px 20px 20px;
-      background:
-        linear-gradient(145deg, #6e4534, #321d19);
-      border: 1px solid rgba(216,178,124,.35);
-      box-shadow:
-        0 30px 70px rgba(0,0,0,.65),
-        inset 0 1px 0 rgba(255,255,255,.08);
-    }
-
-    .box-body::after {
-      content: "";
-      position: absolute;
       width: 100%;
-      height: 15px;
-      left: 0;
-      top: 45px;
-      background: rgba(216,178,124,.18);
+      height: 90px;
+      background: linear-gradient(
+        145deg,
+        #461522,
+        #17070d
+      );
+      border: 1px solid #8c5064;
+      border-radius: 8px;
+      box-shadow:
+        0 25px 60px rgba(0, 0, 0, 0.6),
+        0 0 30px rgba(130, 30, 70, 0.12);
     }
 
     .box-lid {
       position: absolute;
-      width: 205px;
-      height: 45px;
-      left: -7px;
       top: 15px;
-      border-radius: 12px;
-      background:
-        linear-gradient(145deg, #81533e, #3a211c);
-      border: 1px solid rgba(216,178,124,.4);
-      transform-origin: bottom center;
-      transition: transform 1.4s cubic-bezier(.2,.8,.2,1);
-      z-index: 3;
-    }
-
-    .box.opened .box-lid {
-      transform: rotateX(-115deg) translateY(-15px);
-    }
-
-    .box-band {
-      position: absolute;
-      width: 28px;
-      height: 120px;
-      left: 81px;
-      bottom: 0;
-      background: rgba(216,178,124,.22);
-      z-index: 2;
-    }
-
-    .lock {
-      position: absolute;
-      left: 80px;
-      bottom: 47px;
-      width: 30px;
+      left: -6px;
+      width: 202px;
       height: 35px;
-      border-radius: 5px;
-      background: var(--gold);
-      box-shadow: 0 0 30px rgba(216,178,124,.35);
+      background: linear-gradient(
+        145deg,
+        #591a2c,
+        #1c080f
+      );
+      border: 1px solid #9b5c70;
+      border-radius: 8px;
+      transform-origin: left bottom;
+      transition:
+        transform 1s cubic-bezier(0.2, 0.8, 0.2, 1),
+        top 1s;
+    }
+
+    .box-lock {
+      position: absolute;
       z-index: 5;
+      left: 76px;
+      top: 60px;
+      width: 38px;
+      height: 35px;
+      border: 2px solid #c99b68;
+      border-radius: 5px;
+      background: #16080d;
     }
 
-    .lock::before {
+    .box-lock::before {
       content: "";
       position: absolute;
-      width: 15px;
-      height: 17px;
-      border: 3px solid var(--gold);
-      border-bottom: none;
+      width: 18px;
+      height: 20px;
+      left: 8px;
+      top: -20px;
+      border: 2px solid #c99b68;
+      border-bottom: 0;
       border-radius: 12px 12px 0 0;
-      left: 4px;
-      top: -15px;
     }
 
-    .key {
-      position: absolute;
-      right: -55px;
-      bottom: -5px;
-      width: 75px;
-      height: 25px;
-      opacity: .75;
-      transform: rotate(-25deg);
-      animation: keyFloat 3s ease-in-out infinite;
+    .box.open .box-lid {
+      transform: rotateX(-110deg) translateY(-20px);
     }
 
-    .key::before {
-      content: "";
-      position: absolute;
-      width: 24px;
-      height: 24px;
-      border: 4px solid var(--gold);
-      border-radius: 50%;
+    .box.open {
+      animation: boxOpen 1s ease;
     }
 
-    .key::after {
-      content: "";
-      position: absolute;
-      width: 50px;
-      height: 5px;
-      background: var(--gold);
-      top: 10px;
-      left: 22px;
-      box-shadow: 25px 6px 0 -1px var(--gold);
-    }
-
-    @keyframes keyFloat {
-      0%, 100% {
-        transform: translateY(0) rotate(-25deg);
+    @keyframes boxOpen {
+      0% {
+        transform: translateY(0);
       }
+
       50% {
-        transform: translateY(-8px) rotate(-20deg);
+        transform: translateY(-12px);
       }
-    }
 
-    .open-text {
-      margin-top: -15px;
-      color: var(--gold);
-      font-size: 12px;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      animation: pulse 2s infinite;
-    }
-
-    @keyframes pulse {
-      0%, 100% { opacity: .45; }
-      50% { opacity: 1; }
-    }
-
-    /* CHOIX */
-
-    .choice-section {
-      display: none;
-      opacity: 0;
-      transform: translateY(20px);
-      transition: .8s ease;
-    }
-
-    .choice-section.visible {
-      display: block;
-      animation: reveal .9s forwards;
-    }
-
-    @keyframes reveal {
-      to {
-        opacity: 1;
+      100% {
         transform: translateY(0);
       }
     }
 
-    .choice-title {
-      font-family: "Cormorant Garamond", serif;
-      font-size: 34px;
-      margin-bottom: 30px;
-    }
+    /* CHOICES */
 
     .choices {
       display: flex;
+      gap: 12px;
       justify-content: center;
-      gap: 16px;
       flex-wrap: wrap;
+
+      opacity: 0;
+      transform: translateY(25px);
+      pointer-events: none;
+
+      transition: 0.8s ease;
+    }
+
+    .opened .choices {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
     }
 
     button {
-      font-family: "Inter", sans-serif;
-      cursor: pointer;
-    }
-
-    .choice {
-      min-width: 240px;
-      padding: 18px 28px;
+      padding: 15px 28px;
       border-radius: 999px;
-      border: 1px solid rgba(255,255,255,.16);
-      color: var(--text);
-      background: rgba(255,255,255,.04);
-      transition:
-        transform .35s ease,
-        background .35s ease,
-        border-color .35s ease,
-        box-shadow .35s ease;
+      border: 1px solid #555;
+      background: rgba(255, 255, 255, 0.05);
+      color: white;
+      font: inherit;
+      cursor: pointer;
+      transition: 0.3s ease;
+      min-width: 230px;
     }
 
-    .choice:hover {
-      transform: translateY(-5px);
-      background: rgba(255,255,255,.09);
-      border-color: rgba(216,178,124,.5);
-      box-shadow: 0 15px 40px rgba(0,0,0,.3);
+    button:hover {
+      transform: translateY(-4px);
+      background: rgba(255, 255, 255, 0.1);
+      border-color: #888;
     }
 
-    .choice.love {
-      border-color: rgba(184,107,120,.5);
+    button.primary {
+      background: linear-gradient(
+        135deg,
+        #791b40,
+        #35101f
+      );
+      border-color: #a85a78;
     }
 
-    .choice.love:hover {
-      box-shadow: 0 15px 45px rgba(184,107,120,.2);
+    button:disabled {
+      opacity: 0.5;
+      cursor: default;
+      transform: none;
+    }
+
+    .status {
+      margin-top: 18px;
+      color: #777;
+      font-size: 13px;
+      min-height: 20px;
     }
 
     /* MESSAGES */
 
     .message {
       display: none;
-      opacity: 0;
-      transform: translateY(30px);
+      max-width: 700px;
+      margin: auto;
     }
 
-    .message.active {
+    .message.show {
       display: block;
-      animation: messageReveal 1.2s cubic-bezier(.2,.8,.2,1) forwards;
+      animation: messageAppear 1.1s ease both;
     }
 
-    @keyframes messageReveal {
+    @keyframes messageAppear {
+      from {
+        opacity: 0;
+        transform: translateY(35px) scale(0.98);
+      }
+
       to {
         opacity: 1;
-        transform: translateY(0);
+        transform: translateY(0) scale(1);
       }
     }
 
-    .message h2 {
-      font-family: "Cormorant Garamond", serif;
-      font-size: clamp(55px, 8vw, 80px);
-      font-weight: 500;
-      margin-bottom: 30px;
-    }
-
     .message p {
-      max-width: 650px;
-      margin: 0 auto 20px;
-      color: #c8c2be;
+      color: rgba(255, 255, 255, 0.82);
       font-family: "Cormorant Garamond", serif;
-      font-size: 22px;
+      font-size: clamp(22px, 3vw, 29px);
       line-height: 1.7;
+      white-space: pre-line;
     }
 
-    .signature {
-      margin-top: 40px;
-      color: var(--gold);
-      font-size: 12px;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-    }
-
-    /* TRANSITION */
-
-    .flash {
-      position: fixed;
-      inset: 0;
-      background: white;
-      opacity: 0;
-      pointer-events: none;
-      z-index: 100;
-    }
-
-    .flash.active {
-      animation: flashAnimation .9s ease;
-    }
-
-    @keyframes flashAnimation {
-      0% { opacity: 0; }
-      30% { opacity: .85; }
-      100% { opacity: 0; }
-    }
-
-    /* SON */
-
-    .sound {
-      position: fixed;
-      right: 25px;
-      bottom: 25px;
-      z-index: 20;
-      padding: 12px 17px;
-      border: 1px solid rgba(255,255,255,.12);
-      border-radius: 999px;
-      color: var(--muted);
-      background: rgba(0,0,0,.35);
-      backdrop-filter: blur(15px);
-      font-size: 10px;
-      letter-spacing: 2px;
-    }
-
-    .sound:hover {
-      color: var(--text);
-      border-color: rgba(216,178,124,.4);
+    .hidden {
+      display: none !important;
     }
 
     /* MOBILE */
 
-    @media (max-width: 650px) {
-      .page {
-        padding: 15px;
+    @media (max-width: 600px) {
+
+      body {
+        padding: 12px;
       }
 
-      .card {
-        min-height: 680px;
-        padding: 45px 22px;
-        border-radius: 25px;
+      main {
+        min-height: 650px;
+        border-radius: 24px;
+        padding: 30px 18px;
       }
 
       h1 {
+        font-size: 60px;
+      }
+
+      h2 {
         font-size: 58px;
       }
 
-      .subtitle {
-        font-size: 14px;
+      .intro-text {
+        font-size: 22px;
       }
 
-      .choice {
+      button {
         width: 100%;
       }
 
-      .message p {
-        font-size: 20px;
-      }
-
-      .key {
-        right: -35px;
+      .box {
+        margin: 45px auto;
       }
     }
   </style>
@@ -483,359 +362,296 @@
 
 <body>
 
-  <canvas id="particles"></canvas>
+  <main id="main">
 
-  <div class="noise"></div>
+    <!-- INTRO -->
 
-  <div class="flash" id="flash"></div>
+    <section id="intro">
 
-  <audio id="music" loop>
-    <source src="music.mp3" type="audio/mpeg">
-  </audio>
+      <div class="eyebrow">
+        Maya & Samy
+      </div>
 
-  <button class="sound" id="soundButton">
-    SON
-  </button>
+      <h1>
+        Une dernière<br>
+        question.
+      </h1>
 
-  <main class="page">
+      <p class="intro-text">
+        Ouvre la boîte. Puis choisis honnêtement
+        ce que tu veux pour nous.
+      </p>
 
-    <section class="card">
+      <!-- BOX -->
 
-      <div class="content">
+      <div
+        class="box"
+        id="box"
+        aria-label="Ouvrir la boîte"
+      >
 
-        <!-- PAGE D'ACCUEIL -->
+        <div class="box-body"></div>
 
-        <div id="opening">
+        <div class="box-lid"></div>
 
-          <div class="eyebrow">
-            Une dernière question
-          </div>
-
-          <h1>
-            Notre histoire
-          </h1>
-
-          <p class="subtitle">
-            Certaines histoires ne se terminent pas par un simple au revoir.
-            <br>
-            Ouvre la boîte et choisis ce qui vient ensuite.
-          </p>
-
-          <div class="box-area">
-
-            <div class="box" id="box">
-
-              <div class="box-lid"></div>
-
-              <div class="box-body"></div>
-
-              <div class="box-band"></div>
-
-              <div class="lock"></div>
-
-              <div class="key"></div>
-
-            </div>
-
-          </div>
-
-          <div class="open-text" id="openText">
-            Ouvre la boîte
-          </div>
-
-        </div>
-
-
-        <!-- CHOIX -->
-
-        <div class="choice-section" id="choiceSection">
-
-          <div class="eyebrow">
-            Maya & Samy
-          </div>
-
-          <div class="choice-title">
-            Choisis ce qui vient ensuite
-          </div>
-
-          <div class="choices">
-
-            <button class="choice love" id="loveButton">
-              Continuer comme amoureux
-            </button>
-
-            <button class="choice" id="friendButton">
-              Continuer comme amis
-            </button>
-
-          </div>
-
-        </div>
-
-
-        <!-- MESSAGE AMOUR -->
-
-        <div class="message" id="loveMessage">
-
-          <div class="eyebrow">
-            Si nous choisissons l'amour
-          </div>
-
-          <h2>
-            Toujours nous
-          </h2>
-
-          <p>
-            Peut-être que notre histoire n'a jamais eu besoin d'une fin.
-            Peut-être qu'elle avait simplement besoin d'un nouveau chapitre.
-          </p>
-
-          <p>
-            Tout ce que nous avons vécu, les moments heureux, les discussions,
-            les rires, les souvenirs et même les moments difficiles,
-            fait partie de ce que nous sommes aujourd'hui.
-          </p>
-
-          <p>
-            Je ne veux pas effacer notre histoire.
-            Je veux simplement croire qu'elle peut encore devenir quelque chose
-            de plus beau, avec plus de compréhension, plus de confiance et
-            plus de paix entre nous.
-          </p>
-
-          <p>
-            Si nous choisissons encore l'amour, alors je veux avancer avec toi,
-            pas en essayant de changer qui tu es, mais en apprenant à mieux
-            nous comprendre.
-          </p>
-
-          <div class="signature">
-            Un nouveau chapitre commence ici
-          </div>
-
-        </div>
-
-
-        <!-- MESSAGE AMITIÉ -->
-
-        <div class="message" id="friendMessage">
-
-          <div class="eyebrow">
-            Si nous choisissons l'amitié
-          </div>
-
-          <h2>
-            Merci
-          </h2>
-
-          <p>
-            Merci pour tout l'amour que nous avons vécu ensemble.
-            Merci pour les souvenirs, les conversations, les rires et
-            toutes ces petites choses qui ont rendu notre histoire unique.
-          </p>
-
-          <p>
-            Peut-être que notre chemin change aujourd'hui,
-            mais cela ne veut pas dire que tout ce que nous avons vécu
-            disparaît.
-          </p>
-
-          <p>
-            Je veux que tu saches une chose :
-            je ne deviendrai pas une personne différente avec toi.
-            Le respect, la gentillesse et la place que tu as eue dans ma vie
-            resteront toujours importants pour moi.
-          </p>
-
-          <p>
-            Nous ne serons peut-être plus un couple,
-            mais nous pouvons garder quelque chose de sincère,
-            de calme et de beau : notre amitié.
-          </p>
-
-          <div class="signature">
-            Merci pour notre histoire
-          </div>
-
-        </div>
+        <div class="box-lock"></div>
 
       </div>
+
+      <!-- CHOICES -->
+
+      <div
+        class="choices"
+        id="choices"
+      >
+
+        <button
+          class="primary"
+          id="loveButton"
+        >
+          نكمل كحبيبين
+        </button>
+
+        <button
+          id="friendsButton"
+        >
+          نكمل كأصدقاء
+        </button>
+
+      </div>
+
+      <div
+        class="status"
+        id="status"
+      ></div>
+
+    </section>
+
+
+    <!-- LOVE MESSAGE -->
+
+    <section
+      class="message"
+      id="loveMessage"
+    >
+
+      <div class="eyebrow">
+        Maya & Samy
+      </div>
+
+      <h2>
+        حب
+      </h2>
+
+      <p>
+إذا اخترنا أن نكمل كحبيبين، فأنا أريد أن يكون حبنا مبنيًا على الصراحة والاحترام والثقة والراحة.
+
+لا أريد الخوف أو الضغط.
+
+أريد أن نختار بعضنا لأننا ما زلنا نريد بعضنا بصدق.
+
+هذه الصفحة ليست وعدًا بأن كل شيء سيكون مثاليًا.
+
+هي فقط لحظة صادقة بين شخصين عاشا الكثير معًا.
+      </p>
+
+    </section>
+
+
+    <!-- FRIEND MESSAGE -->
+
+    <section
+      class="message"
+      id="friendsMessage"
+    >
+
+      <div class="eyebrow">
+        Maya & Samy
+      </div>
+
+      <h2>
+        شكرًا
+      </h2>
+
+      <p>
+شكرًا على كل لحظة جميلة عشناها معًا.
+
+إذا اخترنا أن نكمل كأصدقاء، فهذا لا يلغي قيمة ما عشناه.
+
+سأحتفظ بكل الأشياء الجميلة التي عشناها باحترام وامتنان.
+
+قد يتغير اسم العلاقة، لكنني لن أتغير في معاملتي لك.
+
+أتمنى لك الخير دائمًا، وأتمنى أن تبقى بيننا المودة والاحترام.
+      </p>
 
     </section>
 
   </main>
 
 
+  <!-- SUPABASE -->
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
   <script>
 
-    /* PARTICULES */
+    const SUPABASE_URL =
+      "https://qximvwamunvvjredtets.supabase.co";
 
-    const canvas = document.getElementById("particles");
-    const ctx = canvas.getContext("2d");
+    const SUPABASE_KEY =
+      "sb_publishable_qUPsfiHpq5-V0j-5QJY_sg_7VBe5T48";
 
-    let particles = [];
-
-    function resizeCanvas() {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    }
-
-    resizeCanvas();
-
-    window.addEventListener("resize", resizeCanvas);
-
-    for (let i = 0; i < 80; i++) {
-      particles.push({
-        x: Math.random() * window.innerWidth,
-        y: Math.random() * window.innerHeight,
-        size: Math.random() * 2 + .5,
-        speed: Math.random() * .4 + .1,
-        opacity: Math.random() * .5
-      });
-    }
-
-    function animateParticles() {
-
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-      particles.forEach(p => {
-
-        p.y -= p.speed;
-
-        if (p.y < -10) {
-          p.y = canvas.height + 10;
-          p.x = Math.random() * canvas.width;
-        }
-
-        ctx.beginPath();
-
-        ctx.arc(
-          p.x,
-          p.y,
-          p.size,
-          0,
-          Math.PI * 2
-        );
-
-        ctx.fillStyle = `rgba(216,178,124,${p.opacity})`;
-
-        ctx.fill();
-
-      });
-
-      requestAnimationFrame(animateParticles);
-    }
-
-    animateParticles();
+    const supabaseClient =
+      window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_KEY
+      );
 
 
-    /* OUVERTURE DE LA BOÎTE */
+    const main =
+      document.getElementById("main");
 
-    const box = document.getElementById("box");
-    const opening = document.getElementById("opening");
-    const choiceSection = document.getElementById("choiceSection");
-    const openText = document.getElementById("openText");
+    const box =
+      document.getElementById("box");
 
-    let opened = false;
+    const choices =
+      document.getElementById("choices");
+
+    const loveButton =
+      document.getElementById("loveButton");
+
+    const friendsButton =
+      document.getElementById("friendsButton");
+
+    const status =
+      document.getElementById("status");
+
+    const intro =
+      document.getElementById("intro");
+
+    const loveMessage =
+      document.getElementById("loveMessage");
+
+    const friendsMessage =
+      document.getElementById("friendsMessage");
+
+
+    /*
+      OPEN BOX
+    */
 
     box.addEventListener("click", () => {
 
-      if (opened) return;
+      if (main.classList.contains("opened")) {
+        return;
+      }
 
-      opened = true;
-
-      box.classList.add("opened");
-
-      openText.style.opacity = "0";
+      box.classList.add("open");
 
       setTimeout(() => {
 
-        opening.style.display = "none";
-
-        choiceSection.classList.add("visible");
-
-      }, 1100);
-
-    });
-
-
-    /* CHOIX */
-
-    const loveButton = document.getElementById("loveButton");
-    const friendButton = document.getElementById("friendButton");
-
-    const loveMessage = document.getElementById("loveMessage");
-    const friendMessage = document.getElementById("friendMessage");
-
-    const flash = document.getElementById("flash");
-
-
-    loveButton.addEventListener("click", () => {
-
-      loveButton.textContent = "Amour";
-
-      flash.classList.add("active");
-
-      setTimeout(() => {
-
-        choiceSection.style.display = "none";
-
-        loveMessage.classList.add("active");
-
-        flash.classList.remove("active");
+        main.classList.add("opened");
 
       }, 500);
 
     });
 
 
-    friendButton.addEventListener("click", () => {
+    /*
+      SAVE CHOICE
+    */
 
-      friendButton.textContent = "Amitié";
+    async function saveChoice(choice) {
 
-      flash.classList.add("active");
+      loveButton.disabled = true;
+      friendsButton.disabled = true;
 
-      setTimeout(() => {
-
-        choiceSection.style.display = "none";
-
-        friendMessage.classList.add("active");
-
-        flash.classList.remove("active");
-
-      }, 500);
-
-    });
+      status.textContent =
+        "Enregistrement...";
 
 
-    /* MUSIQUE */
+      const { error } =
+        await supabaseClient
+          .from("relationship_choices")
+          .insert({
+            survey_id: "maya-samy-choice",
+            choice: choice
+          });
 
-    const music = document.getElementById("music");
-    const soundButton = document.getElementById("soundButton");
 
-    let musicPlaying = false;
+      if (error) {
 
-    soundButton.addEventListener("click", () => {
+        console.error(error);
 
-      if (!musicPlaying) {
+        status.textContent =
+          "Cette réponse a déjà été enregistrée.";
 
-        music.play().catch(() => {});
+        return false;
+      }
 
-        musicPlaying = true;
 
-        soundButton.textContent = "SON ACTIVÉ";
+      return true;
+    }
+
+
+    /*
+      CHOOSE LOVE / FRIENDS
+    */
+
+    async function choose(choice) {
+
+      const saved =
+        await saveChoice(choice);
+
+
+      if (!saved) {
+        return;
+      }
+
+
+      choices.classList.add("hidden");
+
+      intro
+        .querySelector(".eyebrow")
+        .classList.add("hidden");
+
+      intro
+        .querySelector("h1")
+        .classList.add("hidden");
+
+      intro
+        .querySelector(".intro-text")
+        .classList.add("hidden");
+
+      box.classList.add("hidden");
+
+      status.classList.add("hidden");
+
+
+      if (choice === "love") {
+
+        loveMessage.classList.add("show");
 
       } else {
 
-        music.pause();
-
-        musicPlaying = false;
-
-        soundButton.textContent = "SON";
+        friendsMessage.classList.add("show");
 
       }
 
-    });
+    }
+
+
+    loveButton.addEventListener(
+      "click",
+      () => choose("love")
+    );
+
+
+    friendsButton.addEventListener(
+      "click",
+      () => choose("friends")
+    );
 
   </script>
 
