@@ -1,23 +1,23 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pour toi</title>
+<title>Our Story</title>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
 
 * {
     box-sizing: border-box;
 }
 
 :root {
-    --bg: #070609;
-    --rose: #e6a5bd;
-    --rose-light: #f5d8e3;
-    --text: #f4edf0;
-    --muted: #aa9ca3;
+    --background: #07050a;
+    --pink: #ff5f8f;
+    --light-pink: #ff9dbb;
+    --text: #eadbe2;
+    --muted: #9b8c95;
 }
 
 html,
@@ -25,1348 +25,1199 @@ body {
     margin: 0;
     width: 100%;
     min-height: 100%;
+    font-family: "Inter", sans-serif;
+    background: var(--background);
+    color: white;
 }
 
 body {
-    min-height: 100vh;
-    background: var(--bg);
-    color: var(--text);
-    font-family: "Inter", sans-serif;
-    overflow-x: hidden;
+    overflow: hidden;
 }
 
-/* =====================================================
-   BACKGROUND
-===================================================== */
+/* BACKGROUND */
 
-.background {
+canvas {
     position: fixed;
     inset: 0;
-    overflow: hidden;
-    pointer-events: none;
     z-index: 0;
 }
 
 .noise {
-    position: absolute;
-    inset: -50%;
-    opacity: .035;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.7'/%3E%3C/svg%3E");
-    transform: rotate(10deg);
-}
-
-.orb {
-    position: absolute;
-    border-radius: 50%;
-    filter: blur(70px);
-    opacity: .35;
-}
-
-.orb.one {
-    width: 380px;
-    height: 380px;
-    background: #7c294d;
-    top: -130px;
-    left: -120px;
-    animation: driftOne 12s ease-in-out infinite alternate;
-}
-
-.orb.two {
-    width: 320px;
-    height: 320px;
-    background: #432a63;
-    right: -120px;
-    bottom: -80px;
-    animation: driftTwo 15s ease-in-out infinite alternate;
-}
-
-.orb.three {
-    width: 220px;
-    height: 220px;
-    background: #a83d68;
-    left: 45%;
-    top: 35%;
-    opacity: .12;
-    filter: blur(90px);
-    animation: driftThree 10s ease-in-out infinite alternate;
-}
-
-.blob {
-    position: absolute;
-    width: 500px;
-    height: 500px;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    border: 1px solid rgba(255,255,255,.025);
-    border-radius: 48% 52% 63% 37% / 41% 44% 56% 59%;
-    animation: morph 18s ease-in-out infinite;
-}
-
-.blob.two {
-    width: 700px;
-    height: 700px;
-    animation-duration: 25s;
-    animation-direction: reverse;
-    opacity: .4;
-}
-
-@keyframes driftOne {
-    to {
-        transform: translate(100px, 80px) scale(1.2);
-    }
-}
-
-@keyframes driftTwo {
-    to {
-        transform: translate(-80px, -100px) scale(1.15);
-    }
-}
-
-@keyframes driftThree {
-    to {
-        transform: translate(80px, -60px) scale(1.4);
-    }
-}
-
-@keyframes morph {
-    0% {
-        border-radius: 48% 52% 63% 37% / 41% 44% 56% 59%;
-        transform: translate(-50%, -50%) rotate(0deg);
-    }
-
-    50% {
-        border-radius: 62% 38% 42% 58% / 52% 62% 38% 48%;
-        transform: translate(-50%, -50%) rotate(120deg);
-    }
-
-    100% {
-        border-radius: 38% 62% 57% 43% / 63% 39% 61% 37%;
-        transform: translate(-50%, -50%) rotate(240deg);
-    }
-}
-
-/* =====================================================
-   MAIN
-===================================================== */
-
-.page {
-    position: relative;
-    z-index: 2;
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 40px 20px;
-}
-
-.container {
-    width: 100%;
-    max-width: 720px;
-    text-align: center;
-}
-
-/* =====================================================
-   INTRO
-===================================================== */
-
-.intro {
-    animation: introIn 1.5s cubic-bezier(.2,.8,.2,1);
-}
-
-.eyebrow {
-    font-size: 10px;
-    letter-spacing: 5px;
-    text-transform: uppercase;
-    color: var(--rose);
-    margin-bottom: 22px;
-    opacity: .8;
-}
-
-h1 {
-    margin: 0;
-    font-family: "Cormorant Garamond", serif;
-    font-size: clamp(46px, 10vw, 76px);
-    font-weight: 400;
-    letter-spacing: -2px;
-    line-height: .95;
-}
-
-.subtitle {
-    max-width: 430px;
-    margin: 24px auto 0;
-    color: var(--muted);
-    font-size: 13px;
-    line-height: 1.8;
-    font-weight: 300;
-}
-
-@keyframes introIn {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* =====================================================
-   CHEST AREA
-===================================================== */
-
-.chest-area {
-    position: relative;
-    width: 100%;
-    height: 330px;
-    margin-top: 20px;
-    perspective: 1000px;
-}
-
-/* halo derrière */
-
-.chest-halo {
-    position: absolute;
-    width: 240px;
-    height: 150px;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -40%);
-    background: radial-gradient(
-        ellipse,
-        rgba(218,126,160,.23),
-        transparent 70%
-    );
-    filter: blur(20px);
-    animation: haloPulse 4s ease-in-out infinite;
-}
-
-@keyframes haloPulse {
-    0%,100% {
-        transform: translate(-50%, -40%) scale(.9);
-        opacity: .5;
-    }
-
-    50% {
-        transform: translate(-50%, -40%) scale(1.15);
-        opacity: .9;
-    }
-}
-
-/* =====================================================
-   CHEST
-===================================================== */
-
-.chest {
-    position: absolute;
-    width: 230px;
-    height: 145px;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -35%);
-    transform-style: preserve-3d;
-    transition: transform 1s cubic-bezier(.2,.8,.2,1);
-}
-
-.chest-body {
-    position: absolute;
-    width: 230px;
-    height: 125px;
-    bottom: 0;
-    left: 0;
-
-    background:
-        linear-gradient(
-            145deg,
-            #171319,
-            #0d0a0e
-        );
-
-    border: 1px solid rgba(255,255,255,.1);
-    border-radius: 7px;
-
-    box-shadow:
-        0 35px 60px rgba(0,0,0,.65),
-        inset 0 1px rgba(255,255,255,.06);
-}
-
-.chest-body::after {
-    content: "";
-    position: absolute;
-    inset: 1px;
-    border-radius: 6px;
-    border-top: 1px solid rgba(231,165,190,.15);
-}
-
-/* couvercle */
-
-.chest-lid {
-    position: absolute;
-    width: 238px;
-    height: 52px;
-    left: -4px;
-    top: 0;
-
-    background:
-        linear-gradient(
-            145deg,
-            #211820,
-            #0c090d
-        );
-
-    border: 1px solid rgba(255,255,255,.12);
-    border-radius: 7px;
-
-    transform-origin: left bottom;
-
-    transition:
-        transform 1.5s cubic-bezier(.16,.84,.25,1),
-        box-shadow 1s;
-
-    z-index: 4;
-}
-
-.chest-lid::after {
-    content: "";
-    position: absolute;
-    inset: 8px;
-    border: 1px solid rgba(231,165,190,.07);
-    border-radius: 4px;
-}
-
-/* bande centrale */
-
-.chest-band {
-    position: absolute;
-    width: 34px;
-    height: 125px;
-    left: 98px;
-    bottom: 0;
-
-    background:
-        linear-gradient(
-            90deg,
-            #4c2636,
-            #b36b88,
-            #4c2636
-        );
-
-    opacity: .75;
-    z-index: 3;
-}
-
-/* serrure */
-
-.lock {
-    position: absolute;
-    width: 24px;
-    height: 30px;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -20%);
-    border: 2px solid #dba1b8;
-    border-radius: 5px;
-    z-index: 8;
-
-    box-shadow:
-        0 0 18px rgba(218,126,160,.2);
-
-    transition: .7s;
-}
-
-.lock::before {
-    content: "";
-    position: absolute;
-    width: 12px;
-    height: 12px;
-    left: 4px;
-    top: -12px;
-    border: 2px solid #dba1b8;
-    border-bottom: none;
-    border-radius: 8px 8px 0 0;
-}
-
-.lock::after {
-    content: "";
-    position: absolute;
-    width: 4px;
-    height: 8px;
-    background: #dba1b8;
-    left: 8px;
-    top: 9px;
-    border-radius: 2px;
-}
-
-.chest.open .chest-lid {
-    transform: rotate(-32deg) translate(-28px,-55px);
-    box-shadow:
-        0 0 40px rgba(218,126,160,.18);
-}
-
-.chest.open .lock {
-    opacity: 0;
-    transform: translate(-50%, -20%) scale(1.5);
-}
-
-/* =====================================================
-   KEY
-===================================================== */
-
-.key {
-    position: absolute;
-    width: 115px;
-    height: 115px;
-    right: 5%;
-    top: 18%;
-
-    cursor: pointer;
-    z-index: 20;
-
-    transition:
-        right 1.4s cubic-bezier(.16,.84,.25,1),
-        top 1.4s cubic-bezier(.16,.84,.25,1),
-        transform 1.4s cubic-bezier(.16,.84,.25,1),
-        opacity .6s;
-
-    animation: keyFloat 4s ease-in-out infinite;
-}
-
-.key-ring {
-    position: absolute;
-    width: 42px;
-    height: 42px;
-    border: 5px solid #d7a7b9;
-    border-radius: 50%;
-    left: 8px;
-    top: 37px;
-
-    box-shadow:
-        0 0 20px rgba(218,126,160,.2),
-        inset 0 0 8px rgba(255,255,255,.15);
-}
-
-.key-ring::after {
-    content: "";
-    position: absolute;
-    width: 20px;
-    height: 20px;
-    border: 2px solid #8d6575;
-    border-radius: 50%;
-    left: 6px;
-    top: 6px;
-}
-
-.key-shaft {
-    position: absolute;
-    width: 58px;
-    height: 8px;
-    background:
-        linear-gradient(
-            180deg,
-            #f1d4df,
-            #a46f83
-        );
-    left: 43px;
-    top: 54px;
-    border-radius: 4px;
-
-    box-shadow:
-        0 3px 8px rgba(0,0,0,.5);
-}
-
-.key-tooth-one {
-    position: absolute;
-    width: 8px;
-    height: 19px;
-    background: #bc8b9d;
-    left: 72px;
-    top: 58px;
-}
-
-.key-tooth-two {
-    position: absolute;
-    width: 8px;
-    height: 13px;
-    background: #bc8b9d;
-    left: 88px;
-    top: 58px;
-}
-
-@keyframes keyFloat {
-    0%,100% {
-        transform: translateY(0) rotate(5deg);
-    }
-
-    50% {
-        transform: translateY(-13px) rotate(-5deg);
-    }
-}
-
-/* clé vers serrure */
-
-.key.insert {
-    animation: none;
-    right: calc(50% - 30px);
-    top: 47%;
-    transform: rotate(0deg) scale(.7);
-}
-
-/* rotation */
-
-.key.turn {
-    animation: keyTurn 1.1s ease forwards;
-}
-
-@keyframes keyTurn {
-    0% {
-        transform: rotate(0deg) scale(.7);
-    }
-
-    35% {
-        transform: rotate(90deg) scale(.7);
-    }
-
-    65% {
-        transform: rotate(90deg) scale(.7);
-    }
-
-    100% {
-        transform: rotate(180deg) scale(.7);
-        opacity: 0;
-    }
-}
-
-/* cassure */
-
-.key.break {
-    animation: keyBreak .8s ease forwards;
-}
-
-@keyframes keyBreak {
-    0% {
-        transform: scale(.7) rotate(0);
-    }
-
-    20% {
-        transform: scale(.85) rotate(-15deg);
-    }
-
-    35% {
-        transform: scale(.85) rotate(15deg);
-    }
-
-    100% {
-        transform:
-            translateY(100px)
-            rotate(70deg)
-            scale(.1);
-        opacity: 0;
-        filter: blur(2px);
-    }
-}
-
-/* =====================================================
-   PASSWORD
-===================================================== */
-
-.password {
-    width: 100%;
-    max-width: 390px;
-    margin: -5px auto 0;
-    opacity: 0;
-    transform: translateY(15px);
-    pointer-events: none;
-    transition: .8s;
-}
-
-.password.visible {
-    opacity: 1;
-    transform: translateY(0);
-    pointer-events: auto;
-}
-
-.password-label {
-    color: var(--muted);
-    font-size: 11px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    margin-bottom: 14px;
-}
-
-.input-wrapper {
-    display: flex;
-    gap: 8px;
-}
-
-input {
-    flex: 1;
-    min-width: 0;
-
-    height: 52px;
-    padding: 0 18px;
-
-    background: rgba(255,255,255,.055);
-    border: 1px solid rgba(255,255,255,.1);
-    border-radius: 10px;
-
-    color: white;
-    outline: none;
-
-    text-align: center;
-    font-family: "Inter", sans-serif;
-    font-size: 15px;
-
-    backdrop-filter: blur(15px);
-
-    transition: .3s;
-}
-
-input:focus {
-    border-color: rgba(231,165,190,.55);
-    box-shadow:
-        0 0 25px rgba(218,126,160,.08);
-}
-
-button {
-    height: 52px;
-    padding: 0 22px;
-
-    border: 1px solid rgba(255,255,255,.12);
-    border-radius: 10px;
-
-    background:
-        linear-gradient(
-            135deg,
-            rgba(221,145,173,.9),
-            rgba(137,65,92,.9)
-        );
-
-    color: white;
-
-    font-family: "Inter", sans-serif;
-    font-size: 12px;
-    letter-spacing: .5px;
-
-    cursor: pointer;
-
-    transition: .3s;
-}
-
-button:hover {
-    transform: translateY(-2px);
-    box-shadow:
-        0 10px 30px rgba(190,90,125,.2);
-}
-
-.error {
-    height: 25px;
-    margin-top: 10px;
-
-    color: #c98a9e;
-
-    font-size: 12px;
-
-    opacity: 0;
-    transition: .3s;
-}
-
-.error.show {
-    opacity: 1;
-    animation: shake .35s ease;
-}
-
-@keyframes shake {
-    25% {
-        transform: translateX(-7px);
-    }
-
-    50% {
-        transform: translateX(7px);
-    }
-
-    75% {
-        transform: translateX(-4px);
-    }
-}
-
-/* =====================================================
-   PARTICLES
-===================================================== */
-
-.particle {
-    position: fixed;
-    width: 2px;
-    height: 2px;
-    background: rgba(255,220,230,.7);
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 1;
-
-    animation: particleMove linear forwards;
-}
-
-@keyframes particleMove {
-    from {
-        transform: translateY(0);
-        opacity: 0;
-    }
-
-    20% {
-        opacity: .8;
-    }
-
-    to {
-        transform: translateY(-100vh);
-        opacity: 0;
-    }
-}
-
-/* =====================================================
-   FLASH
-===================================================== */
-
-.flash {
     position: fixed;
     inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    opacity: 0.035;
+
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.glow {
+    position: fixed;
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+
     background:
         radial-gradient(
-            circle at center,
-            rgba(255,230,240,.9),
-            rgba(215,120,155,.25) 30%,
-            transparent 65%
+            circle,
+            rgba(255, 72, 128, 0.13),
+            transparent 68%
         );
 
-    opacity: 0;
+    filter: blur(15px);
     pointer-events: none;
-    z-index: 100;
 
-    animation: flash .9s ease;
+    animation: floatingGlow 8s ease-in-out infinite;
 }
 
-@keyframes flash {
-    0% {
-        opacity: 0;
-    }
-
-    25% {
-        opacity: .8;
-    }
-
-    100% {
-        opacity: 0;
+@keyframes floatingGlow {
+    50% {
+        transform: translate(30px, -25px) scale(1.08);
     }
 }
 
-/* =====================================================
-   MESSAGE
-===================================================== */
+/* MAIN */
 
-.message-page {
-    display: none;
-    min-height: 100vh;
+.app {
     position: relative;
-    z-index: 5;
-    padding: 70px 20px;
+    z-index: 2;
+
+    min-height: 100vh;
+
+    display: grid;
+    place-items: center;
+
+    padding: 25px;
 }
 
-.message-card {
-    max-width: 680px;
-    margin: auto;
+/* CARD */
 
-    padding: clamp(30px, 7vw, 65px);
+.card {
+    width: min(820px, 100%);
+    min-height: 590px;
+
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+
+    border-radius: 36px;
+
+    border: 1px solid rgba(255, 255, 255, 0.11);
 
     background:
         linear-gradient(
             145deg,
-            rgba(255,255,255,.065),
-            rgba(255,255,255,.025)
+            rgba(255, 255, 255, 0.065),
+            rgba(255, 255, 255, 0.018)
         );
-
-    border: 1px solid rgba(255,255,255,.09);
-    border-radius: 24px;
 
     backdrop-filter: blur(25px);
 
     box-shadow:
-        0 40px 100px rgba(0,0,0,.55);
-
-    animation: messageReveal 1.8s cubic-bezier(.16,.84,.25,1);
+        0 40px 120px rgba(0, 0, 0, 0.65),
+        inset 0 1px rgba(255, 255, 255, 0.08);
 }
 
-.message-top {
+.card::before {
+    content: "";
+
+    position: absolute;
+    inset: -2px;
+
+    border-radius: 38px;
+
+    background:
+        conic-gradient(
+            from 180deg,
+            transparent,
+            rgba(255, 95, 143, 0.25),
+            transparent 35%,
+            rgba(255, 255, 255, 0.08),
+            transparent 70%
+        );
+
+    mask:
+        linear-gradient(#000 0 0) content-box,
+        linear-gradient(#000 0 0);
+
+    mask-composite: exclude;
+
+    padding: 1px;
+
+    pointer-events: none;
+}
+
+.content {
+    width: min(680px, 90%);
+    position: relative;
+    z-index: 3;
+
     text-align: center;
-    margin-bottom: 45px;
 }
 
-.message-small {
-    color: var(--rose);
-    font-size: 9px;
+/* TITLES */
+
+.eyebrow {
+    margin-bottom: 20px;
+
+    color: #a998a2;
+
+    font-size: 10px;
     letter-spacing: 5px;
     text-transform: uppercase;
-    margin-bottom: 18px;
 }
 
-.message-title {
+h1,
+h2 {
     font-family: "Cormorant Garamond", serif;
-    font-size: clamp(42px, 9vw, 64px);
-    font-weight: 400;
-    line-height: 1;
+    font-weight: 600;
+}
+
+h1 {
     margin: 0;
+
+    font-size: clamp(54px, 10vw, 94px);
+    line-height: 0.85;
+
+    background:
+        linear-gradient(
+            120deg,
+            #ffffff,
+            #ffd7e3 45%,
+            #ff719b
+        );
+
+    -webkit-background-clip: text;
+    color: transparent;
 }
 
-.message-card p {
-    color: #d8cfd3;
+.subtitle {
+    max-width: 500px;
+
+    margin: 25px auto 35px;
+
+    color: #b9aab2;
+
     font-size: 15px;
-    line-height: 2;
     font-weight: 300;
-    margin: 0 0 25px;
+
+    line-height: 1.9;
 }
 
-.final {
-    margin-top: 45px !important;
-    padding-top: 30px;
-    border-top: 1px solid rgba(255,255,255,.08);
+/* BOX */
 
-    color: var(--rose-light) !important;
+.treasure {
+    width: 210px;
+    height: 160px;
 
-    font-family: "Cormorant Garamond", serif;
-    font-size: 28px !important;
-    line-height: 1.3 !important;
-    text-align: center;
+    position: relative;
+
+    margin: 0 auto 28px;
+
+    cursor: pointer;
+
+    animation: levitate 4s ease-in-out infinite;
+
+    filter:
+        drop-shadow(
+            0 30px 30px rgba(0, 0, 0, 0.55)
+        );
 }
 
-@keyframes messageReveal {
+@keyframes levitate {
+    50% {
+        transform: translateY(-12px);
+    }
+}
+
+.box-body {
+    position: absolute;
+
+    left: 20px;
+    bottom: 0;
+
+    width: 170px;
+    height: 100px;
+
+    border-radius: 8px 8px 20px 20px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #9c3157,
+            #421326
+        );
+
+    border: 1px solid rgba(255, 255, 255, 0.15);
+
+    box-shadow:
+        inset 0 12px 25px rgba(255, 255, 255, 0.06);
+}
+
+.lid {
+    position: absolute;
+
+    left: 12px;
+    top: 38px;
+
+    width: 186px;
+    height: 38px;
+
+    border-radius: 9px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #c84a72,
+            #641934
+        );
+
+    border: 1px solid rgba(255, 255, 255, 0.18);
+
+    z-index: 4;
+
+    transform-origin: left bottom;
+
+    transition:
+        1s cubic-bezier(.2, .9, .2, 1);
+}
+
+.band {
+    position: absolute;
+
+    left: 92px;
+    top: 38px;
+
+    width: 25px;
+    height: 100px;
+
+    background: rgba(255, 203, 218, 0.22);
+
+    z-index: 3;
+}
+
+/* LOCK */
+
+.lock {
+    position: absolute;
+
+    z-index: 5;
+
+    left: 91px;
+    top: 64px;
+
+    width: 27px;
+    height: 33px;
+
+    border: 2px solid #ffd7e3;
+
+    border-radius: 6px;
+
+    background: #721e3e;
+
+    box-shadow:
+        0 0 20px rgba(255, 126, 166, 0.45);
+
+    transition: 0.7s;
+}
+
+.lock::before {
+    content: "";
+
+    position: absolute;
+
+    left: 5px;
+    top: -17px;
+
+    width: 13px;
+    height: 18px;
+
+    border: 2px solid #ffd7e3;
+
+    border-bottom: 0;
+
+    border-radius: 12px 12px 0 0;
+}
+
+/* KEY */
+
+.key {
+    position: absolute;
+
+    z-index: 6;
+
+    left: 91px;
+    top: 65px;
+
+    width: 25px;
+    height: 25px;
+
+    border: 3px solid #ffe4ec;
+
+    border-radius: 50%;
+
+    opacity: 0;
+
+    transform: scale(0.3);
+
+    transition: 0.8s;
+}
+
+.key::after {
+    content: "";
+
+    position: absolute;
+
+    width: 46px;
+    height: 4px;
+
+    background: #ffe4ec;
+
+    left: 18px;
+    top: 8px;
+
+    border-radius: 4px;
+}
+
+/* OPEN BOX */
+
+.open .lid {
+    transform:
+        translateY(-78px)
+        rotate(-8deg);
+}
+
+.open .lock {
+    opacity: 0;
+
+    transform:
+        translateY(20px);
+}
+
+.open .key {
+    opacity: 1;
+
+    transform:
+        scale(1)
+        translateY(-62px)
+        rotate(-12deg);
+}
+
+.open .box-body {
+    box-shadow:
+        0 -20px 55px
+        rgba(255, 74, 130, 0.25);
+}
+
+.open-label {
+    color: #8f8089;
+
+    font-size: 11px;
+
+    letter-spacing: 3px;
+
+    text-transform: uppercase;
+
+    transition: 0.4s;
+}
+
+/* CHOICES */
+
+.choices {
+    display: none;
+
+    justify-content: center;
+
+    gap: 14px;
+
+    flex-wrap: wrap;
+
+    animation:
+        choicesAppear 0.8s ease;
+}
+
+.choices.show {
+    display: flex;
+}
+
+@keyframes choicesAppear {
     from {
         opacity: 0;
-        transform:
-            translateY(50px)
-            scale(.96);
-        filter: blur(10px);
+        transform: translateY(25px);
     }
 
     to {
         opacity: 1;
-        transform:
-            translateY(0)
-            scale(1);
-        filter: blur(0);
+        transform: none;
     }
 }
 
-/* =====================================================
-   RESPONSIVE
-===================================================== */
+button {
+    padding: 16px 29px;
 
-@media (max-width: 600px) {
+    border-radius: 999px;
 
-    .page {
-        padding: 35px 18px;
-        align-items: flex-start;
-        padding-top: 70px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+
+    color: white;
+
+    font-family: inherit;
+
+    font-size: 15px;
+
+    cursor: pointer;
+
+    transition: 0.35s;
+}
+
+button:hover {
+    transform:
+        translateY(-5px)
+        scale(1.02);
+}
+
+.love {
+    background:
+        linear-gradient(
+            135deg,
+            #e84e7d,
+            #8b1f49
+        );
+
+    box-shadow:
+        0 15px 40px
+        rgba(225, 55, 108, 0.25);
+}
+
+.friend {
+    background:
+        rgba(255, 255, 255, 0.06);
+
+    backdrop-filter: blur(10px);
+}
+
+/* MESSAGES */
+
+.message {
+    display: none;
+
+    max-height: 75vh;
+
+    overflow-y: auto;
+
+    padding: 15px 8px;
+
+    animation:
+        revealMessage
+        1.2s
+        cubic-bezier(.2, .8, .2, 1);
+}
+
+.message.show {
+    display: block;
+}
+
+@keyframes revealMessage {
+    from {
+        opacity: 0;
+
+        transform:
+            scale(0.94)
+            translateY(35px);
+
+        filter: blur(8px);
     }
 
-    .chest-area {
-        height: 320px;
+    to {
+        opacity: 1;
+
+        transform: none;
+
+        filter: none;
+    }
+}
+
+.message h2 {
+    margin: 0 0 20px;
+
+    font-size:
+        clamp(
+            45px,
+            8vw,
+            72px
+        );
+}
+
+.message p {
+    max-width: 600px;
+
+    margin: 0 auto 16px;
+
+    color: #d8cbd1;
+
+    font-size: 16px;
+
+    font-weight: 300;
+
+    line-height: 2;
+}
+
+.love-message h2 {
+    color: #ff88aa;
+}
+
+.friend-message h2 {
+    color: #e5d8de;
+}
+
+.signature {
+    margin-top: 28px;
+
+    color: #9b8b94;
+
+    font-size: 11px;
+
+    letter-spacing: 3px;
+
+    text-transform: uppercase;
+}
+
+/* SOUND BUTTON */
+
+#musicButton {
+    position: fixed;
+
+    z-index: 10;
+
+    top: 20px;
+    right: 20px;
+
+    width: 70px;
+    height: 45px;
+
+    padding: 0;
+
+    background:
+        rgba(255, 255, 255, 0.06);
+
+    border:
+        1px solid rgba(255, 255, 255, 0.13);
+
+    color: #d8cbd1;
+
+    font-size: 9px;
+
+    letter-spacing: 1px;
+}
+
+/* FLASH */
+
+.flash {
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 20;
+
+    pointer-events: none;
+
+    background: white;
+
+    opacity: 0;
+}
+
+.flash.active {
+    animation: flashAnimation 0.7s ease;
+}
+
+@keyframes flashAnimation {
+    0% {
+        opacity: 0;
     }
 
-    .chest {
-        transform: translate(-50%, -30%) scale(.85);
+    15% {
+        opacity: 0.12;
     }
 
-    .key {
-        right: -2px;
-        top: 20%;
-        transform: scale(.8);
+    100% {
+        opacity: 0;
+    }
+}
+
+/* MOBILE */
+
+@media(max-width:600px) {
+
+    .card {
+        min-height: 650px;
+
+        border-radius: 28px;
     }
 
-    .key.insert {
-        right: calc(50% - 27px);
-        top: 45%;
-        transform: scale(.6);
+    .content {
+        width: 88%;
     }
 
-    .input-wrapper {
+    .subtitle {
+        font-size: 14px;
+    }
+
+    .message p {
+        font-size: 14px;
+
+        line-height: 1.9;
+    }
+
+    .choices {
         flex-direction: column;
     }
 
-    button {
+    .choices button {
         width: 100%;
     }
-
-    .message-page {
-        padding: 30px 14px;
-    }
-
-    .message-card {
-        padding: 32px 22px;
-    }
-
-    .message-card p {
-        font-size: 14px;
-        line-height: 1.9;
-    }
 }
-
 </style>
 </head>
 
 <body>
 
-<!-- =====================================================
-     BACKGROUND
-===================================================== -->
+<canvas id="particles"></canvas>
 
-<div class="background">
+<div class="noise"></div>
 
-    <div class="orb one"></div>
-    <div class="orb two"></div>
-    <div class="orb three"></div>
+<div class="glow"></div>
 
-    <div class="blob"></div>
-    <div class="blob two"></div>
+<div class="flash" id="flash"></div>
 
-    <div class="noise"></div>
+<button id="musicButton">
+    SOUND
+</button>
+
+<audio id="music" loop>
+    <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+
+<main class="app">
+
+<section class="card">
+
+<div class="content">
+
+<!-- OPENING -->
+
+<div id="opening">
+
+    <div class="eyebrow">
+        One last question
+    </div>
+
+    <h1>
+        Our Story
+    </h1>
+
+    <div class="subtitle">
+        Some stories don't end with a simple goodbye.
+        <br>
+        Open the box and choose what comes next.
+    </div>
+
+
+    <div
+        class="treasure"
+        id="box"
+    >
+
+        <div class="key"></div>
+
+        <div class="box-body"></div>
+
+        <div class="band"></div>
+
+        <div class="lid"></div>
+
+        <div class="lock"></div>
+
+    </div>
+
+
+    <div
+        class="open-label"
+        id="openLabel"
+    >
+        Open the box
+    </div>
 
 </div>
 
 
-<!-- =====================================================
-     AUDIO
-===================================================== -->
+<!-- CHOICES -->
 
-<audio
-    id="music"
-    src="babilone-ya-zina.mp3"
-    preload="auto">
-</audio>
+<div
+    class="choices"
+    id="choices"
+>
 
+    <button
+        class="love"
+        id="loveButton"
+    >
+        Continue as lovers
+    </button>
 
-<!-- =====================================================
-     INTRO
-===================================================== -->
+    <button
+        class="friend"
+        id="friendButton"
+    >
+        Continue as friends
+    </button>
 
-<main class="page" id="mainPage">
-
-    <div class="container intro">
-
-        <div class="eyebrow">
-            Une surprise
-        </div>
-
-        <h1>
-            Pour toi.
-        </h1>
-
-        <p class="subtitle">
-            J'ai gardé quelque chose pour toi.
-            Mais certaines choses ne s'ouvrent
-            qu'avec la bonne clé.
-        </p>
+</div>
 
 
-        <!-- COFFRE -->
+<!-- LOVE MESSAGE -->
 
-        <div class="chest-area" id="chestArea">
+<article
+    class="message love-message"
+    id="loveMessage"
+>
 
-            <div class="chest-halo"></div>
-
-            <div class="chest" id="chest">
-
-                <div class="chest-body"></div>
-
-                <div class="chest-band"></div>
-
-                <div class="chest-lid"></div>
-
-                <div class="lock"></div>
-
-            </div>
-
-
-            <!-- CLÉ -->
-
-            <div
-                class="key"
-                id="key"
-                onclick="showPassword()">
-
-                <div class="key-ring"></div>
-                <div class="key-shaft"></div>
-                <div class="key-tooth-one"></div>
-                <div class="key-tooth-two"></div>
-
-            </div>
-
-        </div>
-
-
-        <!-- PASSWORD -->
-
-        <div
-            class="password"
-            id="passwordBox">
-
-            <div class="password-label">
-                Le code est nécessaire
-            </div>
-
-            <div class="input-wrapper">
-
-                <input
-                    type="password"
-                    id="password"
-                    placeholder="Entrer le code"
-                    inputmode="numeric"
-                    autocomplete="off">
-
-                <button onclick="openGift()">
-                    Ouvrir
-                </button>
-
-            </div>
-
-            <div
-                class="error"
-                id="error">
-
-                Ce n'est pas le bon code.
-
-            </div>
-
-        </div>
-
+    <div class="eyebrow">
+        If we choose love
     </div>
+
+    <h2>
+        Still Us
+    </h2>
+
+    <p>
+        If we choose each other again, I don't want us
+        to pretend that everything was perfect.
+        I want us to remember everything we lived,
+        everything we learned, and everything that
+        brought us here.
+    </p>
+
+    <p>
+        I want a love that feels safe, honest and real.
+        Not a love built on fear, pressure or the need
+        to change who we are, but one where we choose
+        each other even when things are difficult.
+    </p>
+
+    <p>
+        We can start again without erasing the past.
+        We can take everything that hurt us and turn it
+        into something that makes us stronger.
+        If you choose this path with me, then let this
+        be our new beginning.
+    </p>
+
+    <p>
+        Not a perfect story.
+        Just our story.
+        And this time, we write it together,
+        with honesty, patience and love.
+    </p>
+
+    <div class="signature">
+        A new chapter begins here
+    </div>
+
+</article>
+
+
+<!-- FRIENDSHIP MESSAGE -->
+
+<article
+    class="message friend-message"
+    id="friendMessage"
+>
+
+    <div class="eyebrow">
+        If we choose friendship
+    </div>
+
+    <h2>
+        Thank You
+    </h2>
+
+    <p>
+        Thank you for every moment we shared,
+        every laugh, every conversation,
+        every memory and every piece of love
+        that became part of our story.
+    </p>
+
+    <p>
+        Maybe our path will look different from now on,
+        but that does not make what we lived together
+        meaningless. It will always have had its place
+        in my life.
+    </p>
+
+    <p>
+        If we become friends, I don't want respect
+        to disappear. I don't want kindness to disappear.
+        I won't suddenly become a different person toward you.
+        What we shared deserves to be remembered with
+        gratitude, not anger.
+    </p>
+
+    <p>
+        Sometimes people can remain important to each other
+        even when the shape of their relationship changes.
+        I sincerely hope life gives you peace, happiness
+        and everything you deserve.
+    </p>
+
+    <div class="signature">
+        Thank you for our story
+    </div>
+
+</article>
+
+</div>
+
+</section>
 
 </main>
 
 
-<!-- =====================================================
-     MESSAGE
-===================================================== -->
-
-<section
-    class="message-page"
-    id="messagePage">
-
-    <div class="message-card">
-
-        <div class="message-top">
-
-            <div class="message-small">
-                Pour toi
-            </div>
-
-            <h2 class="message-title">
-                Joyeux anniversaire
-            </h2>
-
-        </div>
-
-
-        <p>
-            Aujourd’hui est une journée très spéciale,
-            parce que c’est le jour où une personne très
-            importante pour moi est née.
-            Je veux profiter de cette occasion pour te dire
-            à quel point tu comptes pour moi.
-        </p>
-
-        <p>
-            Je te souhaite beaucoup de bonheur, de santé,
-            de réussite et surtout beaucoup de beaux moments
-            dans ta vie.
-            J’espère que cette nouvelle année t’apportera
-            tout ce que tu souhaites et que tes rêves vont
-            petit à petit devenir réalité.
-        </p>
-
-        <p>
-            Depuis que tu es dans ma vie, beaucoup de choses
-            sont devenues plus belles.
-            J’aime parler avec toi, rire avec toi,
-            passer du temps avec toi et partager mes pensées
-            avec toi.
-            Tu as une place très spéciale dans mon cœur
-            et je ne veux jamais la perdre.
-        </p>
-
-        <p>
-            Je sais qu’aujourd’hui tu n’es pas encore ma femme,
-            mais dans mon cœur, j’espère vraiment qu’un jour
-            tu le seras.
-            Je veux qu’un jour on puisse construire notre vie
-            ensemble, réaliser nos rêves et rester toujours
-            l’un pour l’autre.
-        </p>
-
-        <p>
-            Je rêve de notre futur, de notre maison,
-            de nos voyages, de nos petits moments ensemble
-            et de toutes les choses qu’on pourra découvrir
-            à deux.
-        </p>
-
-        <p>
-            Je veux être à tes côtés dans les bons moments,
-            mais aussi dans les moments difficiles,
-            pour te soutenir et ne jamais te laisser seule.
-        </p>
-
-        <p>
-            Je ne sais pas exactement ce que l’avenir nous
-            réserve, mais je sais une chose :
-            si Dieu le veut, j’aimerais que mon avenir soit
-            avec toi.
-        </p>
-
-        <p>
-            Alors aujourd’hui, profite de ta journée,
-            souris beaucoup et sois heureuse.
-            Tu mérites vraiment tout le bonheur du monde.
-        </p>
-
-        <p>
-            Encore une fois, joyeux anniversaire mon amour.
-            J’espère que ce ne sera pas le dernier anniversaire
-            que je fêterai à tes côtés, mais le premier d’une
-            très longue histoire ensemble.
-        </p>
-
-        <p class="final">
-            Je t’aime beaucoup, ma future femme.
-        </p>
-
-    </div>
-
-</section>
-
-
 <script>
 
-/* =====================================================
-   ELEMENTS
-===================================================== */
+/* PARTICLES */
 
-const key = document.getElementById("key");
-const chest = document.getElementById("chest");
-const passwordBox = document.getElementById("passwordBox");
-const passwordInput = document.getElementById("password");
-const error = document.getElementById("error");
-const music = document.getElementById("music");
+const canvas =
+    document.getElementById("particles");
 
-let keyUsed = false;
+const ctx =
+    canvas.getContext("2d");
+
+let particles = [];
 
 
-/* =====================================================
-   CLIQUE SUR LA CLÉ
-===================================================== */
+function resizeCanvas() {
 
-function showPassword() {
+    canvas.width =
+        innerWidth * devicePixelRatio;
 
-    if (keyUsed) return;
+    canvas.height =
+        innerHeight * devicePixelRatio;
 
-    keyUsed = true;
+    canvas.style.width =
+        innerWidth + "px";
 
-    /* La clé se dirige vers le coffre */
+    canvas.style.height =
+        innerHeight + "px";
 
-    key.classList.add("insert");
-
-    /* Afficher le code */
-
-    setTimeout(() => {
-
-        passwordBox.classList.add("visible");
-
-        passwordInput.focus();
-
-    }, 900);
-
+    ctx.setTransform(
+        devicePixelRatio,
+        0,
+        0,
+        devicePixelRatio,
+        0,
+        0
+    );
 }
 
 
-/* =====================================================
-   OUVERTURE
-===================================================== */
+resizeCanvas();
 
-function openGift() {
-
-    const code = passwordInput.value.trim();
-
-
-    /* ==========================================
-       BON CODE
-    ========================================== */
-
-    if (code === "11091999") {
-
-        error.classList.remove("show");
-
-        /* La clé tourne */
-
-        key.classList.add("turn");
+window.addEventListener(
+    "resize",
+    resizeCanvas
+);
 
 
-        createParticles(25);
+/* CREATE PARTICLES */
 
+for (
+    let i = 0;
+    i < 90;
+    i++
+) {
 
-        setTimeout(() => {
+    particles.push({
 
-            chest.classList.add("open");
+        x:
+            Math.random() *
+            innerWidth,
 
-            createFlash();
+        y:
+            Math.random() *
+            innerHeight,
 
-            /* Musique */
+        radius:
+            Math.random() *
+            1.8 + 0.3,
 
-            music.volume = .8;
+        velocityX:
+            (Math.random() - 0.5) *
+            0.18,
 
-            music.play().catch(() => {
-                console.log("Lecture audio bloquée par le navigateur.");
-            });
+        velocityY:
+            (Math.random() - 0.5) *
+            0.18,
 
-        }, 700);
-
-
-        /* Message */
-
-        setTimeout(() => {
-
-            document.getElementById("mainPage").style.display = "none";
-
-            document.getElementById("messagePage").style.display = "block";
-
-            window.scrollTo({
-                top: 0,
-                behavior: "smooth"
-            });
-
-        }, 2400);
-
-    }
-
-
-    /* ==========================================
-       MAUVAIS CODE
-    ========================================== */
-
-    else {
-
-        error.classList.remove("show");
-
-        /* reset animation */
-
-        void key.offsetWidth;
-
-        key.classList.add("break");
-
-        error.classList.add("show");
-
-        createParticles(12);
-
-
-        setTimeout(() => {
-
-            key.classList.remove("break");
-
-            key.classList.remove("insert");
-
-            keyUsed = false;
-
-        }, 1300);
-
-    }
-
+        opacity:
+            Math.random() *
+            0.6 + 0.1
+    });
 }
 
 
-/* =====================================================
-   FLASH
-===================================================== */
+/* ANIMATE */
 
-function createFlash() {
+function animateParticles() {
 
-    const flash =
-        document.createElement("div");
+    ctx.clearRect(
+        0,
+        0,
+        innerWidth,
+        innerHeight
+    );
 
-    flash.className = "flash";
-
-    document.body.appendChild(flash);
-
-    setTimeout(() => {
-        flash.remove();
-    }, 1000);
-
-}
-
-
-/* =====================================================
-   PARTICULES
-===================================================== */
-
-function createParticles(amount) {
-
-    for (let i = 0; i < amount; i++) {
-
-        const particle =
-            document.createElement("div");
-
-        particle.className = "particle";
-
-        particle.style.left =
-            Math.random() * 100 + "vw";
-
-        particle.style.top =
-            (50 + Math.random() * 30) + "vh";
-
-        particle.style.animationDuration =
-            (3 + Math.random() * 5) + "s";
-
-        particle.style.width =
-            (1 + Math.random() * 3) + "px";
-
-        particle.style.height =
-            particle.style.width;
-
-        document.body.appendChild(particle);
-
-        setTimeout(() => {
-            particle.remove();
-        }, 8000);
-
-    }
-
-}
-
-
-/* =====================================================
-   PARTICULES CONTINUES
-===================================================== */
-
-setInterval(() => {
-
-    if (
-        document.getElementById("mainPage")
-            .style.display !== "none"
+    for (
+        const particle of particles
     ) {
-        createParticles(1);
-    }
 
-}, 700);
+        particle.x +=
+            particle.velocityX;
+
+        particle.y +=
+            particle.velocityY;
 
 
-/* =====================================================
-   ENTER
-===================================================== */
-
-passwordInput.addEventListener(
-    "keydown",
-    function(event) {
-
-        if (event.key === "Enter") {
-            openGift();
+        if (
+            particle.x < 0
+        ) {
+            particle.x =
+                innerWidth;
         }
 
+        if (
+            particle.x > innerWidth
+        ) {
+            particle.x = 0;
+        }
+
+
+        if (
+            particle.y < 0
+        ) {
+            particle.y =
+                innerHeight;
+        }
+
+        if (
+            particle.y > innerHeight
+        ) {
+            particle.y = 0;
+        }
+
+
+        ctx.globalAlpha =
+            particle.opacity;
+
+        ctx.beginPath();
+
+        ctx.arc(
+            particle.x,
+            particle.y,
+            particle.radius,
+            0,
+            Math.PI * 2
+        );
+
+        ctx.fillStyle = "#ffffff";
+
+        ctx.fill();
+    }
+
+    requestAnimationFrame(
+        animateParticles
+    );
+}
+
+
+animateParticles();
+
+
+/* ELEMENTS */
+
+const box =
+    document.getElementById("box");
+
+const choices =
+    document.getElementById("choices");
+
+const label =
+    document.getElementById("openLabel");
+
+const opening =
+    document.getElementById("opening");
+
+const loveButton =
+    document.getElementById("loveButton");
+
+const friendButton =
+    document.getElementById("friendButton");
+
+const loveMessage =
+    document.getElementById("loveMessage");
+
+const friendMessage =
+    document.getElementById("friendMessage");
+
+const flash =
+    document.getElementById("flash");
+
+const music =
+    document.getElementById("music");
+
+const musicButton =
+    document.getElementById("musicButton");
+
+
+/* OPEN BOX */
+
+box.addEventListener(
+    "click",
+    () => {
+
+        if (
+            box.classList.contains("open")
+        ) {
+            return;
+        }
+
+        box.classList.add("open");
+
+        label.textContent =
+            "Choose what comes next";
+
+        setTimeout(
+            () => {
+
+                choices.classList.add(
+                    "show"
+                );
+
+            },
+            650
+        );
+
+        music.play().catch(() => {});
+    }
+);
+
+
+/* TRANSITION */
+
+function transition() {
+
+    flash.classList.remove(
+        "active"
+    );
+
+    void flash.offsetWidth;
+
+    flash.classList.add(
+        "active"
+    );
+}
+
+
+/* LOVE */
+
+loveButton.addEventListener(
+    "click",
+    () => {
+
+        transition();
+
+        setTimeout(
+            () => {
+
+                opening.style.display =
+                    "none";
+
+                choices.style.display =
+                    "none";
+
+                loveMessage.classList.add(
+                    "show"
+                );
+
+                document.body.style.background =
+                    "radial-gradient(circle at 50% 35%, rgba(255,50,120,.25), transparent 35%), linear-gradient(135deg,#0b0509,#260b18,#090509)";
+
+            },
+            260
+        );
+    }
+);
+
+
+/* FRIENDSHIP */
+
+friendButton.addEventListener(
+    "click",
+    () => {
+
+        transition();
+
+        setTimeout(
+            () => {
+
+                opening.style.display =
+                    "none";
+
+                choices.style.display =
+                    "none";
+
+                friendMessage.classList.add(
+                    "show"
+                );
+
+                document.body.style.background =
+                    "radial-gradient(circle at 50% 35%, rgba(190,170,185,.13), transparent 35%), linear-gradient(135deg,#08080a,#171217,#07070a)";
+
+            },
+            260
+        );
+    }
+);
+
+
+/* MUSIC */
+
+musicButton.addEventListener(
+    "click",
+    () => {
+
+        if (
+            music.paused
+        ) {
+
+            music.play().catch(() => {});
+
+            musicButton.textContent =
+                "SOUND ON";
+
+        } else {
+
+            music.pause();
+
+            musicButton.textContent =
+                "SOUND";
+        }
     }
 );
 
