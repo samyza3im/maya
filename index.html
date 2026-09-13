@@ -1,1772 +1,1083 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Maya & Samy</title>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<meta name="description" content="Luxury interior design studio — residential and commercial spaces.">
+<title>NOVA — Interior Design Studio</title>
 
 <style>
-
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:wght@500;600&display=swap');
 
 :root{
-    --bg:#030305;
-    --white:#f7f3f4;
-    --gold:#c8a875;
-    --wine:#68182f;
-    --wine2:#a72c52;
+  --bg:#11110f;
+  --surface:#191916;
+  --surface2:#22221e;
+  --text:#f3f0e8;
+  --muted:#a8a59c;
+  --line:rgba(255,255,255,.12);
+  --accent:#d8c5a0;
+  --max:1200px;
 }
 
-html,body{
-    width:100%;
-    min-height:100%;
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
 }
 
 body{
-    background:#030305;
-    color:var(--white);
-    font-family:Inter,sans-serif;
-    overflow-x:hidden;
+  background:var(--bg);
+  color:var(--text);
+  font-family:"DM Sans",sans-serif;
+  overflow-x:hidden;
 }
 
-/* ================================
-   BACKGROUND
-================================ */
-
-.noise{
-    position:fixed;
-    inset:0;
-    z-index:100;
-    pointer-events:none;
-    opacity:.035;
-
-    background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='%23n' opacity='.7'/%3E%3C/svg%3E");
+a{
+  color:inherit;
+  text-decoration:none;
 }
 
-.background{
-    position:fixed;
-    inset:0;
-    overflow:hidden;
-    pointer-events:none;
+img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
 }
 
-.orb{
-    position:absolute;
-    border-radius:50%;
-    filter:blur(100px);
-    opacity:.16;
+/* NAVIGATION */
+
+.nav{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  z-index:1000;
+  padding:22px 5%;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  transition:.25s ease;
 }
 
-.orb1{
-    width:450px;
-    height:450px;
-    background:#64172f;
-    left:-200px;
-    top:-180px;
-    animation:orb1 14s ease-in-out infinite alternate;
+.nav.scrolled{
+  background:rgba(17,17,15,.88);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--line);
+  padding-top:15px;
+  padding-bottom:15px;
 }
 
-.orb2{
-    width:500px;
-    height:500px;
-    background:#32134d;
-    right:-250px;
-    bottom:-250px;
-    animation:orb2 17s ease-in-out infinite alternate;
+.logo{
+  font-size:21px;
+  letter-spacing:4px;
+  font-weight:600;
 }
 
-.orb3{
-    width:250px;
-    height:250px;
-    background:#8d3150;
-    left:50%;
-    top:45%;
-    transform:translate(-50%,-50%);
-    opacity:.07;
+.nav-links{
+  display:flex;
+  gap:34px;
+  list-style:none;
+  font-size:13px;
+  color:#d5d2ca;
 }
 
-@keyframes orb1{
-    to{
-        transform:translate(70px,60px) scale(1.15);
-    }
+.nav-links a{
+  position:relative;
 }
 
-@keyframes orb2{
-    to{
-        transform:translate(-70px,-50px) scale(1.15);
-    }
+.nav-links a::after{
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:-7px;
+  width:0;
+  height:1px;
+  background:var(--accent);
+  transition:.2s ease;
 }
 
-/* ================================
-   MAIN
-================================ */
-
-#app{
-    min-height:100vh;
-    position:relative;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    padding:30px;
+.nav-links a:hover::after{
+  width:100%;
 }
 
-.scene{
-    width:min(1100px,100%);
-    min-height:720px;
-
-    position:relative;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    overflow:hidden;
-
-    border:1px solid rgba(255,255,255,.08);
-    border-radius:38px;
-
-    background:
-        linear-gradient(
-            135deg,
-            rgba(255,255,255,.055),
-            rgba(255,255,255,.012)
-        );
-
-    box-shadow:
-        0 60px 150px rgba(0,0,0,.7),
-        inset 0 1px rgba(255,255,255,.07);
-
-    backdrop-filter:blur(30px);
+.nav-button{
+  border:1px solid rgba(216,197,160,.7);
+  padding:11px 19px;
+  font-size:12px;
+  letter-spacing:1px;
+  transition:.2s ease;
 }
 
-/* ================================
-   INTRO
-================================ */
+.nav-button:hover{
+  background:var(--accent);
+  color:#111;
+}
 
-.intro{
-    width:100%;
-    text-align:center;
+/* HERO */
 
-    position:relative;
-    z-index:5;
+.hero{
+  min-height:100vh;
+  position:relative;
+  display:flex;
+  align-items:flex-end;
+  padding:0 5% 8%;
+  overflow:hidden;
+}
 
-    transition:
-        opacity .45s ease,
-        transform .45s ease;
+.hero-bg{
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(90deg,rgba(0,0,0,.75),rgba(0,0,0,.25)),
+    url("https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=2200&q=90")
+    center/cover;
+  transform:scale(1.03);
+}
+
+.hero::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(0deg,var(--bg),transparent 45%);
+  pointer-events:none;
+}
+
+.hero-content{
+  position:relative;
+  z-index:2;
+  max-width:900px;
 }
 
 .eyebrow{
-    font-size:10px;
-    letter-spacing:9px;
-    color:#777;
-    margin-bottom:30px;
+  color:var(--accent);
+  letter-spacing:4px;
+  font-size:11px;
+  margin-bottom:22px;
+  text-transform:uppercase;
 }
 
-.title{
-    font-family:"Cormorant Garamond",serif;
-    font-size:clamp(65px,10vw,125px);
-    font-weight:300;
-    line-height:.78;
-    letter-spacing:-3px;
+.hero h1{
+  font-family:"Playfair Display",serif;
+  font-size:clamp(58px,9vw,125px);
+  line-height:.88;
+  font-weight:500;
+  letter-spacing:-4px;
 }
 
-.title span{
+.hero h1 span{
+  display:block;
+  color:var(--accent);
+}
+
+.hero-description{
+  max-width:510px;
+  margin-top:30px;
+  color:#c4c1b9;
+  line-height:1.7;
+  font-size:15px;
+}
+
+.hero-actions{
+  display:flex;
+  gap:14px;
+  margin-top:34px;
+}
+
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:48px;
+  padding:0 25px;
+  border:1px solid var(--accent);
+  font-size:12px;
+  letter-spacing:1px;
+  transition:.2s ease;
+}
+
+.btn.primary{
+  background:var(--accent);
+  color:#111;
+}
+
+.btn:hover{
+  transform:translateY(-2px);
+}
+
+.btn.secondary{
+  border-color:var(--line);
+}
+
+/* GENERAL */
+
+section{
+  padding:120px 5%;
+}
+
+.container{
+  max-width:var(--max);
+  margin:auto;
+}
+
+.section-head{
+  display:flex;
+  align-items:end;
+  justify-content:space-between;
+  gap:30px;
+  margin-bottom:50px;
+}
+
+.section-number{
+  color:var(--accent);
+  font-size:11px;
+  letter-spacing:3px;
+  margin-bottom:12px;
+}
+
+h2{
+  font-family:"Playfair Display",serif;
+  font-size:clamp(42px,6vw,74px);
+  font-weight:500;
+  line-height:1;
+}
+
+.section-intro{
+  max-width:410px;
+  color:var(--muted);
+  line-height:1.7;
+  font-size:14px;
+}
+
+/* ABOUT */
+
+.about-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:80px;
+  align-items:center;
+}
+
+.about-image{
+  height:650px;
+  overflow:hidden;
+}
+
+.about-image img{
+  transition:transform .6s ease;
+}
+
+.about-image:hover img{
+  transform:scale(1.035);
+}
+
+.about-text p{
+  color:#b7b4ac;
+  line-height:1.9;
+  margin:25px 0;
+  font-size:15px;
+}
+
+.stats{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  border-top:1px solid var(--line);
+  margin-top:40px;
+  padding-top:28px;
+}
+
+.stat strong{
+  display:block;
+  font-family:"Playfair Display",serif;
+  font-size:40px;
+  font-weight:500;
+  color:var(--accent);
+}
+
+.stat span{
+  color:var(--muted);
+  font-size:11px;
+  letter-spacing:1px;
+}
+
+/* SERVICES */
+
+.services{
+  background:var(--surface);
+}
+
+.service-list{
+  border-top:1px solid var(--line);
+}
+
+.service{
+  display:grid;
+  grid-template-columns:80px 1fr 80px;
+  align-items:center;
+  gap:25px;
+  padding:30px 0;
+  border-bottom:1px solid var(--line);
+  transition:.2s ease;
+}
+
+.service:hover{
+  padding-left:14px;
+  padding-right:14px;
+  background:rgba(255,255,255,.025);
+}
+
+.service-num{
+  color:var(--accent);
+  font-size:12px;
+}
+
+.service h3{
+  font-family:"Playfair Display",serif;
+  font-size:30px;
+  font-weight:500;
+}
+
+.service p{
+  color:var(--muted);
+  font-size:13px;
+  margin-top:8px;
+}
+
+.service-arrow{
+  text-align:right;
+  font-size:22px;
+  color:var(--accent);
+}
+
+/* PORTFOLIO */
+
+.portfolio-grid{
+  display:grid;
+  grid-template-columns:1.15fr .85fr;
+  gap:18px;
+}
+
+.project{
+  position:relative;
+  overflow:hidden;
+  min-height:430px;
+  cursor:pointer;
+}
+
+.project.large{
+  min-height:650px;
+}
+
+.project img{
+  transition:transform .6s ease;
+}
+
+.project:hover img{
+  transform:scale(1.045);
+}
+
+.project-overlay{
+  position:absolute;
+  inset:0;
+  padding:28px;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+  background:linear-gradient(transparent 40%,rgba(0,0,0,.8));
+}
+
+.project-tag{
+  color:var(--accent);
+  font-size:10px;
+  letter-spacing:2px;
+  margin-bottom:8px;
+}
+
+.project-title{
+  font-family:"Playfair Display",serif;
+  font-size:34px;
+}
+
+.project-side{
+  display:grid;
+  gap:18px;
+}
+
+/* PROCESS */
+
+.process{
+  background:var(--surface);
+}
+
+.process-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  border-top:1px solid var(--line);
+}
+
+.process-card{
+  padding:30px 25px 30px 0;
+  margin-right:25px;
+  border-right:1px solid var(--line);
+}
+
+.process-card:last-child{
+  border-right:none;
+}
+
+.process-card span{
+  color:var(--accent);
+  font-size:11px;
+  letter-spacing:2px;
+}
+
+.process-card h3{
+  margin:45px 0 15px;
+  font-family:"Playfair Display",serif;
+  font-size:27px;
+  font-weight:500;
+}
+
+.process-card p{
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.7;
+}
+
+/* REQUEST */
+
+.request-grid{
+  display:grid;
+  grid-template-columns:.8fr 1.2fr;
+  gap:90px;
+}
+
+.request-text p{
+  color:var(--muted);
+  line-height:1.8;
+  margin-top:25px;
+  max-width:420px;
+}
+
+.request-info{
+  margin-top:45px;
+}
+
+.request-info div{
+  border-top:1px solid var(--line);
+  padding:16px 0;
+  display:flex;
+  justify-content:space-between;
+  font-size:13px;
+}
+
+.request-info span:last-child{
+  color:var(--accent);
+}
+
+.form{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:16px;
+}
+
+.field{
+  position:relative;
+}
+
+.field.full{
+  grid-column:1/-1;
+}
+
+.field input,
+.field select,
+.field textarea{
+  width:100%;
+  background:transparent;
+  border:1px solid var(--line);
+  outline:none;
+  color:var(--text);
+  padding:18px;
+  font:inherit;
+  font-size:13px;
+  transition:.2s ease;
+}
+
+.field select option{
+  background:#191916;
+}
+
+.field textarea{
+  min-height:140px;
+  resize:vertical;
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus{
+  border-color:var(--accent);
+}
+
+.form button{
+  border:0;
+  cursor:pointer;
+}
+
+/* CONTACT */
+
+.contact{
+  padding-top:50px;
+  padding-bottom:50px;
+}
+
+.contact-box{
+  border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+  padding:55px 0;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:30px;
+}
+
+.contact-box h2{
+  max-width:700px;
+}
+
+footer{
+  padding:30px 5%;
+  display:flex;
+  justify-content:space-between;
+  color:#77756e;
+  font-size:11px;
+  letter-spacing:1px;
+}
+
+/* MOBILE */
+
+@media(max-width:800px){
+
+  .nav-links{
+    display:none;
+  }
+
+  .nav{
+    padding:18px 5%;
+  }
+
+  .hero{
+    padding-bottom:55px;
+  }
+
+  .hero h1{
+    font-size:64px;
+    letter-spacing:-2px;
+  }
+
+  section{
+    padding:80px 5%;
+  }
+
+  .section-head{
     display:block;
-
-    background:
-        linear-gradient(
-            120deg,
-            #fff,
-            #aaa,
-            #fff
-        );
-
-    background-size:200%;
-
-    -webkit-background-clip:text;
-    color:transparent;
-
-    animation:titleShimmer 7s linear infinite;
-}
-
-@keyframes titleShimmer{
-    to{
-        background-position:200%;
-    }
-}
-
-.subtitle{
-    margin:35px auto 0;
-
-    max-width:520px;
-
-    color:#777;
-
-    font-family:"Cormorant Garamond",serif;
-    font-size:22px;
-    line-height:1.6;
-}
-
-/* ================================
-   CHEST
-================================ */
-
-.chest-area{
-    width:310px;
-    height:270px;
-
-    margin:65px auto 35px;
-
-    perspective:1100px;
-
-    cursor:pointer;
-
-    position:relative;
-}
-
-.chest-glow{
-    position:absolute;
-
-    width:240px;
-    height:100px;
-
-    left:50%;
-    bottom:0;
-
-    transform:translateX(-50%);
-
-    background:#8d2144;
-
-    filter:blur(55px);
-
-    opacity:.16;
-
-    transition:.5s;
-}
-
-.chest-area:hover .chest-glow{
-    opacity:.28;
-    transform:translateX(-50%) scale(1.15);
-}
-
-.chest{
-    width:250px;
-    height:160px;
-
-    position:absolute;
-
-    left:50%;
-    bottom:25px;
-
-    transform:translateX(-50%);
-
-    transform-style:preserve-3d;
-}
-
-.chest-body{
-    position:absolute;
-
-    width:250px;
-    height:125px;
-
-    bottom:0;
-    left:0;
-
-    border-radius:8px 8px 15px 15px;
-
-    background:
-        linear-gradient(
-            145deg,
-            #351019,
-            #12060b
-        );
-
-    border:1px solid #633044;
-
-    box-shadow:
-        0 35px 60px rgba(0,0,0,.75),
-        inset 0 0 35px rgba(255,255,255,.025);
-}
-
-.chest-body:after{
-    content:"";
-
-    position:absolute;
-    inset:12px;
-
-    border:1px solid rgba(190,150,165,.12);
-
-    border-radius:4px;
-}
-
-.chest-lid{
-    position:absolute;
-
-    width:260px;
-    height:55px;
-
-    left:-5px;
-    top:-2px;
-
-    border-radius:12px 12px 5px 5px;
-
-    background:
-        linear-gradient(
-            145deg,
-            #55152a,
-            #1b070e
-        );
-
-    border:1px solid #82435a;
-
-    transform-origin:left bottom;
-
-    transition:
-        transform .75s cubic-bezier(.2,.8,.2,1);
-}
-
-.chest-lid:after{
-    content:"";
-
-    position:absolute;
-    inset:9px;
-
-    border:1px solid rgba(220,180,190,.13);
-
-    border-radius:6px;
-}
-
-.ribbon{
-    position:absolute;
-
-    left:50%;
-    top:0;
-
-    transform:translateX(-50%);
-
-    width:27px;
-    height:125px;
-
-    background:
-        linear-gradient(
-            90deg,
-            rgba(180,120,140,.06),
-            rgba(230,180,200,.15),
-            rgba(180,120,140,.06)
-        );
-
-    border-left:1px solid rgba(220,180,200,.14);
-    border-right:1px solid rgba(220,180,200,.14);
-}
-
-.lock{
-    position:absolute;
-
-    z-index:5;
-
-    width:43px;
-    height:48px;
-
-    left:50%;
-    top:60px;
-
-    transform:translateX(-50%);
-
-    border:1px solid #c7a873;
-    border-radius:6px;
-
-    background:#211016;
-
-    box-shadow:
-        0 0 25px rgba(200,168,115,.13);
-
-    transition:
-        opacity .4s ease,
-        transform .4s ease;
-}
-
-.lock:before{
-    content:"";
-
-    position:absolute;
-
-    width:21px;
-    height:20px;
-
-    border:2px solid #c7a873;
-    border-bottom:0;
-
-    border-radius:15px 15px 0 0;
-
-    left:50%;
-    top:-19px;
-
-    transform:translateX(-50%);
-}
-
-.lock:after{
-    content:"";
-
-    position:absolute;
-
-    width:5px;
-    height:10px;
-
-    border-radius:4px;
-
-    background:#c7a873;
-
-    left:50%;
-    top:20px;
-
-    transform:translateX(-50%);
-}
-
-.chest-area.open .chest-lid{
-    transform:
-        rotateX(-115deg)
-        translateY(-10px);
-}
-
-.chest-area.open .lock{
-    opacity:0;
-
-    transform:
-        translateX(-50%)
-        scale(.15)
-        rotate(30deg);
-}
-
-/* ================================
-   QUESTION
-================================ */
-
-.question{
-    opacity:0;
-
-    transform:
-        translateY(20px);
-
-    pointer-events:none;
-
-    transition:
-        opacity .7s ease,
-        transform .7s ease;
-}
-
-.question.visible{
-    opacity:1;
-
-    transform:
-        translateY(0);
-
-    pointer-events:auto;
-}
-
-.question-label{
-    color:#777;
-
-    font-size:10px;
-
-    letter-spacing:6px;
-
-    margin-bottom:20px;
-}
-
-.question h2{
-    font-family:"Cormorant Garamond",serif;
-
-    font-size:
-        clamp(34px,5vw,52px);
-
-    font-weight:400;
-
-    margin-bottom:30px;
-}
-
-/* ================================
-   BUTTONS
-================================ */
-
-.choices{
-    display:flex;
-
-    justify-content:center;
-
-    gap:18px;
-
-    flex-wrap:wrap;
-}
-
-.choice{
-    width:280px;
-    height:105px;
-
-    position:relative;
-
-    overflow:hidden;
-
-    cursor:pointer;
-
-    border:1px solid rgba(255,255,255,.12);
-
-    border-radius:20px;
-
-    color:white;
-
-    background:
-        linear-gradient(
-            135deg,
-            rgba(255,255,255,.06),
-            rgba(255,255,255,.015)
-        );
-
-    transition:
-        transform .3s ease,
-        border-color .3s ease,
-        box-shadow .3s ease;
-}
-
-.choice:before{
-    content:"";
-
-    position:absolute;
-
-    width:180px;
-    height:180px;
-
-    border-radius:50%;
-
-    left:-100px;
-    top:-100px;
-
-    filter:blur(45px);
-
-    opacity:0;
-
-    transition:.4s;
-}
-
-.choice:hover{
-    transform:translateY(-6px);
-}
-
-.choice:hover:before{
-    opacity:.45;
-}
-
-.choice.love:hover{
-    border-color:rgba(180,45,90,.5);
-
-    box-shadow:
-        0 20px 50px rgba(100,10,40,.25);
-}
-
-.choice.love:before{
-    background:#a72250;
-}
-
-.choice.friends:hover{
-    border-color:rgba(180,180,190,.35);
-
-    box-shadow:
-        0 20px 50px rgba(80,80,100,.2);
-}
-
-.choice.friends:before{
-    background:#888899;
-}
-
-.choice-content{
-    position:relative;
-    z-index:2;
-
-    height:100%;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:space-between;
-
-    padding:0 25px;
-
-    text-align:left;
-}
-
-.choice-number{
-    font-size:10px;
-
-    letter-spacing:3px;
-
-    color:#666;
-}
-
-.choice-text{
-    flex:1;
-
-    margin-left:18px;
-}
-
-.choice-text strong{
-    display:block;
-
-    font-family:"Cormorant Garamond",serif;
-
-    font-size:25px;
-
-    font-weight:500;
-}
-
-.choice-text span{
-    display:block;
-
-    color:#666;
-
-    font-size:10px;
-
-    letter-spacing:1px;
-
-    margin-top:5px;
-}
-
-.arrow{
-    font-size:20px;
-
-    color:#777;
-
-    transition:.3s;
-}
-
-.choice:hover .arrow{
-    transform:translateX(4px);
-
-    color:white;
-}
-
-/* ================================
-   TRANSITION
-================================ */
-
-.transition{
-    position:fixed;
-
-    inset:0;
-
-    z-index:50;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    background:#020204;
-
-    opacity:0;
-
-    visibility:hidden;
-
-    transition:
-        opacity .35s ease;
-}
-
-.transition.active{
-    opacity:1;
-
-    visibility:visible;
-}
-
-/* ================================
-   LOVE ANIMATION
-   RAPIDE
-================================ */
-
-.love-transition{
-    position:relative;
-
-    width:180px;
-    height:180px;
-
-    display:flex;
-
-    align-items:center;
-    justify-content:center;
-}
-
-.heart{
-    width:90px;
-    height:90px;
-
-    position:relative;
-
-    background:#a51f4e;
-
-    transform:
-        rotate(-45deg)
-        scale(0);
-
-    box-shadow:
-        0 0 40px rgba(180,30,90,.7),
-        0 0 100px rgba(180,30,90,.35);
-
-    animation:none;
-}
-
-.heart:before,
-.heart:after{
-    content:"";
-
-    position:absolute;
-
-    width:90px;
-    height:90px;
-
-    background:#a51f4e;
-
-    border-radius:50%;
-}
-
-.heart:before{
-    top:-45px;
-    left:0;
-}
-
-.heart:after{
-    left:45px;
-    top:0;
-}
-
-.transition.love.active .heart{
-    animation:
-        heartFast .9s cubic-bezier(.15,.9,.25,1) forwards,
-        heartPulse .8s 1s ease-in-out 2;
-}
-
-@keyframes heartFast{
-
-    0%{
-        transform:
-            rotate(-45deg)
-            scale(0);
-    }
-
-    70%{
-        transform:
-            rotate(-45deg)
-            scale(1.2);
-    }
-
-    100%{
-        transform:
-            rotate(-45deg)
-            scale(1);
-    }
-}
-
-@keyframes heartPulse{
-
-    0%,100%{
-        transform:
-            rotate(-45deg)
-            scale(1);
-    }
-
-    50%{
-        transform:
-            rotate(-45deg)
-            scale(1.12);
-    }
-}
-
-/* ================================
-   FRIEND ANIMATION
-   RAPIDE
-================================ */
-
-.friend-animation{
-    width:230px;
-    height:160px;
-
-    position:relative;
-}
-
-.person{
-    position:absolute;
-
-    top:20px;
-
-    width:55px;
-    height:55px;
-
-    border:2px solid #ddd;
-
-    border-radius:50%;
-
-    opacity:0;
-}
-
-.person:after{
-    content:"";
-
-    position:absolute;
-
-    width:75px;
-    height:50px;
-
-    left:50%;
-    top:53px;
-
-    transform:translateX(-50%);
-
-    border:2px solid #ddd;
-
-    border-bottom:0;
-
-    border-radius:50px 50px 0 0;
-}
-
-.person.left{
-    left:25px;
-}
-
-.person.right{
-    right:25px;
-}
-
-.friend-connection{
-    position:absolute;
-
-    width:0;
-
-    height:1px;
-
-    background:#aaa;
-
-    top:92px;
-
-    left:50%;
-
-    transform:translateX(-50%);
-}
-
-.transition.friends.active .person{
-    animation:
-        personFast .65s ease forwards;
-}
-
-.transition.friends.active .person.right{
-    animation-delay:.12s;
-}
-
-.transition.friends.active .friend-connection{
-    animation:
-        connectionFast .45s .65s ease forwards;
-}
-
-@keyframes personFast{
-
-    from{
-        opacity:0;
-
-        transform:
-            translateY(25px)
-            scale(.9);
-    }
-
-    to{
-        opacity:1;
-
-        transform:
-            translateY(0)
-            scale(1);
-    }
-}
-
-@keyframes connectionFast{
-
-    to{
-        width:90px;
-    }
-}
-
-/* ================================
-   LETTER
-================================ */
-
-.letter-screen{
-    position:fixed;
-
-    inset:0;
-
-    z-index:40;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    padding:25px;
-
-    background:
-        radial-gradient(
-            circle at 50% 15%,
-            rgba(90,20,50,.18),
-            transparent 45%
-        ),
-        #030305;
-
-    opacity:0;
-
-    visibility:hidden;
-
-    transform:scale(.98);
-
-    transition:
-        opacity .6s ease,
-        transform .6s ease;
-}
-
-.letter-screen.show{
-    opacity:1;
-
-    visibility:visible;
-
-    transform:scale(1);
-}
-
-.letter{
-    width:min(850px,100%);
-
-    max-height:90vh;
-
-    overflow:auto;
-
-    padding:
-        60px
-        clamp(25px,7vw,85px);
-
-    border:1px solid rgba(255,255,255,.09);
-
-    border-radius:30px;
-
-    background:
-        linear-gradient(
-            145deg,
-            rgba(255,255,255,.055),
-            rgba(255,255,255,.012)
-        );
-
-    box-shadow:
-        0 50px 140px rgba(0,0,0,.8),
-        inset 0 1px rgba(255,255,255,.06);
-
-    backdrop-filter:blur(30px);
-
-    text-align:center;
-}
-
-.letter::-webkit-scrollbar{
-    width:3px;
-}
-
-.letter::-webkit-scrollbar-thumb{
-    background:#333;
-}
-
-.letter-top{
-    font-size:9px;
-
-    letter-spacing:8px;
-
-    color:#666;
-
-    margin-bottom:25px;
-}
-
-.letter h2{
-    font-family:"Cormorant Garamond",serif;
-
-    font-size:
-        clamp(55px,8vw,90px);
-
-    font-weight:300;
-
-    line-height:.9;
-
-    margin-bottom:35px;
-}
-
-.love-letter h2{
-    background:
-        linear-gradient(
-            120deg,
-            #fff,
-            #b43862,
-            #fff
-        );
-
-    background-size:200%;
-
-    -webkit-background-clip:text;
-
-    color:transparent;
-
-    animation:titleShimmer 8s linear infinite;
-}
-
-.friend-letter h2{
-    color:#eee;
-}
-
-.letter-line{
-    width:60px;
-
-    height:1px;
-
-    background:#555;
-
-    margin:0 auto 35px;
-}
-
-.letter p{
-    font-family:"Cormorant Garamond",serif;
-
-    font-size:
-        clamp(20px,3vw,26px);
-
-    line-height:1.7;
-
-    color:#c5c1c3;
-}
-
-.letter p span{
-    display:block;
-
-    opacity:0;
-
-    transform:translateY(12px);
-}
-
-.letter-screen.show .letter p span{
-    animation:
-        textAppear .55s ease forwards;
-}
-
-.letter-screen.show .letter p span:nth-child(1){
-    animation-delay:.15s;
-}
-
-.letter-screen.show .letter p span:nth-child(2){
-    animation-delay:.3s;
-}
-
-.letter-screen.show .letter p span:nth-child(3){
-    animation-delay:.45s;
-}
-
-.letter-screen.show .letter p span:nth-child(4){
-    animation-delay:.6s;
-}
-
-.letter-screen.show .letter p span:nth-child(5){
-    animation-delay:.75s;
-}
-
-.letter-screen.show .letter p span:nth-child(6){
-    animation-delay:.9s;
-}
-
-.letter-screen.show .letter p span:nth-child(7){
-    animation-delay:1.05s;
-}
-
-@keyframes textAppear{
-
-    to{
-        opacity:1;
-
-        transform:translateY(0);
-    }
-}
-
-.signature{
-    margin-top:35px;
-
-    color:#777;
-
-    font-family:"Cormorant Garamond",serif;
-
+  }
+
+  .section-intro{
+    margin-top:25px;
+  }
+
+  .about-grid,
+  .request-grid{
+    grid-template-columns:1fr;
+    gap:40px;
+  }
+
+  .about-image{
+    height:470px;
+  }
+
+  .portfolio-grid{
+    grid-template-columns:1fr;
+  }
+
+  .project.large{
+    min-height:500px;
+  }
+
+  .project-side{
+    grid-template-columns:1fr;
+  }
+
+  .process-grid{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .process-card{
+    border-right:none;
+    border-bottom:1px solid var(--line);
+    padding:25px 15px 25px 0;
+  }
+
+  .service{
+    grid-template-columns:45px 1fr 30px;
+  }
+
+  .service h3{
     font-size:24px;
+  }
 
-    opacity:0;
+  .form{
+    grid-template-columns:1fr;
+  }
 
-    animation:
-        signatureAppear .7s 1.5s forwards;
+  .field.full{
+    grid-column:auto;
+  }
+
+  .contact-box{
+    display:block;
+  }
+
+  .contact-box .btn{
+    margin-top:30px;
+  }
+
+  footer{
+    display:block;
+    line-height:2;
+  }
 }
-
-@keyframes signatureAppear{
-    to{
-        opacity:1;
-    }
-}
-
-/* ================================
-   PARTICLES
-================================ */
-
-.particle{
-    position:fixed;
-
-    width:2px;
-    height:2px;
-
-    border-radius:50%;
-
-    background:white;
-
-    opacity:.2;
-
-    pointer-events:none;
-
-    z-index:1;
-
-    animation:
-        particleMove linear infinite;
-}
-
-@keyframes particleMove{
-
-    from{
-        transform:translateY(110vh);
-    }
-
-    to{
-        transform:translateY(-10vh);
-    }
-}
-
-/* ================================
-   MOBILE
-================================ */
-
-@media(max-width:700px){
-
-    #app{
-        padding:12px;
-    }
-
-    .scene{
-        min-height:
-            calc(100vh - 24px);
-
-        border-radius:28px;
-    }
-
-    .title{
-        font-size:68px;
-    }
-
-    .subtitle{
-        font-size:20px;
-
-        padding:0 15px;
-    }
-
-    .chest-area{
-        margin-top:55px;
-    }
-
-    .choices{
-        flex-direction:column;
-
-        align-items:center;
-    }
-
-    .choice{
-        width:
-            min(310px,90vw);
-    }
-
-    .letter{
-        max-height:92vh;
-
-        padding:
-            50px 25px;
-    }
-
-    .letter p{
-        font-size:21px;
-
-        line-height:1.65;
-    }
-}
-
 </style>
 </head>
 
-
 <body>
 
-<div class="noise"></div>
+<header class="nav" id="nav">
+  <a href="#home" class="logo">NOVA</a>
 
+  <ul class="nav-links">
+    <li><a href="#about">Studio</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#portfolio">Portfolio</a></li>
+    <li><a href="#process">Process</a></li>
+  </ul>
 
-<div class="background">
+  <a href="#request" class="nav-button">START A PROJECT</a>
+</header>
 
-    <div class="orb orb1"></div>
+<main>
 
-    <div class="orb orb2"></div>
+<!-- HERO -->
 
-    <div class="orb orb3"></div>
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
 
-</div>
+  <div class="hero-content">
+    <div class="eyebrow">Interior Architecture · Algeria</div>
 
+    <h1>
+      Spaces
+      <span>with soul.</span>
+    </h1>
 
-<main id="app">
+    <p class="hero-description">
+      We create refined interiors where architecture, materials and
+      everyday life come together. From the first idea to the final detail.
+    </p>
 
-<section class="scene">
+    <div class="hero-actions">
+      <a href="#request" class="btn primary">DISCUSS YOUR PROJECT</a>
+      <a href="#portfolio" class="btn secondary">VIEW OUR WORK</a>
+    </div>
+  </div>
+</section>
 
-<div class="intro" id="intro">
+<!-- ABOUT -->
 
-    <div class="eyebrow">
-        MAYA & SAMY
+<section id="about">
+  <div class="container">
+
+    <div class="section-head">
+      <div>
+        <div class="section-number">01 — THE STUDIO</div>
+        <h2>Designed<br>for living.</h2>
+      </div>
+
+      <p class="section-intro">
+        Every space has a character. Our role is to discover it,
+        refine it and turn it into an environment that feels truly yours.
+      </p>
     </div>
 
+    <div class="about-grid">
 
-    <div class="title">
+      <div class="about-image">
+        <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1200&q=90" alt="Interior design">
+      </div>
 
-        <span>Une</span>
+      <div class="about-text">
+        <p>
+          NOVA is an independent interior design studio focused on
+          contemporary residential and commercial spaces.
+        </p>
 
-        <span>dernière</span>
+        <p>
+          We believe beautiful interiors are not created by following
+          trends. They are created by understanding the people who live
+          and work inside them.
+        </p>
 
-        <span>question.</span>
+        <p>
+          From spatial planning and material selection to lighting,
+          furniture and 3D visualization, every element is considered
+          as part of one coherent story.
+        </p>
+
+        <div class="stats">
+          <div class="stat">
+            <strong>24+</strong>
+            <span>PROJECTS</span>
+          </div>
+
+          <div class="stat">
+            <strong>08</strong>
+            <span>WILAYAS</span>
+          </div>
+
+          <div class="stat">
+            <strong>04</strong>
+            <span>YEARS</span>
+          </div>
+        </div>
+      </div>
 
     </div>
+  </div>
+</section>
 
+<!-- SERVICES -->
 
-    <div class="subtitle">
+<section class="services" id="services">
+  <div class="container">
 
-        Certaines choses ne se disent pas facilement.
-        Alors j'ai préféré te laisser découvrir les mots.
+    <div class="section-head">
+      <div>
+        <div class="section-number">02 — SERVICES</div>
+        <h2>What we do.</h2>
+      </div>
 
+      <p class="section-intro">
+        A complete design service, adapted to the size,
+        style and ambition of your project.
+      </p>
     </div>
 
+    <div class="service-list">
 
-    <div
-        class="chest-area"
-        id="chest"
-    >
+      <div class="service">
+        <div class="service-num">01</div>
+        <div>
+          <h3>Interior Design</h3>
+          <p>Complete concept, planning and material direction.</p>
+        </div>
+        <div class="service-arrow">↗</div>
+      </div>
 
-        <div class="chest-glow"></div>
+      <div class="service">
+        <div class="service-num">02</div>
+        <div>
+          <h3>3D Visualization</h3>
+          <p>Photorealistic renders before construction begins.</p>
+        </div>
+        <div class="service-arrow">↗</div>
+      </div>
 
+      <div class="service">
+        <div class="service-num">03</div>
+        <div>
+          <h3>Residential</h3>
+          <p>Apartments, villas, bedrooms, living rooms and kitchens.</p>
+        </div>
+        <div class="service-arrow">↗</div>
+      </div>
 
-        <div class="chest">
+      <div class="service">
+        <div class="service-num">04</div>
+        <div>
+          <h3>Commercial</h3>
+          <p>Offices, shops, restaurants and professional spaces.</p>
+        </div>
+        <div class="service-arrow">↗</div>
+      </div>
 
-            <div class="chest-body">
+      <div class="service">
+        <div class="service-num">05</div>
+        <div>
+          <h3>Renovation Concept</h3>
+          <p>Transform an existing space without losing its identity.</p>
+        </div>
+        <div class="service-arrow">↗</div>
+      </div>
 
-                <div class="ribbon"></div>
+    </div>
+  </div>
+</section>
 
-            </div>
+<!-- PORTFOLIO -->
 
+<section id="portfolio">
+  <div class="container">
 
-            <div class="chest-lid"></div>
+    <div class="section-head">
+      <div>
+        <div class="section-number">03 — SELECTED WORK</div>
+        <h2>Recent projects.</h2>
+      </div>
 
+      <p class="section-intro">
+        A selection of spaces designed around atmosphere,
+        proportion and timeless materials.
+      </p>
+    </div>
 
-            <div class="lock"></div>
+    <div class="portfolio-grid">
 
+      <article class="project large">
+        <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1500&q=90" alt="Modern apartment">
+        <div class="project-overlay">
+          <div class="project-tag">ALGIERS · RESIDENTIAL</div>
+          <div class="project-title">The Quiet Apartment</div>
+        </div>
+      </article>
+
+      <div class="project-side">
+
+        <article class="project">
+          <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1200&q=90" alt="Luxury interior">
+          <div class="project-overlay">
+            <div class="project-tag">ORAN · RESIDENTIAL</div>
+            <div class="project-title">Warm Minimalism</div>
+          </div>
+        </article>
+
+        <article class="project">
+          <img src="https://images.unsplash.com/photo-1615529162924-f8605388461d?auto=format&fit=crop&w=1200&q=90" alt="Living room">
+          <div class="project-overlay">
+            <div class="project-tag">BLIDA · PRIVATE</div>
+            <div class="project-title">Natural Residence</div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+
+<section class="process" id="process">
+  <div class="container">
+
+    <div class="section-head">
+      <div>
+        <div class="section-number">04 — PROCESS</div>
+        <h2>From idea<br>to reality.</h2>
+      </div>
+    </div>
+
+    <div class="process-grid">
+
+      <div class="process-card">
+        <span>01 / DISCOVER</span>
+        <h3>We listen.</h3>
+        <p>
+          We discuss your needs, lifestyle, budget and vision
+          to understand what your space should become.
+        </p>
+      </div>
+
+      <div class="process-card">
+        <span>02 / CONCEPT</span>
+        <h3>We imagine.</h3>
+        <p>
+          Moodboards, layouts, materials and 3D concepts
+          bring the first vision to life.
+        </p>
+      </div>
+
+      <div class="process-card">
+        <span>03 / DEVELOP</span>
+        <h3>We refine.</h3>
+        <p>
+          Every detail is developed, from lighting and furniture
+          to colors, finishes and dimensions.
+        </p>
+      </div>
+
+      <div class="process-card">
+        <span>04 / DELIVER</span>
+        <h3>We create.</h3>
+        <p>
+          The final design becomes a clear plan ready
+          for execution and transformation.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- REQUEST -->
+
+<section id="request">
+  <div class="container">
+
+    <div class="request-grid">
+
+      <div class="request-text">
+        <div class="section-number">05 — YOUR PROJECT</div>
+        <h2>Let's create<br>your space.</h2>
+
+        <p>
+          Tell us a little about your project. We will review
+          your request and get back to you to discuss the next step.
+        </p>
+
+        <div class="request-info">
+          <div>
+            <span>Residential</span>
+            <span>From concept</span>
+          </div>
+          <div>
+            <span>Commercial</span>
+            <span>Custom</span>
+          </div>
+          <div>
+            <span>3D Visualization</span>
+            <span>Available</span>
+          </div>
+        </div>
+      </div>
+
+      <form class="form" id="projectForm">
+
+        <div class="field">
+          <input type="text" placeholder="Your name" required>
         </div>
 
-    </div>
-
-
-    <div
-        class="question"
-        id="question"
-    >
-
-        <div class="question-label">
-            À TOI DE CHOISIR
+        <div class="field">
+          <input type="tel" placeholder="Phone number" required>
         </div>
 
-
-        <h2>
-            Qu'est-ce que tu veux pour nous ?
-        </h2>
-
-
-        <div class="choices">
-
-
-            <button
-                class="choice love"
-                id="love"
-            >
-
-                <div class="choice-content">
-
-                    <div class="choice-number">
-                        01
-                    </div>
-
-
-                    <div class="choice-text">
-
-                        <strong>
-                            Continuer ensemble
-                        </strong>
-
-                        <span>
-                            comme amoureux
-                        </span>
-
-                    </div>
-
-
-                    <div class="arrow">
-                        →
-                    </div>
-
-                </div>
-
-            </button>
-
-
-            <button
-                class="choice friends"
-                id="friends"
-            >
-
-                <div class="choice-content">
-
-                    <div class="choice-number">
-                        02
-                    </div>
-
-
-                    <div class="choice-text">
-
-                        <strong>
-                            Rester proches
-                        </strong>
-
-                        <span>
-                            comme amis
-                        </span>
-
-                    </div>
-
-
-                    <div class="arrow">
-                        →
-                    </div>
-
-                </div>
-
-            </button>
-
+        <div class="field">
+          <select required>
+            <option value="">Project type</option>
+            <option>Apartment</option>
+            <option>Villa</option>
+            <option>Bedroom</option>
+            <option>Living Room</option>
+            <option>Kitchen</option>
+            <option>Shop</option>
+            <option>Office</option>
+            <option>Restaurant</option>
+            <option>Other</option>
+          </select>
         </div>
 
+        <div class="field">
+          <input type="text" placeholder="Wilaya">
+        </div>
+
+        <div class="field">
+          <input type="text" placeholder="Approx. surface — m²">
+        </div>
+
+        <div class="field">
+          <select>
+            <option value="">Preferred style</option>
+            <option>Modern</option>
+            <option>Minimal</option>
+            <option>Luxury</option>
+            <option>Classic</option>
+            <option>Industrial</option>
+            <option>Japandi</option>
+            <option>Not sure yet</option>
+          </select>
+        </div>
+
+        <div class="field full">
+          <textarea placeholder="Tell us about your project..."></textarea>
+        </div>
+
+        <div class="field full">
+          <button class="btn primary" type="submit">
+            SEND PROJECT REQUEST
+          </button>
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+
+<section class="contact">
+  <div class="container">
+
+    <div class="contact-box">
+      <h2>Have a space<br>in mind?</h2>
+
+      <a href="#request" class="btn primary">
+        START A CONVERSATION
+      </a>
     </div>
 
-</div>
-
+  </div>
 </section>
 
 </main>
 
-
-<!-- ================================
-     LOVE TRANSITION
-================================ -->
-
-<div
-    class="transition love"
-    id="loveTransition"
->
-
-    <div class="love-transition">
-
-        <div class="heart"></div>
-
-    </div>
-
-</div>
-
-
-<!-- ================================
-     FRIEND TRANSITION
-================================ -->
-
-<div
-    class="transition friends"
-    id="friendTransition"
->
-
-    <div class="friend-animation">
-
-        <div class="person left"></div>
-
-        <div class="person right"></div>
-
-        <div class="friend-connection"></div>
-
-    </div>
-
-</div>
-
-
-<!-- ================================
-     LOVE MESSAGE
-================================ -->
-
-<div
-    class="letter-screen"
-    id="loveLetter"
->
-
-    <article class="letter love-letter">
-
-        <div class="letter-top">
-            MAYA & SAMY
-        </div>
-
-
-        <h2>
-            Nous deux.
-        </h2>
-
-
-        <div class="letter-line"></div>
-
-
-        <p>
-
-            <span>
-                Je veux simplement te dire que je suis toujours avec toi.
-                Malgré les moments difficiles, tu comptes toujours beaucoup pour moi.
-            </span>
-
-
-            <span>
-                Je tiens à toi et je ne veux pas que tu penses le contraire.
-                J'aime les moments que nous partageons et tout ce que nous avons vécu ensemble.
-            </span>
-
-
-            <span>
-                Il y a seulement une chose que j'ai parfois du mal à accepter :
-                je n'aime pas beaucoup te voir aussi présente sur les réseaux sociaux.
-            </span>
-
-
-            <span>
-                Je ne te dis pas cela pour te contrôler ou pour changer ta façon d'être.
-                Je veux seulement être honnête avec toi et te dire ce que je ressens.
-            </span>
-
-
-            <span>
-                J'aimerais que nous puissions parler de ces choses calmement,
-                avec confiance et sans nous faire du mal.
-            </span>
-
-
-            <span>
-                Pour moi, une relation doit avoir de l'amour,
-                mais aussi du respect, de la confiance et de la compréhension.
-            </span>
-
-
-            <span>
-                Je suis toujours là pour toi.
-                Je tiens toujours à toi.
-                Et malgré tout, mon cœur reste avec toi.
-            </span>
-
-        </p>
-
-
-        <div class="signature">
-            Toujours avec toi.
-        </div>
-
-    </article>
-
-</div>
-
-
-<!-- ================================
-     FRIEND MESSAGE
-================================ -->
-
-<div
-    class="letter-screen"
-    id="friendLetter"
->
-
-    <article class="letter friend-letter">
-
-        <div class="letter-top">
-            MAYA & SAMY
-        </div>
-
-
-        <h2>
-            Merci.
-        </h2>
-
-
-        <div class="letter-line"></div>
-
-
-        <p>
-
-            <span>
-                Merci pour tout ce que tu as fait pour moi.
-                Merci pour les moments que nous avons partagés,
-                les discussions, les rires et tous les souvenirs.
-            </span>
-
-
-            <span>
-                Si un jour nous décidons de rester amis,
-                je veux que tu saches que je ne vais pas disparaître de ta vie.
-            </span>
-
-
-            <span>
-                Je serai toujours là pour toi.
-                Tu pourras toujours me parler et compter sur moi quand tu en auras besoin.
-            </span>
-
-
-            <span>
-                Rien ne changera dans le respect et l'affection que j'ai pour toi.
-                Tu as une place importante dans ma vie.
-            </span>
-
-
-            <span>
-                Je t'aime beaucoup et je veux vraiment que tu sois heureuse.
-                Même si notre relation change, je ne veux pas oublier tout ce que nous avons vécu.
-            </span>
-
-
-            <span>
-                Je garderai toujours de bons souvenirs de nous.
-                Et je serai toujours heureux de savoir que tu vas bien.
-            </span>
-
-
-            <span>
-                Je suis toujours avec toi,
-                simplement d'une autre manière.
-            </span>
-
-        </p>
-
-
-        <div class="signature">
-            Toujours avec toi.
-        </div>
-
-    </article>
-
-</div>
-
+<footer>
+  <div>© 2026 NOVA INTERIOR DESIGN</div>
+  <div>ALGIERS · ALGERIA</div>
+</footer>
 
 <script>
 
-/* ================================
-   PARTICLES
-================================ */
+/* NAVIGATION */
 
-for(let i = 40; i > 0; i--){
+const nav = document.getElementById("nav");
 
-    const particle =
-        document.createElement("div");
-
-    particle.className =
-        "particle";
-
-    particle.style.left =
-        Math.random() * 100 + "%";
-
-    particle.style.animationDuration =
-        (9 + Math.random() * 15) + "s";
-
-    particle.style.animationDelay =
-        (-Math.random() * 18) + "s";
-
-    particle.style.opacity =
-        .05 + Math.random() * .2;
-
-    document.body.appendChild(particle);
-}
-
-
-/* ================================
-   ELEMENTS
-================================ */
-
-const chest =
-    document.getElementById("chest");
-
-const question =
-    document.getElementById("question");
-
-const intro =
-    document.getElementById("intro");
-
-const love =
-    document.getElementById("love");
-
-const friends =
-    document.getElementById("friends");
-
-const loveTransition =
-    document.getElementById("loveTransition");
-
-const friendTransition =
-    document.getElementById("friendTransition");
-
-const loveLetter =
-    document.getElementById("loveLetter");
-
-const friendLetter =
-    document.getElementById("friendLetter");
-
-
-/* ================================
-   OPEN CHEST
-================================ */
-
-chest.addEventListener("click", () => {
-
-    if(
-        chest.classList.contains("open")
-    ){
-        return;
-    }
-
-    chest.classList.add("open");
-
-    setTimeout(() => {
-
-        question.classList.add("visible");
-
-    }, 650);
-
+window.addEventListener("scroll", () => {
+  if(window.scrollY > 40){
+    nav.classList.add("scrolled");
+  }else{
+    nav.classList.remove("scrolled");
+  }
 });
 
+/* FORM */
 
-/* ================================
-   LOVE
-================================ */
+document.getElementById("projectForm").addEventListener("submit", function(e){
 
-love.addEventListener("click", () => {
+  e.preventDefault();
 
-    love.disabled = true;
+  const button = this.querySelector("button");
 
-    friends.disabled = true;
+  button.textContent = "REQUEST RECEIVED";
 
+  button.style.pointerEvents = "none";
 
-    intro.style.opacity = "0";
-
-    intro.style.transform =
-        "scale(.97)";
-
-
-    setTimeout(() => {
-
-        intro.style.display =
-            "none";
-
-        loveTransition.classList.add(
-            "active"
-        );
-
-    }, 400);
-
-
-    /*
-       Animation courte :
-       2.5 secondes maximum
-    */
-
-    setTimeout(() => {
-
-        loveTransition.classList.remove(
-            "active"
-        );
-
-        loveLetter.classList.add(
-            "show"
-        );
-
-    }, 2500);
-
-});
-
-
-/* ================================
-   FRIENDS
-================================ */
-
-friends.addEventListener("click", () => {
-
-    love.disabled = true;
-
-    friends.disabled = true;
-
-
-    intro.style.opacity = "0";
-
-    intro.style.transform =
-        "scale(.97)";
-
-
-    setTimeout(() => {
-
-        intro.style.display =
-            "none";
-
-        friendTransition.classList.add(
-            "active"
-        );
-
-    }, 400);
-
-
-    /*
-       Animation courte :
-       2.3 secondes maximum
-    */
-
-    setTimeout(() => {
-
-        friendTransition.classList.remove(
-            "active"
-        );
-
-        friendLetter.classList.add(
-            "show"
-        );
-
-    }, 2300);
+  setTimeout(() => {
+    button.textContent = "SEND PROJECT REQUEST";
+    button.style.pointerEvents = "auto";
+  }, 2500);
 
 });
 
